@@ -8,6 +8,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+  <!-- Animation engine: GSAP + ScrollTrigger + Lenis smooth-scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
@@ -37,36 +42,41 @@
 
   <main>
     <!-- Hero Banner -->
-    <section class="relative min-h-screen flex flex-col">
-      <div class="absolute inset-0 z-0">
+    <section class="hero-section relative min-h-screen flex flex-col overflow-hidden">
+      <div class="hero-bg-wrap absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80"
           alt="Green agricultural fields"
-          class="w-full h-full object-cover"
+          class="hero-bg-img w-full h-full object-cover"
         />
         <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50"></div>
       </div>
 
-      <div class="relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[120px] md:pt-[140px] pb-8 md:pb-12">
+      <div class="hero-content relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[120px] md:pt-[140px] pb-8 md:pb-12">
         <!-- Headline -->
         <div class="flex-1 flex items-center">
-          <h1 class="text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] font-semibold text-white max-w-3xl tracking-tight">
+          <h1 class="hero-headline text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] font-semibold text-white max-w-3xl tracking-tight">
             Offsetting carbon footprint for future generations
           </h1>
         </div>
 
         <!-- Bottom row -->
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-6 mt-auto">
-          <!-- Left: scroll + tagline -->
+          <!-- Left: scroll cue + tagline -->
           <div class="max-w-md">
-            
-            <p class="text-white/90 text-sm md:text-base leading-relaxed">
+            <div class="hero-scroll-cue flex items-center gap-3 mb-4 md:mb-6">
+              <span class="hero-scroll-cue-track relative w-5 h-8 rounded-full border border-white/40 flex justify-center pt-1.5">
+                <span class="hero-scroll-cue-dot block w-1 h-1.5 rounded-full bg-white"></span>
+              </span>
+              <span class="text-white/70 text-xs tracking-[0.2em] uppercase">(Scroll)</span>
+            </div>
+            <p class="hero-tagline text-white/90 text-sm md:text-base leading-relaxed">
               Boosting farmer income through regenerative farming and carbon credits.
             </p>
           </div>
 
           <!-- Right: stat cards -->
-          <div class="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-stretch shrink-0">
+          <div class="hero-stats flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-stretch shrink-0">
             <!-- Dark card -->
             <div class="hero-stat-card-dark text-white p-6 md:p-7 w-full sm:w-[220px] md:w-[240px] relative">
               <div class="flex items-start justify-between mb-8">
@@ -110,13 +120,13 @@
           </p>
         </div>
         <div class="md:col-span-8 md:col-start-6">
-          <h2 class="text-2xl md:text-[28px] lg:text-[32px] leading-snug font-medium text-ink max-w-2xl">
+          <h2 class="split-heading text-2xl md:text-[28px] lg:text-[32px] leading-snug font-medium text-ink max-w-2xl">
             We empower farmers with end-to-end regenerative farming solutions combining tailored project planning, advanced technology, and on-ground training to drive sustainable carbon outcomes.
           </h2>
         </div>
       </div>
 
-      <div class="relative -ml-5 md:-ml-[160px] lg:-ml-[220px] mb-20 md:mb-24">
+      <div class="carousel-reveal relative -ml-5 md:-ml-[160px] lg:-ml-[220px] mb-20 md:mb-24">
         <div class="swiper carousel-swiper">
           <div class="swiper-wrapper items-stretch">
             <div class="swiper-slide carousel-slide aspect-[3/4] overflow-hidden">
@@ -133,6 +143,15 @@
             </div>
             <div class="swiper-slide carousel-slide aspect-[16/9] overflow-hidden">
               <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&h=450&q=80" alt="Sustainable outcomes" />
+            </div>
+            <div class="swiper-slide carousel-slide aspect-[3/4] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=480&h=640&q=80" alt="Soil health monitoring" />
+            </div>
+            <div class="swiper-slide carousel-slide aspect-square overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&h=600&q=80" alt="Wind and solar energy" />
+            </div>
+            <div class="swiper-slide carousel-slide aspect-[4/5] overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=560&h=700&q=80" alt="Field data collection" />
             </div>
           </div>
         </div>
@@ -163,7 +182,7 @@
       </div>
     </section>
 
-    <!-- What We Do Banner -->
+    <!-- What We Do Banner (pinned scroll moment) -->
     <section class="what-we-do-banner relative overflow-hidden" data-parallax-banner>
       <div class="absolute inset-0">
         <img
@@ -174,12 +193,12 @@
       </div>
       <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-20 lg:py-24 flex items-center min-h-[520px] md:min-h-[580px]">
         <div class="w-full flex justify-end">
-          <div class="what-we-do-card reveal-right bg-white w-full md:w-[55%] lg:w-[480px] xl:w-[520px] p-8 md:p-10 lg:p-12">
+          <div class="what-we-do-card bg-white w-full md:w-[55%] lg:w-[480px] xl:w-[520px] p-8 md:p-10 lg:p-12">
             <h2 class="text-2xl md:text-3xl font-semibold text-ink mb-6 tracking-tight">What We Do?</h2>
             <p class="text-sub text-sm md:text-[15px] leading-relaxed mb-8">
               We combine expert guidance, advanced technology, and hands-on training to help farmers adopt regenerative practices through customized, goal-driven project plans that deliver lasting environmental and economic benefits.
             </p>
-            <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-semibold text-ink group">
+            <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-semibold text-ink group" data-magnetic data-magnetic-strength="0.3">
               Ready to get started?
               <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -193,11 +212,15 @@
     <!-- Services Accordion -->
     <section class="bg-forest text-white py-4 md:py-6">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-        <div class="services-accordion" role="tablist">
+        <div class="services-accordion relative" role="tablist">
+          <div class="services-accordion-highlight" aria-hidden="true"></div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight pr-4">End-to-End Project Execution Planning</span>
+          <div class="services-accordion-item is-open" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
+              <span class="flex items-baseline gap-4 md:gap-6 pr-4">
+                <span class="services-accordion-num text-xs md:text-sm font-mono text-white/35">01</span>
+                <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight">End-to-End Project Execution Planning</span>
+              </span>
               <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
               </span>
@@ -213,9 +236,12 @@
             </div>
           </div>
 
-          <div class="services-accordion-item is-open" data-services-accordion>
-            <button type="button" class="services-accordion-toggle w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="true">
-              <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight pr-4">Customized Tools &amp; Technology for Each Project</span>
+          <div class="services-accordion-item " data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="true">
+              <span class="flex items-baseline gap-4 md:gap-6 pr-4">
+                <span class="services-accordion-num text-xs md:text-sm font-mono text-white/35">02</span>
+                <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight">Customized Tools &amp; Technology for Each Project</span>
+              </span>
               <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
               </span>
@@ -237,8 +263,11 @@
           </div>
 
           <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight pr-4">Wind system upkeep</span>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
+              <span class="flex items-baseline gap-4 md:gap-6 pr-4">
+                <span class="services-accordion-num text-xs md:text-sm font-mono text-white/35">03</span>
+                <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight">Wind system upkeep</span>
+              </span>
               <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
               </span>
@@ -255,8 +284,11 @@
           </div>
 
           <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight pr-4">Training &amp; Capacity Building for Field Teams</span>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-7 md:py-8 text-left" aria-expanded="false">
+              <span class="flex items-baseline gap-4 md:gap-6 pr-4">
+                <span class="services-accordion-num text-xs md:text-sm font-mono text-white/35">04</span>
+                <span class="text-lg md:text-xl lg:text-2xl font-normal tracking-tight">Training &amp; Capacity Building for Field Teams</span>
+              </span>
               <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
               </span>
@@ -278,18 +310,18 @@
 
     <!-- How We Work -->
     <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-20 md:py-28">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
+      <div class="tilt-perspective grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
         <div class="reveal-left">
           <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">How We Work?</p>
-          <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight tracking-tight mb-12 md:mb-14 max-w-lg">
+          <h2 class="split-heading text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-ink leading-tight tracking-tight mb-12 md:mb-14 max-w-lg">
             Clean wind power solutions for green energy today
           </h2>
 
           <div class="how-steps relative space-y-10 md:space-y-12">
             <div class="how-step-line" aria-hidden="true"></div>
 
-            <div class="how-step relative flex gap-6 md:gap-8 reveal" data-delay="1">
-              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold relative z-10">1</div>
+            <div class="how-step relative flex gap-6 md:gap-8">
+              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-white border-2 border-gray-200 text-ink flex items-center justify-center text-sm font-semibold relative z-10">1</div>
               <div>
                 <h3 class="text-lg md:text-xl font-semibold text-ink mb-2">Carbon Project Registration</h3>
                 <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-md">
@@ -298,8 +330,8 @@
               </div>
             </div>
 
-            <div class="how-step relative flex gap-6 md:gap-8 reveal" data-delay="2">
-              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold relative z-10">2</div>
+            <div class="how-step relative flex gap-6 md:gap-8">
+              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-white border-2 border-gray-200 text-ink flex items-center justify-center text-sm font-semibold relative z-10">2</div>
               <div>
                 <h3 class="text-lg md:text-xl font-semibold text-ink mb-2">Validation &amp; Verification Support</h3>
                 <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-md">
@@ -308,8 +340,8 @@
               </div>
             </div>
 
-            <div class="how-step relative flex gap-6 md:gap-8 reveal" data-delay="3">
-              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold relative z-10">3</div>
+            <div class="how-step relative flex gap-6 md:gap-8">
+              <div class="how-step-dot shrink-0 w-10 h-10 rounded-full bg-white border-2 border-gray-200 text-ink flex items-center justify-center text-sm font-semibold relative z-10">3</div>
               <div>
                 <h3 class="text-lg md:text-xl font-semibold text-ink mb-2">Carbon Credit Market Access</h3>
                 <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-md">
@@ -320,7 +352,7 @@
           </div>
         </div>
 
-        <div class="how-step-image-wrap img-reveal-wrap reveal-right aspect-square max-w-lg lg:max-w-none mx-auto lg:mx-0 w-full">
+        <div class="how-step-image-wrap img-reveal-wrap aspect-square max-w-lg lg:max-w-none mx-auto lg:mx-0 w-full" data-tilt>
           <img
             src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=800&q=80"
             alt="Technicians installing solar panels"
@@ -332,8 +364,8 @@
 
     <!-- Latest Blog -->
     <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pb-20 md:pb-28">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
-        <div class="img-reveal-wrap reveal-left aspect-[4/5] max-w-md lg:max-w-none mx-auto lg:mx-0 w-full order-2 lg:order-1">
+      <div class="tilt-perspective grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
+        <div class="img-reveal-wrap aspect-[4/5] max-w-md lg:max-w-none mx-auto lg:mx-0 w-full order-2 lg:order-1" data-tilt>
           <img
             src="./assets/images/windturbinesinsnow.jpg"
             alt="Wind turbines in snowy landscape"
@@ -350,7 +382,7 @@
           <p class="text-sm md:text-[15px] text-sub leading-relaxed mb-8 max-w-lg">
             Clean Energy is a top provider of wind power systems, making green energy simple, reliable, and widely accessible for homes and businesses alike worldwide today.
           </p>
-          <a href="blog.html" class="btn-primary inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-forest-mid text-white text-sm font-medium">
+          <a href="blog.html" class="btn-primary inline-flex items-center justify-center px-8 py-3.5 rounded-full bg-forest-mid text-white text-sm font-medium" data-magnetic data-magnetic-strength="0.25">
             All Blogs
           </a>
         </div>
@@ -367,29 +399,29 @@
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-delay="1">
+        <div class="tilt-perspective grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-tilt data-tilt-max="6">
             <p class="text-4xl md:text-5xl font-semibold text-ink tracking-tight mb-[100px]">
               <span data-count="50" data-suffix="%">0%</span>
             </p>
             <hr class="stat-card-divider border-t border-gray-200 mb-4" />
             <p class="text-sm text-sub leading-relaxed">Expertise from first consultation to wind farm activation</p>
           </div>
-          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-delay="2">
+          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-tilt data-tilt-max="6">
             <p class="text-4xl md:text-5xl font-semibold text-ink tracking-tight mb-[100px]">
               <span data-count="12">0</span>
             </p>
             <hr class="stat-card-divider border-t border-gray-200 mb-4" />
             <p class="text-sm text-sub leading-relaxed">Years advancing wind power and clean energy progress every day</p>
           </div>
-          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-delay="3">
+          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-tilt data-tilt-max="6">
             <p class="text-4xl md:text-5xl font-semibold text-ink tracking-tight mb-[100px]">
               <span data-count="456">0</span>
             </p>
             <hr class="stat-card-divider border-t border-gray-200 mb-4" />
             <p class="text-sm text-sub leading-relaxed">Wind farms completed for homes, businesses, and industries</p>
           </div>
-          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-delay="4">
+          <div class="stat-card reveal-scale bg-white p-8 md:p-9" data-tilt data-tilt-max="6">
             <p class="text-4xl md:text-5xl font-semibold text-ink tracking-tight mb-[100px]">
               <span data-count="2000" data-suffix="+">0+</span>
             </p>
@@ -414,7 +446,7 @@
           <div class="swiper-wrapper lg:!grid lg:grid-cols-3 lg:gap-10 xl:gap-12">
 
             <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card reveal h-full" data-delay="1">
+              <article class="testimonial-card h-full">
                 <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -436,7 +468,7 @@
             </div>
 
             <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card reveal h-full" data-delay="2">
+              <article class="testimonial-card h-full">
                 <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -458,7 +490,7 @@
             </div>
 
             <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card reveal h-full" data-delay="3">
+              <article class="testimonial-card h-full">
                 <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                   <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -492,6 +524,8 @@
     type="button"
     class="back-to-top fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-forest text-white flex items-center justify-center shadow-lg"
     aria-label="Back to top"
+    data-magnetic
+    data-magnetic-strength="0.4"
   >
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
@@ -504,5 +538,6 @@
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
   <script src="js/home.js"></script>
+  <script src="js/animations.js"></script>
 </body>
 </html>

@@ -86,9 +86,12 @@
 
   function initFooterAccordion() {
     const items = document.querySelectorAll('[data-footer-accordion]');
+    const useGSAP = typeof gsap !== 'undefined';
 
     items.forEach((item) => {
       const toggle = item.querySelector('.footer-accordion-toggle');
+      const content = item.querySelector('.footer-accordion-content');
+      const icon = item.querySelector('.footer-accordion-icon');
       if (!toggle) return;
 
       toggle.addEventListener('click', () => {
@@ -98,8 +101,52 @@
         const isOpen = item.classList.contains('is-open');
 
         items.forEach((other) => {
+          if (other === item) return;
           other.classList.remove('is-open');
           other.querySelector('.footer-accordion-toggle')?.setAttribute('aria-expanded', 'false');
+          if (useGSAP) {
+            const otherContent = other.querySelector('.footer-accordion-content');
+            const otherIcon = other.querySelector('.footer-accordion-icon');
+            if (otherContent) gsap.to(otherContent, { height: 0, duration: 0.45, ease: 'power3.inOut' });
+            if (otherIcon) gsap.to(otherIcon, { rotate: 0, duration: 0.4, ease: 'power3.out' });
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add('is-open');
+          toggle.setAttribute('aria-expanded', 'true');
+          if (useGSAP && content) {
+            gsap.to(content, { height: 'auto', duration: 0.5, ease: 'power3.inOut' });
+            if (icon) gsap.to(icon, { rotate: 180, duration: 0.5, ease: 'back.out(2)' });
+          }
+        } else {
+          item.classList.remove('is-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          if (useGSAP && content) {
+            gsap.to(content, { height: 0, duration: 0.45, ease: 'power3.inOut' });
+            if (icon) gsap.to(icon, { rotate: 0, duration: 0.4, ease: 'power3.out' });
+          }
+        }
+      });
+    });
+  }
+
+  /** Single-open accordion toggle for any [data-services-accordion] group, site-wide
+      (used by the homepage services list and the About page's differentiators list). */
+  function initAccordionToggle() {
+    const items = document.querySelectorAll('[data-services-accordion]');
+    if (!items.length) return;
+
+    items.forEach((item) => {
+      const toggle = item.querySelector('.services-accordion-toggle');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+
+        items.forEach((other) => {
+          other.classList.remove('is-open');
+          other.querySelector('.services-accordion-toggle')?.setAttribute('aria-expanded', 'false');
         });
 
         if (!isOpen) {
@@ -110,26 +157,78 @@
     });
   }
 
+  /** Count-up animation for any [data-count] element, site-wide (not just the homepage). */
+  function initStatCounters() {
+    const counters = document.querySelectorAll('[data-count]');
+    if (!counters.length) return;
+
+    const animateCounter = (el) => {
+      const target = parseFloat(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const isDecimal = el.dataset.decimal === 'true';
+      const duration = 1600;
+      const start = performance.now();
+
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        const value = target * eased;
+
+        if (isDecimal) {
+          el.textContent = prefix + value.toFixed(1) + suffix;
+        } else if (target >= 1000) {
+          el.textContent = prefix + Math.floor(value).toLocaleString() + suffix;
+        } else {
+          el.textContent = prefix + Math.floor(value) + suffix;
+        }
+
+        if (progress < 1) requestAnimationFrame(tick);
+        else {
+          if (isDecimal) el.textContent = prefix + target + suffix;
+          else el.textContent = prefix + (target >= 1000 ? target.toLocaleString() : target) + suffix;
+        }
+      }
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    counters.forEach((c) => observer.observe(c));
+  }
+
   function initCarousel() {
     const el = document.querySelector('.carousel-swiper');
     if (!el || typeof Swiper === 'undefined') return;
 
     new Swiper('.carousel-swiper', {
-      slidesPerView: 'auto',
+      slidesPerView: 1.12,
       spaceBetween: 16,
       loop: true,
-      loopAdditionalSlides: 3,
+      loopAdditionalSlides: 8,
       speed: 700,
       grabCursor: true,
+      watchOverflow: true,
       autoplay: {
-        delay: 2000,
+        delay: 3000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       },
       breakpoints: {
-        0: { spaceBetween: 12 },
-        768: { spaceBetween: 16 },
-        1024: { spaceBetween: 20 },
+        640: { slidesPerView: 1.35, spaceBetween: 18 },
+        768: { slidesPerView: 2.1, spaceBetween: 20 },
+        1024: { slidesPerView: 2.6, spaceBetween: 24 },
       },
     });
   }
@@ -140,9 +239,15 @@
     initMobileDrawer();
     initFooterAccordion();
     initCarousel();
+    initAccordionToggle();
+    initStatCounters();
 
     if (window.GlaubarkHome) {
       window.GlaubarkHome.init();
+    }
+
+    if (window.GlaubarkAnimations) {
+      window.GlaubarkAnimations.init();
     }
   });
 })();

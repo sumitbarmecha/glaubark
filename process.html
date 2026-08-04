@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Process — Glaubark Solutions</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation engine: GSAP + ScrollTrigger + Lenis smooth-scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: '#1c1c1c',
+            sub: '#6b6b6b',
+            forest: '#0d1a10',
+            'forest-mid': '#1a3d2a',
+            cream: '#f7f5f0',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body class="bg-white text-ink" data-page="process">
+
+  <div id="site-header-slot"></div>
+
+  <main>
+    <!-- Hero: pull-quote over wind turbine field -->
+    <section class="page-banner relative flex items-center">
+      <div class="absolute inset-0 z-0">
+        <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80" alt="" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/55"></div>
+      </div>
+      <div class="relative z-10 max-w-4xl mx-auto w-full px-5 md:px-8 lg:px-12 pt-[100px] pb-14 md:pb-6 text-center">
+        <p class="text-white/70 text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase mb-6">Our Process</p>
+        <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-white font-medium leading-snug tracking-tight">
+          Glaubark&rsquo;s journey is rooted in a single belief, that farmers should not be left out of the global climate finance movement. They should be at the centre of it.
+        </p>
+      </div>
+    </section>
+
+    <!-- What We Do -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 mb-12 md:mb-16">
+        <div>
+          <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">What We Do</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
+            End-to-end carbon<br class="hidden md:block" /> project development
+          </h2>
+        </div>
+        <div class="lg:pt-2">
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-md lg:ml-auto">
+            From baseline assessment to carbon credit issuance, Glaubark handles the full cycle &mdash; so farmers and partners focus on farming, not paperwork.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-24 gap-y-8">
+        <div class="space-y-8 md:space-y-10">
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">1</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Project design, baseline assessment, and VCS project support</p>
+          </div>
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">2</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Farmer onboarding, stakeholder consultation, and capacity building</p>
+          </div>
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">3</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Field surveys, multilingual data collection, and digital monitoring</p>
+          </div>
+        </div>
+        <div class="space-y-8 md:space-y-10">
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">4</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Satellite monitoring, remote sensing, and GIS mapping</p>
+          </div>
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">5</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Transparent MRV systems, validation, and third-party verification</p>
+          </div>
+          <div class="process-step flex items-start gap-4 md:gap-5">
+            <span class="process-step-num shrink-0 w-9 h-9 md:w-10 md:h-10 rounded-full bg-forest-mid text-white flex items-center justify-center text-sm font-semibold">6</span>
+            <p class="text-sm md:text-[15px] text-ink leading-snug pt-2 md:pt-2.5">Voluntary carbon market access and credit issuance support</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Farming Practices -->
+    <section class="bg-cream py-16 md:py-24">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="max-w-2xl mb-12 md:mb-16">
+          <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">Farming Practices</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-5">
+            Practical interventions, measurable outcomes
+          </h2>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed">
+            Our work focuses on farmer-friendly practices that improve productivity, soil fertility, and sustainability &mdash; while generating verified emission reductions.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Crop Residue Management</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Drip Irrigation</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Reduced Tillage</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Biodiversity Enhancement</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Crop Rotation</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Intercropping</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Improved Crop Nutrition</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Organic Inputs</h3>
+          </div>
+          <div class="practice-card bg-white flex items-center justify-center text-center px-6 py-9 md:py-10">
+            <h3 class="text-sm md:text-base font-semibold text-ink">Cover Cropping</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who We Work With — interactive image swap on hover -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-start">
+        <div class="partner-image-wrap relative w-full max-w-md mx-auto lg:mx-0 aspect-[4/5] sm:aspect-square overflow-hidden" data-tilt data-tilt-max="3">
+          <img data-partner-image="farmers" class="partner-img is-active" src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Farmers" />
+          <img data-partner-image="ngos" class="partner-img" src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=900&q=80" alt="NGOs" />
+          <img data-partner-image="corporates" class="partner-img" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80" alt="Corporates" />
+          <img data-partner-image="sugar-factories" class="partner-img" src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=900&q=80" alt="Sugar factories" />
+          <img data-partner-image="institutional-partners" class="partner-img" src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=900&q=80" alt="Institutional partners" />
+          <img data-partner-image="fpo" class="partner-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=900&q=80" alt="Farmer Producer Organisations" />
+          <img data-partner-image="ai-ag" class="partner-img" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80" alt="AI and precision agriculture companies" />
+        </div>
+
+        <div>
+          <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">Who We Work With</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-4">
+            A broad ecosystem of partners
+          </h2>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed mb-6 md:mb-8">
+            Glaubark brings together farmers, institutions, and technology to scale impact.
+          </p>
+
+          <ul class="partners-list" role="list">
+            <li class="partner-item is-active" data-partner="farmers" tabindex="0">
+              <span class="partner-item-label">Farmers</span>
+              <p class="partner-item-desc">Direct participants who adopt regenerative practices and earn from verified carbon outcomes on their own land.</p>
+            </li>
+            <li class="partner-item" data-partner="ngos" tabindex="0">
+              <span class="partner-item-label">NGOs</span>
+              <p class="partner-item-desc">On-the-ground partners who bring trust, local knowledge, and community reach to every project we run.</p>
+            </li>
+            <li class="partner-item" data-partner="corporates" tabindex="0">
+              <span class="partner-item-label">Corporates</span>
+              <p class="partner-item-desc">Businesses funding high-integrity carbon credits and CSR-aligned rural development initiatives.</p>
+            </li>
+            <li class="partner-item" data-partner="sugar-factories" tabindex="0">
+              <span class="partner-item-label">Sugar Factories</span>
+              <p class="partner-item-desc">Anchor institutions in Maharashtra&rsquo;s cane belt that help us reach thousands of farmers through existing supply chains.</p>
+            </li>
+            <li class="partner-item" data-partner="institutional-partners" tabindex="0">
+              <span class="partner-item-label">Institutional Partners</span>
+              <p class="partner-item-desc">Government bodies and research institutions supporting policy alignment and technical credibility.</p>
+            </li>
+            <li class="partner-item" data-partner="fpo" tabindex="0">
+              <span class="partner-item-label">Farmer Producer Orgs</span>
+              <p class="partner-item-desc">Farmer collectives that streamline onboarding, training, and data collection at the grassroots level.</p>
+            </li>
+            <li class="partner-item" data-partner="ai-ag" tabindex="0">
+              <span class="partner-item-label">AI &amp; Precision Ag Companies</span>
+              <p class="partner-item-desc">Technology partners whose remote sensing and precision agriculture tools power our MRV systems.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Where We Operate -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16">
+        <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">Where We Operate</p>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-5">
+          Rooted in Maharashtra, expanding across India
+        </h2>
+        <p class="text-sm md:text-[15px] text-sub leading-relaxed">
+          Our primary focus is Maharashtra&rsquo;s agricultural districts, with active operations across three states through partnerships with AI farming and precision agriculture companies.
+        </p>
+      </div>
+
+      <div class="india-map-card relative w-full max-w-2xl mx-auto bg-cream p-6 sm:p-10">
+        <img src="assets/images/india-map-outline.svg" alt="Map of India highlighting Glaubark's regions of operation" class="india-map-img w-full h-auto block select-none" draggable="false" />
+
+        <div class="map-pin" style="left:26%; top:22%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Punjab</span>
+        </div>
+        <div class="map-pin" style="left:34%; top:48%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Maharashtra<span class="map-pin-sub">(additional districts)</span></span>
+        </div>
+        <div class="map-pin" style="left:21%; top:58%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Pune</span>
+        </div>
+        <div class="map-pin" style="left:21%; top:61.5%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Satara</span>
+        </div>
+        <div class="map-pin" style="left:21%; top:65%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Sangli</span>
+        </div>
+        <div class="map-pin" style="left:19%; top:68.5%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Kolhapur</span>
+        </div>
+        <div class="map-pin" style="left:31%; top:63%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Solapur</span>
+        </div>
+        <div class="map-pin" style="left:29%; top:87%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Kerala</span>
+        </div>
+        <div class="map-pin" style="left:76%; top:39%;">
+          <span class="map-pin-leaf" aria-hidden="true"></span>
+          <span class="map-pin-label">Meghalaya</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-slot"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/process.js"></script>
+</body>
+</html>

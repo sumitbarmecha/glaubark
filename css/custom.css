@@ -50,47 +50,57 @@ body {
   transform: translateY(0);
 }
 
-/* Footer accordion (mobile) */
+/* Footer accordion (mobile). Height is normally driven by GSAP (js/main.js);
+   these rules are the no-JS-library fallback so content is never stuck hidden. */
 .footer-accordion-content {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height 0.35s ease;
+  transition: height 0.35s ease;
 }
 
 .footer-accordion-item.is-open .footer-accordion-content {
-  max-height: 320px;
+  height: auto;
 }
 
 .footer-accordion-item.is-open .footer-accordion-icon {
   transform: rotate(180deg);
 }
 
+@media (min-width: 768px) {
+  .footer-accordion-content {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
 /* Swiper overrides */
 .carousel-swiper,
 .testimonial-swiper {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .carousel-swiper .swiper-wrapper,
 .testimonial-swiper .swiper-wrapper {
-  overflow: visible;
+  overflow: hidden;
 }
 
 .carousel-slide {
   height: 260px;
-  width: auto !important;
+  width: min(86vw, 320px);
   flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
   .carousel-slide {
     height: 300px;
+    width: min(40vw, 360px);
   }
 }
 
 @media (min-width: 1024px) {
   .carousel-slide {
     height: 340px;
+    width: min(30vw, 420px);
   }
 }
 
@@ -123,59 +133,104 @@ body {
   }
 }
 
-/* ── Scroll reveal animations ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+/* ── About page: intro + impact stats ──
+   transform is owned by GSAP's tilt effect (data-tilt), so hover feedback
+   here is box-shadow only to avoid fighting the inline style. */
+.about-intro-card {
+  transition: box-shadow 0.4s ease;
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.about-intro-card:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
 }
 
-.reveal-left {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+.about-intro-card-light {
+  background: #dbead2;
 }
 
-.reveal-left.is-visible {
-  opacity: 1;
-  transform: translateX(0);
+.about-intro-card-dark {
+  background: #0d1a10;
 }
 
-.reveal-right {
-  opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+.about-stat-divider {
+  transition: border-color 0.3s ease;
 }
 
-.reveal-right.is-visible {
-  opacity: 1;
-  transform: translateX(0);
+.about-stat:hover .about-stat-divider {
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.reveal-scale {
-  opacity: 0;
-  transform: scale(0.94);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+/* Who We Are cards — transform owned by GSAP tilt (data-tilt) */
+.who-we-are-card {
+  transition: box-shadow 0.4s ease;
 }
 
-.reveal-scale.is-visible {
-  opacity: 1;
-  transform: scale(1);
+.who-we-are-card:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
 }
 
-[data-delay="1"] { transition-delay: 0.1s; }
-[data-delay="2"] { transition-delay: 0.2s; }
-[data-delay="3"] { transition-delay: 0.3s; }
-[data-delay="4"] { transition-delay: 0.4s; }
+/* Our Story timeline */
+.story-card {
+  border-radius: 4px;
+}
+
+.story-step-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #1a3d2a;
+  margin-top: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.story-step {
+  position: relative;
+}
+
+.story-step-line-col::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: #d7d3ca;
+  transform: translateX(-50%);
+}
+
+.story-step-last .story-step-line-col::before {
+  display: none;
+}
+
+/* Long-Term Goals list */
+.goal-thumb {
+  transition: box-shadow 0.35s ease;
+}
+
+.goal-thumb img {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.goal-row:hover .goal-thumb img {
+  transform: scale(1.06);
+}
+
+/* Vision / Mission / Goal glass cards */
+.vmg-card {
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease;
+}
+
+.vmg-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.78);
+}
 
 /* ── What We Do banner ── */
 .what-we-do-banner {
@@ -189,8 +244,9 @@ body {
 }
 
 .what-we-do-bg {
+  /* GSAP scrub already smooths per-frame; a CSS transition here would add a
+     second, competing smoothing pass and make the parallax feel laggy. */
   will-change: transform;
-  transition: transform 0.1s linear;
 }
 
 .what-we-do-card {
@@ -221,10 +277,8 @@ body {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.services-accordion-icon {
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
+/* Rotation is driven by GSAP (js/animations.js) when available; this rule is
+   only the instant no-JS fallback, so it intentionally has no transition. */
 .services-accordion-item.is-open .services-accordion-icon {
   transform: rotate(90deg);
 }
@@ -262,13 +316,6 @@ body {
   bottom: 0;
   width: 1px;
   background: linear-gradient(to bottom, #1a3d2a 0%, rgba(26, 61, 42, 0.2) 100%);
-  transform-origin: top;
-  transform: scaleY(0);
-  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.how-steps.is-visible .how-step-line {
-  transform: scaleY(1);
 }
 
 .how-step-dot {
@@ -289,36 +336,28 @@ body {
   transform: scale(1.03);
 }
 
-/* ── Blog CTA button ── */
+/* ── Blog CTA button ──
+   transform is owned by GSAP's magnetic effect (data-magnetic); only
+   animate non-transform properties here to avoid fighting inline styles. */
 .btn-primary {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(26, 61, 42, 0.35);
 }
 
-/* ── Stats cards ── */
+/* ── Stats cards ──
+   transform is owned by GSAP's tilt effect (data-tilt) on fine-pointer
+   devices, so hover feedback here is box-shadow only to avoid conflicts. */
 .stat-card {
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 0.45s ease;
+  transition: box-shadow 0.45s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.08);
 }
 
-.stat-card-divider {
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
-}
-
-.stat-card.is-visible .stat-card-divider {
-  transform: scaleX(1);
-}
 
 /* ── Testimonials swiper ── */
 .testimonial-card {
@@ -364,23 +403,19 @@ body {
   transform: scale(1.25);
 }
 
-/* ── Back to top ── */
+/* ── Back to top ──
+   Note: transform is left for GSAP's magnetic effect to own exclusively
+   (inline styles always beat stylesheet rules, so a CSS transform here
+   would get silently clobbered the first time the pointer moves nearby). */
 .back-to-top {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px);
-  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease,
-              background-color 0.3s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease, background-color 0.3s ease;
 }
 
 .back-to-top.is-visible {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
-}
-
-.back-to-top:hover {
-  transform: translateY(-3px);
 }
 
 /* Image reveal clip */
@@ -392,17 +427,306 @@ body {
   transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.img-reveal-wrap.is-visible img,
 .img-reveal-wrap:hover img {
   transform: scale(1.04);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal-left, .reveal-right, .reveal-scale,
-  .how-step-line, .stat-card-divider, .services-accordion-panel,
-  .services-accordion-body, .what-we-do-bg {
+  .services-accordion-panel,
+  .services-accordion-body {
     transition: none !important;
+  }
+
+  .hero-scroll-cue-dot {
+    animation: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   Animation system (GSAP + Lenis layer)
+   ══════════════════════════════════════════════ */
+
+/* Magnetic elements — GSAP writes transform inline, this just hints the browser */
+[data-magnetic] {
+  will-change: transform;
+  display: inline-flex;
+}
+
+/* Text split (mask reveal) */
+.split-line {
+  display: block;
+  overflow: hidden;
+}
+
+.split-line-inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Hero */
+.hero-bg-img {
+  will-change: transform;
+  transform: scale(1.15);
+}
+
+.hero-scroll-cue-dot {
+  animation: scrollDotBounce 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDotBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(10px); opacity: 0.4; }
+}
+
+/* Lets carousel slides bleed past the bleed-off container edge */
+.carousel-reveal {
+  overflow: visible;
+}
+
+/* Tilt perspective containers */
+.tilt-perspective {
+  perspective: 1400px;
+}
+
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Services accordion: hover highlight bar + numerals */
+.services-accordion-highlight {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services-accordion-item {
+  position: relative;
+  z-index: 1;
+}
+
+.services-accordion-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Testimonials: decorative quote glyph */
+.testimonial-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.35em;
+  left: -0.05em;
+  font-size: 5.5rem;
+  line-height: 1;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1a3d2a;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.testimonial-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Footer link underline draw */
+.footer-link {
+  position: relative;
+  display: inline-block;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-img {
+    transform: none;
+  }
+
+  [data-tilt] {
     transform: none !important;
-    opacity: 1 !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   Our Process page
+   ══════════════════════════════════════════════ */
+
+/* What We Do — numbered steps */
+.process-step-num {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-step:hover .process-step-num {
+  transform: scale(1.1);
+}
+
+/* Farming Practices cards */
+.practice-card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+}
+
+.practice-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Who We Work With — image cross-fade + hover list */
+.partner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.partner-img.is-active {
+  opacity: 1;
+  transform: scale(1);
+  position: relative;
+}
+
+.partners-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.partner-item {
+  cursor: pointer;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.partner-item:focus-visible {
+  outline: 2px solid #1a3d2a;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.partner-item-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #b3b3b3;
+  transition: color 0.3s ease;
+}
+
+.partner-item.is-active .partner-item-label,
+.partner-item:hover .partner-item-label,
+.partner-item:focus-visible .partner-item-label {
+  color: #0d1a10;
+}
+
+.partner-item-desc {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  opacity: 0;
+  color: #6b6b6b;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-width: 30rem;
+  transition: grid-template-rows 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease, margin-top 0.4s ease;
+}
+
+.partner-item.is-active .partner-item-desc {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
+
+/* India map + region pins */
+.india-map-card {
+  border-radius: 6px;
+}
+
+.india-map-img {
+  filter: grayscale(1) opacity(0.4);
+  pointer-events: none;
+}
+
+.map-pin {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  transform: translate(0, -50%);
+  z-index: 1;
+}
+
+.map-pin-leaf {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  background: #1a3d2a;
+  border-radius: 0 60% 60% 60%;
+  transform: rotate(45deg);
+}
+
+.map-pin-label {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #1c1c1c;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.map-pin-sub {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 400;
+  color: #6b6b6b;
+}
+
+@media (min-width: 640px) {
+  .map-pin-label {
+    font-size: 12.5px;
+  }
+
+  .map-pin-sub {
+    font-size: 10.5px;
+  }
+
+  .map-pin-leaf {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-img,
+  .practice-card,
+  .process-step-num {
+    transition: none !important;
   }
 }

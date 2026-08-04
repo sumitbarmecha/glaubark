@@ -6,12 +6,24 @@
   <title>About — Glaubark Solutions</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation engine: GSAP + ScrollTrigger + Lenis smooth-scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
-          colors: { ink: '#1c1c1c', sub: '#6b6b6b' },
+          colors: {
+            ink: '#1c1c1c',
+            sub: '#6b6b6b',
+            forest: '#0d1a10',
+            'forest-mid': '#1a3d2a',
+            cream: '#f7f5f0',
+          },
         },
       },
     };
@@ -36,8 +48,421 @@
       </div>
     </section>
 
+    <!-- About Intro + Impact Stats -->
     <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
-      <p class="text-sub">Page content coming soon.</p>
+      <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
+        <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">About Glaubark Solutions</p>
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink leading-tight tracking-tight">
+          Climate finance that works for the farmer, not around them
+        </h2>
+      </div>
+
+      <div class="tilt-perspective grid grid-cols-1 lg:grid-cols-[1fr_2.15fr] gap-4 md:gap-5">
+        <div class="about-intro-card about-intro-card-light p-8 md:p-9 flex flex-col justify-between" data-tilt data-tilt-max="4">
+          <p class="text-ink/80 text-sm md:text-[15px] leading-relaxed">
+            Glaubark Solutions develops high-quality carbon credit projects at the intersection of agriculture, climate finance, and regenerative farming &mdash; connecting India&rsquo;s rural communities with global climate action.
+          </p>
+          <div>
+            <hr class="border-t border-ink/15 mt-8 mb-5" />
+            <a href="contact.html" class="inline-flex items-center gap-2 text-sm font-semibold text-ink group" data-magnetic data-magnetic-strength="0.3">
+              Contact Us
+              <svg class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="about-intro-card about-intro-card-dark p-8 md:p-10 lg:p-12" data-tilt data-tilt-max="4">
+          <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-white/50 mb-10 md:mb-14">Powering Clean Change</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-6">
+            <div class="about-stat group">
+              <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight mb-6 transition-transform duration-300 group-hover:scale-105">
+                <span data-count="100" data-suffix="K+">0K+</span>
+              </p>
+              <hr class="about-stat-divider border-t border-white/20 mb-4" />
+              <p class="text-sm text-white/60 leading-relaxed">Hectares of agricultural land covered</p>
+            </div>
+            <div class="about-stat group">
+              <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight mb-6 transition-transform duration-300 group-hover:scale-105">
+                <span data-count="6" data-suffix="+">0+</span>
+              </p>
+              <hr class="about-stat-divider border-t border-white/20 mb-4" />
+              <p class="text-sm text-white/60 leading-relaxed">Districts in Maharashtra and growing</p>
+            </div>
+            <div class="about-stat group">
+              <p class="text-4xl md:text-5xl font-semibold text-white tracking-tight mb-6 transition-transform duration-300 group-hover:scale-105">
+                <span data-count="3" data-suffix="+">0+</span>
+              </p>
+              <hr class="about-stat-divider border-t border-white/20 mb-4" />
+              <p class="text-sm text-white/60 leading-relaxed">States across India &mdash; MH, PB, KL, ML</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="bg-cream py-16 md:py-24">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="max-w-2xl mb-12 md:mb-16">
+          <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">Who We Are</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-5">
+            Built on a farmer-first vision
+          </h2>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed">
+            Glaubark was founded on a simple belief: climate action should not only reduce emissions &mdash; it should create real, lasting economic value for the communities most vulnerable to climate change. In India&rsquo;s drought-prone agricultural heartlands, farmers face compounding pressures: unseasonal rainfall, soil degradation, rising input costs, and volatile crop prices. We exist to turn those challenges into opportunity.
+          </p>
+        </div>
+
+        <div class="tilt-perspective grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+          <div class="who-we-are-card bg-white p-7 md:p-8" data-tilt data-tilt-max="5">
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-8 md:mb-10 leading-snug">Regenerative farming adoption</h3>
+            <hr class="border-t border-gray-200 mb-4" />
+            <p class="text-sm text-sub leading-relaxed">We help farmers shift to sustainable practices that restore soil health, cut emissions, and reduce dependency on costly inputs.</p>
+          </div>
+          <div class="who-we-are-card bg-white p-7 md:p-8" data-tilt data-tilt-max="5">
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-8 md:mb-10 leading-snug">Additional income through carbon</h3>
+            <hr class="border-t border-gray-200 mb-4" />
+            <p class="text-sm text-sub leading-relaxed">Farmers who adopt these practices earn carbon credits, opening a new revenue stream alongside their primary crops.</p>
+          </div>
+          <div class="who-we-are-card bg-white p-7 md:p-8" data-tilt data-tilt-max="5">
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-8 md:mb-10 leading-snug">Climate resilience</h3>
+            <hr class="border-t border-gray-200 mb-4" />
+            <p class="text-sm text-sub leading-relaxed">Improved soil and water management builds long-term farm resilience against erratic weather patterns and climate stress.</p>
+          </div>
+          <div class="who-we-are-card bg-white p-7 md:p-8" data-tilt data-tilt-max="5">
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-8 md:mb-10 leading-snug">Market access</h3>
+            <hr class="border-t border-gray-200 mb-4" />
+            <p class="text-sm text-sub leading-relaxed">We connect farmers and partners with voluntary carbon markets and global climate finance, end to end.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="story-card bg-cream p-6 sm:p-10 md:p-14">
+        <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-4">Our Story</p>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-12 md:mb-14">
+          How Glaubark began
+        </h2>
+
+        <div class="story-timeline">
+          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
+            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Mumbai<br />Tata Sons</div>
+            <div class="story-step-line-col relative flex justify-center">
+              <span class="story-step-dot"></span>
+            </div>
+            <div class="pb-10 md:pb-12">
+              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A research paper that changed direction</h3>
+              <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-xl">
+                Glaubark began with an internship. While working at Tata Sons in Mumbai, co-founder Dhruv Sakore was writing a research paper on green finance and its role in the global energy transition. In the course of that research, he discovered carbon credits &mdash; and became deeply interested in their potential to fund climate-positive projects at scale.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
+            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Marathwada<br />Maharashtra</div>
+            <div class="story-step-line-col relative flex justify-center">
+              <span class="story-step-dot"></span>
+            </div>
+            <div class="pb-10 md:pb-12">
+              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A personal connection to agrarian distress</h3>
+              <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-xl">
+                The idea immediately connected with something personal. Dhruv comes from Marathwada &mdash; a drought-prone region of Maharashtra with some of the highest rates of farmer distress in India. Growing up in an agricultural family, he had witnessed firsthand how unseasonal rainfall, depleted soils, volatile crop prices, and limited access to modern farming knowledge erode farmer livelihoods over generations.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
+            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">The Insight</div>
+            <div class="story-step-line-col relative flex justify-center">
+              <span class="story-step-dot"></span>
+            </div>
+            <div class="pb-10 md:pb-12">
+              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">Carbon credits as a farmer finance tool</h3>
+              <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-xl">
+                This made Dhruv see carbon credits differently &mdash; not just as an environmental accounting mechanism, but as a financing tool for farmers. If farmers adopted regenerative practices that improved soil health, reduced emissions, and sequestered carbon, they should also be able to earn from the carbon credit market. Climate action and farmer welfare didn&rsquo;t have to be separate goals.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
+            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">London<br />University</div>
+            <div class="story-step-line-col relative flex justify-center">
+              <span class="story-step-dot"></span>
+            </div>
+            <div class="pb-10 md:pb-12">
+              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A co-founder joins from London</h3>
+              <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-xl">
+                Dhruv began sharing the idea with friends. One of those conversations reached Vatsal Agarwal, a friend and fellow student in London. Vatsal was looking to build something meaningful and new &mdash; and saw strong potential in the vision. After several deep discussions, Vatsal came on board, and together they founded Glaubark Solutions.
+              </p>
+            </div>
+          </div>
+
+          <div class="story-step story-step-last grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
+            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Today<br />Pan-India</div>
+            <div class="story-step-line-col relative flex justify-center">
+              <span class="story-step-dot"></span>
+            </div>
+            <div>
+              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">From student idea to national presence</h3>
+              <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-xl">
+                What started as a student-led research idea has grown into a company working directly with farmers, FPOs, sugar factories, and agricultural partners across Maharashtra, Punjab, Kerala, and Meghalaya &mdash; approaching 100,000 hectares of land under carbon project development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Glaubark Exists -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="tilt-perspective grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-24 items-center">
+        <div class="img-reveal-wrap aspect-[4/3] w-full" data-tilt data-tilt-max="4">
+          <img
+            src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Farmers working in the field"
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-6">Why Glaubark Exists</h2>
+          <div class="space-y-4 text-sm md:text-[15px] text-sub leading-relaxed">
+            <p>Farmers are on the front lines of climate change. In regions like Marathwada, drought, erratic rainfall, and soil degradation aren&rsquo;t abstract risks, they&rsquo;re annual realities that threaten livelihoods.</p>
+            <p>Regenerative farming practices can change this. They restore soil health, reduce emissions, improve water efficiency, and build long-term resilience. But for small and marginal farmers, accessing carbon markets remains out of reach &mdash; too complex, too documentation-heavy, and too disconnected from ground realities.</p>
+            <p class="text-ink font-medium">Glaubark bridges that gap.</p>
+            <p>We work directly with farmers to adopt better practices, build the monitoring and documentation infrastructure that carbon projects require, and connect verified climate impact to voluntary carbon markets. The result: climate action that generates real, additional income for the people who need it most.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Makes Glaubark Different -->
+    <section class="bg-forest text-white py-16 md:py-24">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight mb-10 md:mb-14">What Makes Glaubark Different</h2>
+
+        <div class="services-accordion relative" role="tablist">
+          <div class="services-accordion-highlight" aria-hidden="true"></div>
+
+          <div class="services-accordion-item is-open" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="true">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Farmers as Participants, Not Just Beneficiaries</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    Glaubark doesn&rsquo;t develop carbon credits on behalf of farmers &mdash; it builds carbon projects with them. Farmers are active participants in the process, and direct beneficiaries of the climate finance it generates.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Roots in the Community</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    Our field teams live and work in the regions we serve, building trust with farmers through direct, ongoing relationships rather than one-off transactions.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Leadership That Works in the Field</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    Our founders and senior team spend real time on the ground with farmers and FPOs, not just behind a desk &mdash; decisions are shaped by what actually works on-farm.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Full Project Cycle, End to End</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    From farmer onboarding and practice adoption to MRV, verification, and credit issuance, we manage every stage of the carbon project lifecycle in-house.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Practices Farmers Can Actually Adopt</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    We design regenerative interventions that fit real farm economics and local conditions, so adoption is practical, not just theoretically sound.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Technology Built for Transparency</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    Purpose-built monitoring and data tools give farmers, partners, and carbon buyers a transparent, audit-ready view of impact on the ground.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="services-accordion-item" data-services-accordion>
+            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
+              <span class="text-lg md:text-xl font-normal tracking-tight">Carbon Markets as a Tool for Rural Development</span>
+              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+            <div class="services-accordion-panel">
+              <div class="services-accordion-panel-inner">
+                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
+                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    We treat carbon finance as a means to an end &mdash; rural income and resilience &mdash; not as a standalone commodity play.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Long-Term Goals -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="max-w-2xl mb-12 md:mb-16">
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-5">Long-Term Goals</h2>
+        <p class="text-sm md:text-[15px] text-sub leading-relaxed">
+          Glaubark&rsquo;s long-term ambition is to become one of India&rsquo;s leading carbon project developers &mdash; across regenerative agriculture, improved land management, afforestation, agroforestry, and broader land-use based climate solutions. To get there, the company is working toward:
+        </p>
+      </div>
+
+      <div class="goal-list border-t border-gray-200">
+        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
+          <div class="goal-thumb w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">01.</span>Scale that reaches the grassroots</h3>
+            <p class="text-sm text-sub leading-relaxed max-w-2xl">Bringing thousands of small and marginal farmers into the climate finance ecosystem &mdash; across geographies, crop types, and farming contexts &mdash; through scalable carbon projects built on real field relationships.</p>
+          </div>
+        </div>
+
+        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
+          <div class="goal-thumb w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">02.</span>Credits the market can trust</h3>
+            <p class="text-sm text-sub leading-relaxed max-w-2xl">Developing high-integrity, verifiable carbon credits that meet global buyer expectations, backed by technology-enabled MRV systems that make agricultural carbon projects transparent and audit-ready.</p>
+          </div>
+        </div>
+
+        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
+          <div class="goal-thumb w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">03.</span>Partnerships that multiply impact</h3>
+            <p class="text-sm text-sub leading-relaxed max-w-2xl">Building a network of partners &mdash; sugar factories, FPOs, NGOs, CSR teams, corporates, government-linked institutions, and sustainability organizations &mdash; that extends Glaubark&rsquo;s reach and embeds climate action within existing agricultural systems.</p>
+          </div>
+        </div>
+
+        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
+          <div class="goal-thumb w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">04.</span>Better outcomes for farmers</h3>
+            <p class="text-sm text-sub leading-relaxed max-w-2xl">Helping farmers improve soil fertility, reduce input costs, use water more efficiently, and build resilience against climate risk &mdash; so the transition to regenerative practice is worth it economically, not just ecologically.</p>
+          </div>
+        </div>
+
+        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
+          <div class="goal-thumb w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">05.</span>A globally credible Indian sustainability company</h3>
+            <p class="text-sm text-sub leading-relaxed max-w-2xl">Positioning Indian agriculture as a meaningful climate solution on the world stage, while building Glaubark into an institution known for rural impact and carbon market integrity &mdash; not just credit volume.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision / Mission / Goal -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80"
+          alt="Wind turbines in a green field"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <div class="vmg-card p-7 md:p-8">
+            <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Vision</h3>
+            <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">To make Indian agriculture a global model for climate action, farmer prosperity, and regenerative land management.</p>
+          </div>
+          <div class="vmg-card p-7 md:p-8 md:mt-8">
+            <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Mission</h3>
+            <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">To empower farmers through sustainable and regenerative farming practices, generate high-quality and verifiable carbon credits, and unlock climate finance as a new source of rural income.</p>
+          </div>
+          <div class="vmg-card p-7 md:p-8">
+            <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Goal</h3>
+            <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">Become one of India&rsquo;s foremost farmer-centric carbon project developers, building a bridge between rural communities and global climate finance, while creating a more sustainable, resilient, and profitable agricultural future for the farmers.</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -45,5 +470,6 @@
 
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
 </body>
 </html>
