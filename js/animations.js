@@ -108,19 +108,18 @@
 
     const bgImg = hero.querySelector('.hero-bg-img');
     const headline = hero.querySelector('.hero-headline');
-    const scrollCue = hero.querySelector('.hero-scroll-cue');
     const tagline = hero.querySelector('.hero-tagline');
     const statCards = hero.querySelectorAll('.hero-stats > div');
     const lines = headline ? headline.querySelectorAll('.split-line-inner') : [];
 
     if (prefersReducedMotion) {
-      gsap.set([scrollCue, tagline, statCards], { opacity: 1, y: 0 });
+      gsap.set([tagline, statCards], { opacity: 1, y: 0 });
       gsap.set(lines, { yPercent: 0 });
       return;
     }
 
     gsap.set(lines, { yPercent: 110 });
-    gsap.set([scrollCue, tagline], { opacity: 0, y: 16 });
+    gsap.set(tagline, { opacity: 0, y: 16 });
     gsap.set(statCards, { opacity: 0, y: 40 });
 
     gsap
@@ -128,29 +127,7 @@
       .fromTo(bgImg, { scale: 1.15 }, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0)
       .to(lines, { yPercent: 0, duration: 1.1, stagger: 0.12 }, 0.15)
       .to(tagline, { opacity: 1, y: 0, duration: 0.8 }, 0.55)
-      .to(scrollCue, { opacity: 1, y: 0, duration: 0.6 }, 0.7)
       .to(statCards, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 0.6);
-  }
-
-  function initHeroCursorParallax() {
-    const hero = document.querySelector('.hero-section');
-    if (!hero) return;
-
-    const bgImg = hero.querySelector('.hero-bg-img');
-
-    if (hasFinePointer && !prefersReducedMotion) {
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width - 0.5;
-        const py = (e.clientY - rect.top) / rect.height - 0.5;
-        gsap.to(bgImg, { x: px * -20, y: py * -14, duration: 0.8, ease: 'power3.out' });
-        gsap.to(hero.querySelectorAll('.hero-stats > div'), { x: px * 10, y: py * 8, duration: 0.8, ease: 'power3.out' });
-      });
-      hero.addEventListener('mouseleave', () => {
-        gsap.to(bgImg, { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
-        gsap.to(hero.querySelectorAll('.hero-stats > div'), { x: 0, y: 0, duration: 0.8, ease: 'power3.out' });
-      });
-    }
   }
 
   /** Gentle idle float on the carousel slides — a continuous ambient touch, not scroll-linked. */
@@ -272,7 +249,6 @@
 
       initLenis();
       initMagnetic();
-      initHeroCursorParallax();
       initCarouselExtras();
       initWhatWeDoParallax();
       initServicesAccordionEnhance();

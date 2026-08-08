@@ -62,14 +62,8 @@
 
         <!-- Bottom row -->
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-6 mt-auto">
-          <!-- Left: scroll cue + tagline -->
+          <!-- Left: tagline -->
           <div class="max-w-md">
-            <div class="hero-scroll-cue flex items-center gap-3 mb-4 md:mb-6">
-              <span class="hero-scroll-cue-track relative w-5 h-8 rounded-full border border-white/40 flex justify-center pt-1.5">
-                <span class="hero-scroll-cue-dot block w-1 h-1.5 rounded-full bg-white"></span>
-              </span>
-              <span class="text-white/70 text-xs tracking-[0.2em] uppercase">(Scroll)</span>
-            </div>
             <p class="hero-tagline text-white/90 text-sm md:text-base leading-relaxed">
               Boosting farmer income through regenerative farming and carbon credits.
             </p>
@@ -88,7 +82,9 @@
                 </span>
               </div>
               <p class="text-xs text-white/60 mb-1">Wind turbines</p>
-              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none">2.800<span class="text-2xl">%</span></p>
+              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none">
+                <span data-count="2800" data-suffix="%">0%</span>
+              </p>
             </div>
 
             <!-- Glass card -->
@@ -102,7 +98,9 @@
                 </span>
               </div>
               <p class="text-xs text-white/70 mb-1">Performance increase</p>
-              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none mb-6">88.8<span class="text-2xl">%</span></p>
+              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none mb-6">
+                <span data-count="88.8" data-decimal="true" data-suffix="%">0%</span>
+              </p>
               <p class="text-xs text-white/60 leading-relaxed">Save energy cut bills instantly.</p>
             </div>
           </div>
@@ -125,38 +123,170 @@
           </h2>
         </div>
       </div>
-
-      <div class="carousel-reveal relative -ml-5 md:-ml-[160px] lg:-ml-[220px] mb-20 md:mb-24">
-        <div class="swiper carousel-swiper">
-          <div class="swiper-wrapper items-stretch">
-            <div class="swiper-slide carousel-slide aspect-[3/4] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=480&h=640&q=80" alt="Regenerative farming" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-[16/10] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&h=500&q=80" alt="Carbon credits" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-square overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1633&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Farmer training" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-[4/5] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=560&h=700&q=80" alt="Technology platform" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-[16/9] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&h=450&q=80" alt="Sustainable outcomes" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-[3/4] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=480&h=640&q=80" alt="Soil health monitoring" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-square overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&h=600&q=80" alt="Wind and solar energy" />
-            </div>
-            <div class="swiper-slide carousel-slide aspect-[4/5] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=560&h=700&q=80" alt="Field data collection" />
-            </div>
-          </div>
+</section>
+<section class=" px-0 ">
+  <div class="relative -ml-5 md:-ml-[160px] lg:-ml-[220px] mb-20 md:mb-24">
+    <div class="swiper sustainability-swiper overflow-visible">
+      <div class="swiper-wrapper">
+  
+        <!-- Slide 1 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80"
+            alt="Regenerative farming"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
         </div>
+  
+        <!-- Slide 2 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
+            alt="Carbon credits"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 3 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1200&auto=format&fit=crop"
+            alt="Farmer training"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 4 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=800&q=80"
+            alt="Technology platform"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 5 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=800&q=80"
+            alt="Sustainable outcomes"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 6 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
+            alt="Soil health monitoring"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 7 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=800&q=80"
+            alt="Wind and solar energy"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
+        <!-- Slide 8 -->
+        <div class="swiper-slide !w-auto h-[345px]">
+          <img
+            src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80"
+            alt="Field data collection"
+            class="h-[345px] w-auto max-w-none object-cover block"
+          />
+        </div>
+  
       </div>
-
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    
+      const wrapper = document.querySelector(
+        ".sustainability-swiper .swiper-wrapper"
+      );
+    
+      const originalSlides = Array.from(
+        wrapper.querySelectorAll(".swiper-slide")
+      );
+    
+      const totalSlides = originalSlides.length;
+    
+      /*
+       * Clone the slides so we can create a seamless
+       * infinite carousel without using Swiper's
+       * problematic variable-width native loop.
+       */
+      originalSlides.forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        wrapper.appendChild(clone);
+      });
+    
+      const swiper = new Swiper(".sustainability-swiper", {
+    
+        /* Width is determined by each image */
+        slidesPerView: "auto",
+    
+        /* Gap */
+        spaceBetween: 12,
+    
+        /* IMPORTANT */
+        loop: false,
+    
+        /* Exactly one slide */
+        slidesPerGroup: 1,
+    
+        /* No free scrolling */
+        freeMode: false,
+    
+        /* Smooth movement */
+        speed: 700,
+    
+        /* Start from duplicate set */
+        initialSlide: totalSlides,
+    
+        /* Dragging */
+        grabCursor: true,
+        allowTouchMove: true,
+    
+        /* Auto scroll */
+        autoplay: {
+          delay: 1500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+          reverseDirection: true
+        },
+    
+        on: {
+    
+          /*
+           * When moving LEFT → RIGHT and we reach
+           * the first slide, instantly move back
+           * to the equivalent duplicate position.
+           */
+          reachBeginning: function () {
+    
+            this.slideTo(
+              totalSlides,
+              0,
+              false
+            );
+    
+          }
+    
+        }
+    
+      });
+    
+    });
+    </script>
+</section>
+<section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
         <div>
           <h3 class="text-xl md:text-2xl font-medium text-ink mb-4">Environmental Awareness</h3>
@@ -513,6 +643,51 @@
 
           </div>
           <div class="testimonial-pagination lg:hidden mt-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- In Action: hover-to-expand video gallery -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
+      <div class="mb-10 md:mb-12 max-w-2xl">
+        <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-5">In Action</p>
+        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
+          Clean energy at work, up close
+        </h2>
+      </div>
+
+      <div class="video-gallery flex flex-col md:flex-row gap-3 md:gap-4" data-video-gallery>
+        <div class="video-gallery-item is-active" data-video-item tabindex="0">
+          <video class="video-gallery-media" muted loop playsinline preload="metadata" poster="https://assets.mixkit.co/videos/4438/4438-thumb-720-0.jpg">
+            <source src="https://assets.mixkit.co/videos/4438/4438-720.mp4" type="video/mp4" />
+          </video>
+          <div class="video-gallery-overlay" aria-hidden="true"></div>
+          <div class="video-gallery-caption">
+            <p class="video-gallery-title">Energy tech</p>
+            <p class="video-gallery-sub">Home Energy</p>
+          </div>
+        </div>
+
+        <div class="video-gallery-item" data-video-item tabindex="0">
+          <video class="video-gallery-media" muted loop playsinline preload="none" poster="https://assets.mixkit.co/videos/5302/5302-thumb-720-0.jpg">
+            <source src="https://assets.mixkit.co/videos/5302/5302-720.mp4" type="video/mp4" />
+          </video>
+          <div class="video-gallery-overlay" aria-hidden="true"></div>
+          <div class="video-gallery-caption">
+            <p class="video-gallery-title">Clear solutions</p>
+            <p class="video-gallery-sub">Efficiency</p>
+          </div>
+        </div>
+
+        <div class="video-gallery-item" data-video-item tabindex="0">
+          <video class="video-gallery-media" muted loop playsinline preload="none" poster="https://assets.mixkit.co/videos/4234/4234-thumb-720-0.jpg">
+            <source src="https://assets.mixkit.co/videos/4234/4234-720.mp4" type="video/mp4" />
+          </video>
+          <div class="video-gallery-overlay" aria-hidden="true"></div>
+          <div class="video-gallery-caption">
+            <p class="video-gallery-title">Power upgrades</p>
+            <p class="video-gallery-sub">Renewal</p>
+          </div>
         </div>
       </div>
     </section>
