@@ -14,6 +14,8 @@
 
   <script>
     tailwind.config = {
+      content: ['./*.html', './js/**/*.js'],
+      safelist: ['hidden', 'lg:block', 'lg:hidden', 'md:hidden', 'lg:flex', 'lg:justify-between'],
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
@@ -258,6 +260,7 @@
   <div id="site-footer-slot"></div>
 
   <script src="js/components.js"></script>
+  <script src="js/forms.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/process.js"></script>

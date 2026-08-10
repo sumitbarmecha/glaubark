@@ -96,18 +96,18 @@
 
   const headerHTML = `
     <header id="site-header" class="site-header fixed top-0 left-0 right-0 z-50 text-white">
-      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-        <div class="flex items-center justify-between h-[72px] md:h-[80px]">
+      <div class="site-header-inner">
+        <div class="site-header-bar flex items-center w-full min-w-0 h-[65px] md:h-[70px] gap-3">
           <!-- Logo -->
-          <a href="index.html" class="flex items-center gap-3 shrink-0 group">
-            <span class="w-9 h-9 md:w-10 md:h-10 text-white">
+          <a href="index.html" class="flex items-center gap-3 shrink-0 min-w-0 group">
+            <span class="w-9 h-9 md:w-10 md:h-10 text-white shrink-0">
               <img src="assets/images/logo.svg" alt="" class="w-full h-full" aria-hidden="true" />
             </span>
             <span class="text-xl md:text-2xl font-normal tracking-tight lowercase">glaubark</span>
           </a>
 
           <!-- Desktop Nav -->
-          <nav class="hidden lg:block" aria-label="Main navigation">
+          <nav class="site-header-nav" aria-label="Main navigation">
             <ul class="flex items-center gap-8 xl:gap-10 text-[15px] font-normal">
               ${navLinks.map(desktopNavItem).join('')}
             </ul>
@@ -117,7 +117,7 @@
           <button
             id="mobile-menu-btn"
             type="button"
-            class="lg:hidden flex items-center justify-center w-10 h-10 -mr-2"
+            class="site-header-menu-btn relative z-10 ml-auto shrink-0 flex items-center justify-center w-10 h-10"
             aria-label="Open menu"
             aria-expanded="false"
             aria-controls="mobile-drawer"
@@ -197,6 +197,62 @@
     },
   ];
 
+  const newsletterHTML = `
+    <section class="site-newsletter-section" aria-labelledby="site-newsletter-heading">
+      <div class="site-newsletter-bg" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1920&q=80"
+          alt=""
+          class="site-newsletter-bg-img"
+        />
+      </div>
+      <div class="site-newsletter-inner">
+        <div class="site-newsletter-card">
+          <div class="site-newsletter-grid">
+            <h2 id="site-newsletter-heading" class="site-newsletter-title">Stay connected with Glaubark</h2>
+            <div class="site-newsletter-graphic" aria-hidden="true">
+              <svg class="site-newsletter-graphic-svg" fill="none" stroke="currentColor" stroke-width="1.25" viewBox="0 0 120 80">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 58 C20 48 28 52 38 44 C48 36 58 40 68 34 C78 28 88 32 98 26"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 58 L18 46 L30 46 L30 58 Z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M52 58 L52 38 L72 38 L72 58 Z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M58 38 L65 28 L72 38"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M86 58 L86 50 L98 50 L98 58 Z"/>
+                <circle cx="98" cy="22" r="7"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M95 22 L98 19 L101 22"/>
+              </svg>
+            </div>
+            <p class="site-newsletter-desc">
+              Be the first to know about farmer programs, carbon project updates, and field stories from across India.
+            </p>
+            <div class="site-newsletter-form-wrap">
+              <form id="newsletter-form" class="site-newsletter-form" novalidate>
+                <label for="newsletter-email" class="sr-only">Email address</label>
+                <input
+                  type="email"
+                  id="newsletter-email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="you@email.com"
+                  required
+                  class="site-newsletter-input"
+                />
+                <button type="submit" class="site-newsletter-submit group" data-newsletter-submit>
+                  <span>Submit</span>
+                  <span class="site-newsletter-submit-icon" aria-hidden="true">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                  </span>
+                </button>
+              </form>
+              <p id="newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+
   const footerHTML = `
     <footer class="bg-black text-white">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-16 md:pt-20 pb-8">
@@ -272,6 +328,7 @@
 
   window.GlaubarkComponents = {
     headerHTML,
+    newsletterHTML,
     footerHTML,
   };
 })();

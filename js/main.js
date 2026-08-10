@@ -10,7 +10,8 @@
       headerSlot.outerHTML = window.GlaubarkComponents.headerHTML;
     }
     if (footerSlot && window.GlaubarkComponents) {
-      footerSlot.outerHTML = window.GlaubarkComponents.footerHTML;
+      footerSlot.outerHTML =
+        (window.GlaubarkComponents.newsletterHTML || '') + window.GlaubarkComponents.footerHTML;
     }
   }
 
@@ -241,6 +242,10 @@
     initCarousel();
     initAccordionToggle();
     initStatCounters();
+
+    if (window.GlaubarkForms) {
+      window.GlaubarkForms.initNewsletter();
+    }
 
     if (window.GlaubarkHome) {
       window.GlaubarkHome.init();
