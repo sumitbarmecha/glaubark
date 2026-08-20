@@ -9,9 +9,14 @@
     if (headerSlot && window.GlaubarkComponents) {
       headerSlot.outerHTML = window.GlaubarkComponents.headerHTML;
     }
+
+    const newsletterSlot = document.getElementById('site-newsletter-slot');
+    if (newsletterSlot && window.GlaubarkComponents?.newsletterHTML) {
+      newsletterSlot.outerHTML = window.GlaubarkComponents.newsletterHTML;
+    }
+
     if (footerSlot && window.GlaubarkComponents) {
-      footerSlot.outerHTML =
-        (window.GlaubarkComponents.newsletterHTML || '') + window.GlaubarkComponents.footerHTML;
+      footerSlot.outerHTML = window.GlaubarkComponents.footerHTML;
     }
   }
 

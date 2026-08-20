@@ -47,12 +47,14 @@
     return res.json();
   }
 
-  function initNewsletter() {
-    const form = document.getElementById('newsletter-form');
-    const status = document.getElementById('newsletter-form-status');
-    const submitBtn = form?.querySelector('[data-newsletter-submit]');
+  function bindNewsletterForm(form) {
     if (!form || form.dataset.bound === 'true') return;
     form.dataset.bound = 'true';
+
+    const status =
+      document.getElementById(`${form.id}-status`) ||
+      form.querySelector('[data-newsletter-status]');
+    const submitBtn = form.querySelector('[data-newsletter-submit]');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -92,6 +94,10 @@
         setSubmitting(submitBtn, false);
       }
     });
+  }
+
+  function initNewsletter() {
+    document.querySelectorAll('[data-newsletter-form]').forEach(bindNewsletterForm);
   }
 
   window.GlaubarkForms = {

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — Glaubark Solutions</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      content: ['./*.html', './js/**/*.js'],
+      safelist: ['hidden', 'lg:block', 'lg:hidden', 'md:hidden', 'lg:flex', 'lg:justify-between'],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: '#1c1c1c',
+            sub: '#6b6b6b',
+            forest: '#0d1a10',
+            'forest-mid': '#1a3d2a',
+            'forest-deep': '#082410',
+            cream: '#f7f5f0',
+            lime: '#a3e635',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body class="bg-white text-ink" data-page="services">
+
+  <div id="site-header-slot"></div>
+
+  <main>
+    <!-- Section 1: Hero -->
+    <section class="services-hero relative flex items-center overflow-hidden" aria-labelledby="services-hero-heading">
+      <div class="services-hero-rings" aria-hidden="true">
+        <span class="services-hero-ring services-hero-ring--1"></span>
+        <span class="services-hero-ring services-hero-ring--2"></span>
+        <span class="services-hero-ring services-hero-ring--3"></span>
+        <span class="services-hero-ring services-hero-ring--4"></span>
+        <span class="services-hero-ring services-hero-ring--5"></span>
+      </div>
+
+      <div class="services-hero-content relative z-10 max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[120px] pb-16 md:pb-20 lg:pb-24">
+        <p class="services-hero-label" data-services-animate="label">Our Services</p>
+
+        <h1 id="services-hero-heading" class="services-hero-title">
+          <span class="services-hero-title-main" data-services-animate="title-main">One integrated solution from</span>
+          <span class="services-hero-title-accent" data-services-animate="title-accent">field to carbon market</span>
+        </h1>
+
+        <p class="services-hero-desc" data-services-animate="desc">
+          Glaubark provides a complete carbon farming and regenerative agriculture solution &mdash; covering every stage from farmer onboarding and practice adoption to monitoring, verification, and voluntary carbon market access.
+        </p>
+
+        <div class="services-hero-tags" role="list" aria-label="Service areas">
+          <button type="button" class="services-hero-tag" data-service-tag role="listitem">Carbon project development</button>
+          <button type="button" class="services-hero-tag" data-service-tag role="listitem">Regenerative farming</button>
+          <button type="button" class="services-hero-tag" data-service-tag role="listitem">MRV systems</button>
+          <button type="button" class="services-hero-tag" data-service-tag role="listitem">Voluntary carbon markets</button>
+          <button type="button" class="services-hero-tag" data-service-tag role="listitem">VCS project support</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: The Solution -->
+    <section class="svc-solution bg-cream py-16 md:py-24 lg:py-28" aria-labelledby="svc-solution-heading">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+
+        <!-- Framing cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mb-16 md:mb-24" data-svc-reveal>
+          <div class="svc-framing-card" data-tilt data-tilt-max="3">
+            <span class="svc-framing-num">01</span>
+            <div>
+              <h3 class="svc-framing-title">Not a set of standalone services</h3>
+              <div class="svc-framing-divider"></div>
+              <p class="svc-framing-body">Glaubark works through one integrated model that covers the complete lifecycle of a carbon farming project &mdash; so farmers and partners focus on outcomes, not coordination.</p>
+            </div>
+          </div>
+          <div class="svc-framing-card" data-tilt data-tilt-max="3">
+            <span class="svc-framing-num">02</span>
+            <div>
+              <h3 class="svc-framing-title">Built for multiple stakeholders</h3>
+              <div class="svc-framing-divider"></div>
+              <p class="svc-framing-body">Designed for farmers, FPOs, sugar factories, corporates, NGOs, CSR teams, and institutional partners who want measurable climate impact alongside improved farmer incomes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Label + heading -->
+        <div class="mb-12 md:mb-16" data-svc-reveal>
+          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">The Solution</p>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16">
+            <h2 id="svc-solution-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight">What the solution does</h2>
+            <p class="text-sm md:text-[15px] text-sub leading-relaxed lg:pt-2 max-w-lg">Glaubark&rsquo;s solution helps farmers adopt regenerative and sustainable farming practices that generate measurable environmental outcomes &mdash; while developing the technical, operational, and documentation framework needed to produce high-quality, verifiable carbon credits.</p>
+          </div>
+        </div>
+
+        <!-- Interactive benefit explorer -->
+        <div class="svc-explorer" data-svc-reveal>
+          <!-- Left: active benefit panel -->
+          <div class="svc-explorer-panel" aria-live="polite" aria-atomic="true">
+            <div class="svc-explorer-panel-inner">
+              <span class="svc-panel-icon" data-panel-icon aria-hidden="true">
+                <!-- filled by JS -->
+              </span>
+              <p class="svc-panel-index" data-panel-index></p>
+              <h3 class="svc-panel-title" data-panel-title></h3>
+              <p class="svc-panel-body" data-panel-body></p>
+              <div class="svc-panel-bar" aria-hidden="true"><div class="svc-panel-bar-fill" data-panel-bar></div></div>
+            </div>
+          </div>
+
+          <!-- Right: list of benefits -->
+          <ol class="svc-benefit-list" aria-label="Benefits — select to explore">
+            <li class="svc-benefit-item is-active" data-benefit="0" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.5 2 3 7 3 12s3.5 10 9 10 9-5 9-10S17.5 2 12 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c-2.5 0-4-1.5-4-4 0 3 1.5 6 4 6s4-3 4-6c0 2.5-1.5 4-4 4z"/></svg>'
+                data-body="Farming interventions restore soil fertility, improve organic matter, and build long-term agricultural productivity — turning degraded land into productive, carbon-rich farmland.">
+              <span class="svc-benefit-num">01</span>
+              <span class="svc-benefit-name">Improves soil health</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="svc-benefit-item" data-benefit="1" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M4.2 8.2l2.8 2.8M19.8 8.2l-2.8 2.8M3 16h18M7 16v-2a5 5 0 0110 0v2"/></svg>'
+                data-body="Sustainable practices cut on-farm emissions from tillage, residue burning, synthetic fertilisers, and inefficient irrigation — reducing the sector&rsquo;s climate footprint at scale.">
+              <span class="svc-benefit-num">02</span>
+              <span class="svc-benefit-name">Reduces greenhouse gas emissions</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="svc-benefit-item" data-benefit="2" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>'
+                data-body="Regenerative practices lock carbon into the soil, contributing to verified emission reductions and carbon credit generation that can be sold on voluntary carbon markets.">
+              <span class="svc-benefit-num">03</span>
+              <span class="svc-benefit-name">Increases carbon sequestration</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="svc-benefit-item" data-benefit="3" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>'
+                data-body="Drip irrigation, mulching, and soil management practices reduce water dependency and improve resilience to drought — critical for rain-fed farming regions across India.">
+              <span class="svc-benefit-num">04</span>
+              <span class="svc-benefit-name">Enhances water efficiency</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="svc-benefit-item" data-benefit="4" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg>'
+                data-body="Organic inputs, natural manure, and improved crop nutrition reduce farmer dependency on costly synthetic inputs — lowering operational costs per acre season after season.">
+              <span class="svc-benefit-num">05</span>
+              <span class="svc-benefit-name">Lowers input costs</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="svc-benefit-item" data-benefit="5" role="button" tabindex="0"
+                data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>'
+                data-body="Healthier soils, diversified cropping, and better land management help farms withstand unseasonal rainfall and climate stress — building adaptive capacity from the ground up.">
+              <span class="svc-benefit-num">06</span>
+              <span class="svc-benefit-name">Builds climate resilience</span>
+              <span class="svc-benefit-arrow" aria-hidden="true">→</span>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Outcome cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 mt-16 md:mt-24" data-svc-reveal>
+          <div class="svc-outcome-card svc-outcome-card--farmers">
+            <p class="svc-outcome-eyebrow">For farmers</p>
+            <p class="svc-outcome-body">Better farming practices, lower costs, stronger yields, and an additional income stream through carbon credits.</p>
+            <a href="contact.html" class="svc-outcome-link" data-magnetic data-magnetic-strength="0.25">
+              Learn more
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+          <div class="svc-outcome-card svc-outcome-card--partners">
+            <p class="svc-outcome-eyebrow">For project partners</p>
+            <p class="svc-outcome-body">Credible, traceable, impact-driven carbon credits backed by field-level implementation and transparent MRV.</p>
+            <a href="contact.html" class="svc-outcome-link" data-magnetic data-magnetic-strength="0.25">
+              Learn more
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: How the solution works -->
+    <section class="svc-process" aria-labelledby="svc-process-heading">
+
+      <!-- Header -->
+      <div class="svc-process-header max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-16 md:pt-24 pb-12 md:pb-16" data-svc-reveal>
+        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">The Process</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16">
+          <h2 id="svc-process-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight">How the solution works</h2>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed lg:pt-2">Glaubark works directly with farmers and institutional partners to design and implement carbon farming projects &mdash; from the first site visit through to carbon credit issuance and market access.</p>
+        </div>
+      </div>
+
+      <!-- Steps -->
+      <div class="svc-steps-wrap max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pb-16 md:pb-24">
+        <div class="svc-steps-inner">
+
+          <!-- Vertical timeline line -->
+          <div class="svc-timeline-track" aria-hidden="true">
+            <div class="svc-timeline-fill" data-timeline-fill></div>
+          </div>
+
+          <!-- Step 1 -->
+          <div class="svc-step is-open" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="true" data-step-toggle>
+              <div class="svc-step-circle">
+                <span>1</span>
+              </div>
+              <h3 class="svc-step-title">Identifying farmers and assessing land</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body>
+              <span class="svc-step-bg-num" aria-hidden="true">01</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">Glaubark identifies suitable project areas and farmer groups, working with FPOs, sugar factories, and local partners to select locations where sustainable farming can create strong environmental and livelihood impact.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Site selection</span>
+                  <span class="svc-step-tag">Stakeholder mapping</span>
+                  <span class="svc-step-tag">Eligibility assessment</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="svc-step" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="false" data-step-toggle>
+              <div class="svc-step-circle"><span>2</span></div>
+              <h3 class="svc-step-title">Baseline surveys, data collection, and farmer onboarding</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body style="height:0;overflow:hidden;">
+              <span class="svc-step-bg-num" aria-hidden="true">02</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">Farmers are onboarded through a structured process including registration, consent, land and crop details, and baseline farming data. Digital multilingual surveys, geotagging, GIS mapping, and audio/video documentation ensure transparency and audit readiness.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Digital surveys</span>
+                  <span class="svc-step-tag">GIS mapping</span>
+                  <span class="svc-step-tag">Multilingual tools</span>
+                  <span class="svc-step-tag">Farmer consent</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="svc-step" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="false" data-step-toggle>
+              <div class="svc-step-circle"><span>3</span></div>
+              <h3 class="svc-step-title">Supporting adoption of sustainable farming practices</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body style="height:0;overflow:hidden;">
+              <span class="svc-step-bg-num" aria-hidden="true">03</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">Glaubark supports farmers in implementing locally suitable regenerative practices &mdash; including crop residue management, organic inputs, drip irrigation, crop rotation, reduced tillage, intercropping, biodiversity enhancement, and natural pest management systems.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Practice training</span>
+                  <span class="svc-step-tag">Field demonstrations</span>
+                  <span class="svc-step-tag">Capacity building</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="svc-step" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="false" data-step-toggle>
+              <div class="svc-step-circle"><span>4</span></div>
+              <h3 class="svc-step-title">Monitoring through technology and field data</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body style="height:0;overflow:hidden;">
+              <span class="svc-step-bg-num" aria-hidden="true">04</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">The company monitors project progress through field data collection, satellite imagery, remote sensing, GIS mapping, digital surveys, and MRV frameworks &mdash; ensuring outcomes are measurable, transparent, and verifiable.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Satellite imagery</span>
+                  <span class="svc-step-tag">Remote sensing</span>
+                  <span class="svc-step-tag">MRV dashboards</span>
+                  <span class="svc-step-tag">Carbon accounting</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="svc-step" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="false" data-step-toggle>
+              <div class="svc-step-circle"><span>5</span></div>
+              <h3 class="svc-step-title">Validation, verification, and carbon credit issuance</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body style="height:0;overflow:hidden;">
+              <span class="svc-step-bg-num" aria-hidden="true">05</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">Glaubark prepares project documentation, coordinates third-party validation and verification, and supports the issuance of verified carbon credits through recognised standards.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Third-party verification</span>
+                  <span class="svc-step-tag">Registry support</span>
+                  <span class="svc-step-tag">VCS compliance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="svc-step" data-step-item>
+            <div class="svc-step-hd" role="button" tabindex="0" aria-expanded="false" data-step-toggle>
+              <div class="svc-step-circle"><span>6</span></div>
+              <h3 class="svc-step-title">Voluntary carbon market access</h3>
+              <span class="svc-step-icon" aria-hidden="true">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </div>
+            <div class="svc-step-body" data-step-body style="height:0;overflow:hidden;">
+              <span class="svc-step-bg-num" aria-hidden="true">06</span>
+              <div class="svc-step-body-inner">
+                <p class="svc-step-desc">After credits are issued, Glaubark connects project partners with the voluntary carbon market &mdash; supporting the positioning, sale, or retirement of credits in line with their sustainability and climate goals.</p>
+                <div class="svc-step-tags" data-step-tags>
+                  <span class="svc-step-tag">Market access</span>
+                  <span class="svc-step-tag">Credit retirement</span>
+                  <span class="svc-step-tag">Climate finance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Full Project Cycle — stacked card scroll -->
+    <section class="svc-cycle" aria-labelledby="svc-cycle-heading">
+
+      <!-- Intro (scrolls normally above the stack) -->
+      <div class="svc-cycle-intro max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-20 md:pt-28 pb-12 md:pb-16" data-svc-reveal>
+        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">Full Project Cycle</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16 items-end">
+          <h2 id="svc-cycle-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight">11 stages of the carbon project cycle</h2>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed">Every Glaubark carbon project moves through a structured, end-to-end process — from the first site assessment to carbon credit issuance and market access. Scroll to walk through every stage.</p>
+        </div>
+      </div>
+
+      <!-- Floating stage counter -->
+      <div class="svc-cycle-counter" aria-live="polite" aria-atomic="true" data-cycle-counter>
+        Stage <span class="svc-cycle-counter-num" data-cycle-num>01</span>
+        <span class="svc-cycle-counter-sep">/</span>
+        <span class="svc-cycle-counter-total">11</span>
+      </div>
+
+      <!-- Card stack -->
+      <div class="svc-cycle-stack" data-cycle-stack>
+
+        <!-- Card 1 — light -->
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:0;" data-cycle-card="1">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 01</p>
+              <h3 class="svc-cycle-title">Project identification and site selection</h3>
+              <p class="svc-cycle-body">Glaubark identifies suitable project geographies based on farmer need, land suitability, crop type, climate conditions, soil quality, and carbon potential — working with FPOs, sugar factories, NGOs, and district-level partners.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Site selection</span>
+                <span class="svc-cycle-tag">Stakeholder mapping</span>
+                <span class="svc-cycle-tag">Eligibility assessment</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">1</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:9.09%"></div>
+          </div>
+        </div>
+
+        <!-- Card 2 — dark -->
+        <div class="svc-cycle-card svc-cycle-card--dark" style="--i:1;" data-cycle-card="2">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 02</p>
+              <h3 class="svc-cycle-title">Farmer outreach and stakeholder consultation</h3>
+              <p class="svc-cycle-body">The project begins with trust building. Glaubark conducts consultations with farmers, village councils, FPOs, and local partners to explain the model, carbon credit potential, farmer responsibilities, and long-term outcomes.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Community engagement</span>
+                <span class="svc-cycle-tag">FPO partnerships</span>
+                <span class="svc-cycle-tag">Trust building</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">2</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:18.18%"></div>
+          </div>
+        </div>
+
+        <!-- Card 3 — light -->
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:2;" data-cycle-card="3">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 03</p>
+              <h3 class="svc-cycle-title">Farmer onboarding and data collection</h3>
+              <p class="svc-cycle-body">Farmers are onboarded through a structured process including registration, consent, land and crop details, and baseline farming data. Digital multilingual surveys, geotagging, GIS mapping, and audio/video documentation ensure transparency and audit readiness.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Digital surveys</span>
+                <span class="svc-cycle-tag">GIS mapping</span>
+                <span class="svc-cycle-tag">Multilingual tools</span>
+                <span class="svc-cycle-tag">Farmer consent</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">3</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:27.27%"></div>
+          </div>
+        </div>
+
+        <!-- Card 4 — dark -->
+        <div class="svc-cycle-card svc-cycle-card--dark" style="--i:3;" data-cycle-card="4">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 04</p>
+              <h3 class="svc-cycle-title">Baseline assessment</h3>
+              <p class="svc-cycle-body">Establishes the starting conditions of the farm — assessing practices, crop patterns, soil conditions, irrigation methods, fertilizer use, and emission-relevant activities. A strong baseline is essential for additionality and carbon credit integrity.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Soil analysis</span>
+                <span class="svc-cycle-tag">Emission baseline</span>
+                <span class="svc-cycle-tag">Additionality check</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">4</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:36.36%"></div>
+          </div>
+        </div>
+
+        <!-- Card 5 — light -->
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:4;" data-cycle-card="5">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 05</p>
+              <h3 class="svc-cycle-title">Project design and methodology selection</h3>
+              <p class="svc-cycle-body">Glaubark designs the project execution plan, selects sustainable farming interventions, identifies the appropriate carbon methodology, and creates the implementation roadmap aligned with recognised carbon standards.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">VCS methodology</span>
+                <span class="svc-cycle-tag">Project design document</span>
+                <span class="svc-cycle-tag">Intervention roadmap</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">5</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:45.45%"></div>
+          </div>
+        </div>
+
+        <!-- Card 6 — dark -->
+        <div class="svc-cycle-card svc-cycle-card--dark" style="--i:5;" data-cycle-card="6">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 06</p>
+              <h3 class="svc-cycle-title">Sustainable farming practice implementation</h3>
+              <p class="svc-cycle-body">Farmers are supported in adopting locally suitable regenerative practices that improve soil health, reduce input dependency, increase carbon sequestration, and build long-term agricultural productivity.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Regenerative practices</span>
+                <span class="svc-cycle-tag">Input reduction</span>
+                <span class="svc-cycle-tag">Field monitoring</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">6</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:54.54%"></div>
+          </div>
+        </div>
+
+        <!-- Card 7 — light -->
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:6;" data-cycle-card="7">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 07</p>
+              <h3 class="svc-cycle-title">Farmer training and capacity building</h3>
+              <p class="svc-cycle-body">Glaubark provides awareness sessions, field demonstration shows, practice guidance, and ongoing advisory to ground teams and farmers to ensure correct and consistent implementation across all enrolled plots.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Practice training</span>
+                <span class="svc-cycle-tag">Field demonstrations</span>
+                <span class="svc-cycle-tag">Capacity building</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">7</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:63.63%"></div>
+          </div>
+        </div>
+
+        <!-- Card 8 — dark -->
+        <div class="svc-cycle-card svc-cycle-card--dark" style="--i:7;" data-cycle-card="8">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 08</p>
+              <h3 class="svc-cycle-title">Monitoring, reporting, and verification support</h3>
+              <p class="svc-cycle-body">Glaubark builds the MRV framework to track project progress — collecting field evidence, coordinating satellite and remote sensing data, and preparing monitoring reports that are transparent, auditable, and verifiable.</p>
+              <div class="svc-cycle-tags">
+                <span class="svc-cycle-tag">Satellite imagery</span>
+                <span class="svc-cycle-tag">MRV dashboards</span>
+                <span class="svc-cycle-tag">Carbon accounting</span>
+              </div>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">8</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:72.72%"></div>
+          </div>
+        </div>
+
+        <!-- Cards 9–11: content to be added — placeholders -->
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:8;" data-cycle-card="9">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 09</p>
+              <h3 class="svc-cycle-title">Content coming soon</h3>
+              <p class="svc-cycle-body">Details for this stage will be added shortly.</p>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">9</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:81.81%"></div>
+          </div>
+        </div>
+
+        <div class="svc-cycle-card svc-cycle-card--dark" style="--i:9;" data-cycle-card="10">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 10</p>
+              <h3 class="svc-cycle-title">Content coming soon</h3>
+              <p class="svc-cycle-body">Details for this stage will be added shortly.</p>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">10</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:90.9%"></div>
+          </div>
+        </div>
+
+        <div class="svc-cycle-card svc-cycle-card--light" style="--i:10;" data-cycle-card="11">
+          <div class="svc-cycle-card-inner">
+            <div class="svc-cycle-card-content">
+              <p class="svc-cycle-stage-label">Stage 11</p>
+              <h3 class="svc-cycle-title">Content coming soon</h3>
+              <p class="svc-cycle-body">Details for this stage will be added shortly.</p>
+            </div>
+            <span class="svc-cycle-bg-num" aria-hidden="true">11</span>
+          </div>
+          <div class="svc-cycle-progress-bar" aria-hidden="true">
+            <div class="svc-cycle-progress-fill" style="width:100%"></div>
+          </div>
+        </div>
+
+      </div><!-- /svc-cycle-stack -->
+
+      <!-- Spacer so last card can scroll past -->
+      <div class="svc-cycle-end max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24 text-center" data-svc-reveal>
+        <p class="text-sub text-sm">End of cycle &mdash; from first acre to first credit.</p>
+        <a href="contact.html" class="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-forest-mid border border-forest-mid/40 px-5 py-2.5 rounded-full hover:bg-forest-mid hover:text-white transition-colors duration-300">
+          Start a project with us
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+
+    </section>
+
+    <!-- Section 5: Farming Interventions -->
+    <section class="svc-farming bg-white py-16 md:py-24">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="svc-farming-card rounded-3xl p-8 md:p-12 lg:p-14" data-farming-card data-svc-reveal>
+          <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 md:mb-12">
+            <div>
+              <p class="svc-farming-eyebrow">Farming Interventions</p>
+              <h2 class="svc-farming-title">Sustainable practices<br class="hidden md:block" /> we work with</h2>
+            </div>
+            <span class="svc-farming-count" aria-label="10 practices">10 practices</span>
+          </div>
+          <div class="svc-farming-grid">
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 10V2"/></svg></span>
+              <span class="svc-practice-name">Crop residue management</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span>
+              <span class="svc-practice-name">Drip irrigation with fertigation</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></span>
+              <span class="svc-practice-name">Crop rotation</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M3 12h18M3 18h18"/><path stroke-linecap="round" stroke-linejoin="round" d="M5 6v12M19 6v12"/></svg></span>
+              <span class="svc-practice-name">Reduced and conservation tillage</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 18v-6a9 9 0 0118 0v6M8 18v-4M12 18V12M16 18v-4"/></svg></span>
+              <span class="svc-practice-name">Intercropping with legumes</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c0 4-4 6-4 6h8s-4-2-4-6z"/></svg></span>
+              <span class="svc-practice-name">Organic inputs and compost</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span>
+              <span class="svc-practice-name">Integrated pest management</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></span>
+              <span class="svc-practice-name">Improved crop nutrition</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7 3 3 7 3 12"/></svg></span>
+              <span class="svc-practice-name">Biodiversity enhancement</span>
+            </div>
+
+            <div class="svc-practice-item" data-farming-item>
+              <span class="svc-practice-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9"/><path stroke-linecap="round" stroke-linejoin="round" d="M20 20v-5h-.581m-15.357-2A8 8 0 0019.419 15m0 0H15"/></svg></span>
+              <span class="svc-practice-name">Natural manure systems</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Who Benefits -->
+    <section class="svc-stakeholders bg-cream py-16 md:py-24" aria-labelledby="svc-stakeholders-heading">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+
+        <div class="mb-10 md:mb-14" data-svc-reveal>
+          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">Who Benefits</p>
+          <h2 id="svc-stakeholders-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight">Value created for every stakeholder</h2>
+        </div>
+
+        <!-- Mobile: native select (shown only below md breakpoint) -->
+        <div class="block md:hidden mb-7" data-svc-reveal>
+          <select class="svc-tabs-select" data-tabs-select aria-label="Select stakeholder group">
+            <option value="farmers">Farmers</option>
+            <option value="fpos">FPOs &amp; Sugar factories</option>
+            <option value="corporates">Corporates &amp; CSR</option>
+            <option value="buyers">Carbon credit buyers</option>
+            <option value="environment">Environment</option>
+          </select>
+        </div>
+
+        <!-- Desktop: sliding pill tabs (hidden on mobile) -->
+        <div class="svc-tabs-outer mb-8 md:mb-10 hidden md:block" data-svc-reveal>
+          <div class="svc-tabs" role="tablist" aria-label="Stakeholder groups" data-tabs>
+            <div class="svc-tab-indicator" aria-hidden="true"></div>
+            <button class="svc-tab is-active" role="tab" aria-selected="true"  aria-controls="panel-farmers"     data-tab="farmers"     id="tab-farmers">Farmers</button>
+            <button class="svc-tab"            role="tab" aria-selected="false" aria-controls="panel-fpos"        data-tab="fpos"        id="tab-fpos">FPOs &amp; Sugar factories</button>
+            <button class="svc-tab"            role="tab" aria-selected="false" aria-controls="panel-corporates"  data-tab="corporates"  id="tab-corporates">Corporates &amp; CSR</button>
+            <button class="svc-tab"            role="tab" aria-selected="false" aria-controls="panel-buyers"      data-tab="buyers"      id="tab-buyers">Carbon credit buyers</button>
+            <button class="svc-tab"            role="tab" aria-selected="false" aria-controls="panel-environment" data-tab="environment" id="tab-environment">Environment</button>
+          </div>
+        </div>
+
+        <!-- Panels -->
+        <div data-panels-container>
+
+          <div class="svc-panel is-active" id="panel-farmers" role="tabpanel" aria-labelledby="tab-farmers" data-panel="farmers">
+            <div class="svc-benefit-cards-grid">
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 10V2"/></svg></span><span class="svc-bcard-text">Improved soil health and farm productivity</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg></span><span class="svc-bcard-text">Reduced input costs and dependency</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span><span class="svc-bcard-text">Stronger climate resilience</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg></span><span class="svc-bcard-text">Additional income through carbon credits</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></span><span class="svc-bcard-text">Access to training and capacity building</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></span><span class="svc-bcard-text">Better farming practices and outcomes</span></div>
+            </div>
+          </div>
+
+          <div class="svc-panel" id="panel-fpos" role="tabpanel" aria-labelledby="tab-fpos" data-panel="fpos">
+            <div class="svc-benefit-cards-grid">
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span><span class="svc-bcard-text">Structured farmer engagement at scale</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span><span class="svc-bcard-text">Sustainable supply chain credentials</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span><span class="svc-bcard-text">CSR and climate reporting support</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></span><span class="svc-bcard-text">Access to verified impact data</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 8h.01M12 12v8m-4-4h8"/></svg></span><span class="svc-bcard-text">Carbon finance for member farmers</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></span><span class="svc-bcard-text">Long-term farmer loyalty and retention</span></div>
+            </div>
+          </div>
+
+          <div class="svc-panel" id="panel-corporates" role="tabpanel" aria-labelledby="tab-corporates" data-panel="corporates">
+            <div class="svc-benefit-cards-grid">
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span><span class="svc-bcard-text">High-quality, verifiable carbon credits</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span><span class="svc-bcard-text">Measurable farmer livelihood impact</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span><span class="svc-bcard-text">ESG and sustainability reporting data</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101"/><path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 015.656 0l4-4a4 4 0 01-5.656-5.656l-1.1 1.1"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.3"/></svg></span><span class="svc-bcard-text">Credible, traceable offset pathway</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span class="svc-bcard-text">Rural India development alignment</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span><span class="svc-bcard-text">Third-party verified project outcomes</span></div>
+            </div>
+          </div>
+
+          <div class="svc-panel" id="panel-buyers" role="tabpanel" aria-labelledby="tab-buyers" data-panel="buyers">
+            <div class="svc-benefit-cards-grid">
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg></span><span class="svc-bcard-text">VCS-aligned, registry-listed credits</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></span><span class="svc-bcard-text">Transparent MRV and full audit trail</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span><span class="svc-bcard-text">Direct farmer impact traceability</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span class="svc-bcard-text">Co-benefits: social and biodiversity</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></span><span class="svc-bcard-text">Long-term project supply pipeline</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></span><span class="svc-bcard-text">Aligned with SBTi and net-zero goals</span></div>
+            </div>
+          </div>
+
+          <div class="svc-panel" id="panel-environment" role="tabpanel" aria-labelledby="tab-environment" data-panel="environment">
+            <div class="svc-benefit-cards-grid">
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></span><span class="svc-bcard-text">Reduced on-farm greenhouse gas emissions</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 10V2"/></svg></span><span class="svc-bcard-text">Increased soil carbon sequestration</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></span><span class="svc-bcard-text">Improved water efficiency and conservation</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3C7 3 3 7 3 12"/></svg></span><span class="svc-bcard-text">Biodiversity and ecosystem restoration</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></span><span class="svc-bcard-text">Climate resilience at landscape scale</span></div>
+              <div class="svc-bcard"><span class="svc-bcard-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></span><span class="svc-bcard-text">Sustainable land use transformation</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sections 7 + 8 merged: Technology Stack + Who We Work With (dark bg) -->
+    <section class="svc-tech-who bg-[#082410] text-white">
+
+      <!-- Tech header -->
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-20 md:pt-28 pb-10 md:pb-14" data-svc-reveal>
+        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/40 mb-4">Technology Stack</p>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight leading-tight">How we monitor and verify at scale</h2>
+          <p class="text-sm md:text-[15px] text-white/55 leading-relaxed lg:pt-2">Our MRV infrastructure combines satellite data, field surveys, and real-time dashboards to ensure every project is traceable, verifiable, and audit-ready.</p>
+        </div>
+      </div>
+
+      <!-- Marquee row 1 (forward) -->
+      <div class="svc-marquee-wrap svc-marquee-wrap--top" aria-hidden="true">
+        <div class="svc-marquee-track svc-marquee-track--fwd">
+          <!-- 5 items × 3 for seamless loop -->
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></span>Satellite imagery</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></span>Remote sensing</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>GIS mapping</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg></span>KML &amp; geospatial boundaries</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span>Mobile data collection</div>
+          <!-- duplicate for seamless loop -->
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></span>Satellite imagery</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></span>Remote sensing</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg></span>GIS mapping</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg></span>KML &amp; geospatial boundaries</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span>Mobile data collection</div>
+        </div>
+      </div>
+
+      <!-- Marquee row 2 (reverse) -->
+      <div class="svc-marquee-wrap svc-marquee-wrap--btm mt-3" aria-hidden="true">
+        <div class="svc-marquee-track svc-marquee-track--rev">
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg></span>Multilingual surveys</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.361a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></span>Audio/video evidence</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></span>Farmer databases</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span>Carbon accounting systems</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>MRV dashboards</div>
+          <!-- duplicate -->
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg></span>Multilingual surveys</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.82v6.361a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></span>Audio/video evidence</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/></svg></span>Farmer databases</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg></span>Carbon accounting systems</div>
+          <div class="svc-marquee-item"><span class="svc-marquee-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg></span>MRV dashboards</div>
+        </div>
+      </div>
+
+      <!-- Who We Work With — cream card inside dark section -->
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pb-20 md:pb-28 mt-16 md:mt-24">
+        <div class="svc-who-card rounded-3xl p-8 md:p-12 lg:p-14" data-svc-reveal>
+          <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16">
+            <div>
+              <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">Who We Work With</p>
+              <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink tracking-tight leading-tight">Our solution is designed for</h2>
+            </div>
+            <div class="svc-who-grid">
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg></span><span>Farmers</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span><span>Farmer Producer Organisations</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg></span><span>Sugar factories</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span><span>Corporates</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg></span><span>NGOs &amp; CSR teams</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span>Carbon credit buyers</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></span><span>Institutional partners</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></span><span>AI &amp; precision ag companies</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg></span><span>Rural development organisations</span></div>
+              <div class="svc-who-item"><span class="svc-who-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></span><span>Landowners &amp; project owners</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 9: Three Levels of Change — expanding image panels -->
+    <section class="svc-impact" aria-labelledby="svc-impact-heading">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-16 md:pt-24 pb-10 md:pb-14" data-svc-reveal>
+        <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">Overall Impact</p>
+        <h2 id="svc-impact-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight max-w-xl">Three levels of change</h2>
+      </div>
+
+      <!-- Expanding panels -->
+      <div class="svc-impact-panels-wrap px-5 md:px-8 lg:px-12 max-w-[1400px] mx-auto pb-20 md:pb-28">
+        <div class="svc-impact-panels" data-impact-panels>
+
+          <!-- Panel 1: Farmer level -->
+          <div class="svc-impact-panel is-expanded" data-impact-panel tabindex="0" role="button" aria-label="Farmer level — expand for details">
+            <div class="svc-impact-panel-media">
+              <!-- Replace src with actual image/video URL -->
+              <img
+                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
+                alt="Farmer in a green field"
+                class="svc-impact-panel-img"
+              />
+              <div class="svc-impact-panel-overlay svc-impact-overlay--farmer"></div>
+            </div>
+            <div class="svc-impact-panel-content">
+              <span class="svc-impact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              </span>
+              <h3 class="svc-impact-level">Farmer level</h3>
+              <p class="svc-impact-desc">Improved livelihoods, reduced risk, and new income opportunities through carbon credits — putting climate finance directly in farmers' hands.</p>
+              <div class="svc-impact-stats">
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">2,800<span class="text-xl">%</span></span><span class="svc-impact-stat-label">avg. income uplift</span></div>
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">88<span class="text-xl">%</span></span><span class="svc-impact-stat-label">input cost reduction</span></div>
+              </div>
+            </div>
+            <span class="svc-impact-tab-label" aria-hidden="true">Farmer level</span>
+          </div>
+
+          <!-- Panel 2: Agricultural level -->
+          <div class="svc-impact-panel" data-impact-panel tabindex="0" role="button" aria-label="Agricultural level — expand for details">
+            <div class="svc-impact-panel-media">
+              <!-- Replace src with actual image/video URL -->
+              <img
+                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=80"
+                alt="Agricultural fields from above"
+                class="svc-impact-panel-img"
+              />
+              <div class="svc-impact-panel-overlay svc-impact-overlay--agri"></div>
+            </div>
+            <div class="svc-impact-panel-content">
+              <span class="svc-impact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8 2 4 6 4 10c0 5 8 12 8 12s8-7 8-12c0-4-4-8-8-8z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 10V2"/></svg>
+              </span>
+              <h3 class="svc-impact-level">Agricultural level</h3>
+              <p class="svc-impact-desc">Sustainable farming, healthier soils, improved water efficiency, and climate resilience — building productive land for future generations.</p>
+              <div class="svc-impact-stats">
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">40<span class="text-xl">%</span></span><span class="svc-impact-stat-label">soil health improvement</span></div>
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">30<span class="text-xl">%</span></span><span class="svc-impact-stat-label">water use reduction</span></div>
+              </div>
+            </div>
+            <span class="svc-impact-tab-label" aria-hidden="true">Agricultural level</span>
+          </div>
+
+          <!-- Panel 3: Climate level -->
+          <div class="svc-impact-panel" data-impact-panel tabindex="0" role="button" aria-label="Climate level — expand for details">
+            <div class="svc-impact-panel-media">
+              <!-- Replace src with actual image/video URL -->
+              <img
+                src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1200&q=80"
+                alt="Wind turbines in a green field"
+                class="svc-impact-panel-img"
+              />
+              <div class="svc-impact-panel-overlay svc-impact-overlay--climate"></div>
+            </div>
+            <div class="svc-impact-panel-content">
+              <span class="svc-impact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              <h3 class="svc-impact-level">Climate level</h3>
+              <p class="svc-impact-desc">Verified emissions reduction, carbon sequestration, and high-quality carbon credit generation — measurable impact on the global climate challenge.</p>
+              <div class="svc-impact-stats">
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">tCO₂e</span><span class="svc-impact-stat-label">verified credits issued</span></div>
+                <div class="svc-impact-stat"><span class="svc-impact-stat-num">VCS</span><span class="svc-impact-stat-label">aligned standard</span></div>
+              </div>
+            </div>
+            <span class="svc-impact-tab-label" aria-hidden="true">Climate level</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer-slot"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/services.js"></script>
+</body>
+</html>

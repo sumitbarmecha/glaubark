@@ -18,6 +18,7 @@
       ],
     },
     { label: 'Our Process', href: 'process.html', page: 'process' },
+    { label: 'Services', href: 'services.html', page: 'services' },
     { label: 'Blog', href: 'blog.html', page: 'blog' },
     { label: 'Technology', href: 'technology.html', page: 'technology' },
     { label: 'Contact Us', href: 'contact.html', page: 'contact' },
@@ -172,10 +173,11 @@
     {
       title: 'Solutions',
       links: [
-        { label: 'Regenerative Farming', href: 'technology.html' },
-        { label: 'Carbon Credits', href: 'technology.html#carbon' },
-        { label: 'Farmer Training', href: 'technology.html#training' },
-        { label: 'Technology Platform', href: 'technology.html#platform' },
+        { label: 'Our Services', href: 'services.html' },
+        { label: 'Regenerative Farming', href: 'services.html#regenerative-farming' },
+        { label: 'Carbon Credits', href: 'services.html#carbon-project' },
+        { label: 'MRV Systems', href: 'services.html#mrv-systems' },
+        { label: 'VCS Project Support', href: 'services.html#vcs-support' },
       ],
     },
     {
@@ -225,7 +227,7 @@
               Be the first to know about farmer programs, carbon project updates, and field stories from across India.
             </p>
             <div class="site-newsletter-form-wrap">
-              <form id="newsletter-form" class="site-newsletter-form" novalidate>
+              <form id="newsletter-form" class="site-newsletter-form" data-newsletter-form novalidate>
                 <label for="newsletter-email" class="sr-only">Email address</label>
                 <input
                   type="email"
@@ -282,7 +284,7 @@
 
           <!-- Link columns: accordion on mobile, grid on desktop -->
           <div class="lg:col-span-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 md:gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 md:gap-8">
               ${footerColumns
                 .map(
                   (col, i) => `
@@ -313,6 +315,42 @@
                 </div>`
                 )
                 .join('')}
+              <div class="footer-accordion-item border-b border-white/10 md:border-0 footer-newsletter-col" data-footer-accordion>
+                <button
+                  type="button"
+                  class="footer-accordion-toggle w-full flex items-center justify-between py-5 md:py-0 md:pointer-events-none md:cursor-default"
+                  aria-expanded="false"
+                  aria-controls="footer-panel-newsletter"
+                >
+                  <span class="text-sm font-semibold uppercase tracking-wider">Newsletter</span>
+                  <svg class="footer-accordion-icon w-5 h-5 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                </button>
+                <div id="footer-panel-newsletter" class="footer-accordion-content md:!max-h-none md:overflow-visible">
+                  <div class="pb-5 md:pb-0">
+                    <p class="text-sm text-white/60 leading-relaxed mb-3">Field updates and news, in your inbox.</p>
+                    <form id="footer-newsletter-form" class="footer-newsletter-form" data-newsletter-form novalidate>
+                      <label for="footer-newsletter-email" class="sr-only">Email address</label>
+                      <input
+                        type="email"
+                        id="footer-newsletter-email"
+                        name="email"
+                        autocomplete="email"
+                        placeholder="you@email.com"
+                        required
+                        class="footer-newsletter-input"
+                      />
+                      <button type="submit" class="footer-newsletter-submit" data-newsletter-submit aria-label="Subscribe to newsletter">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                      </button>
+                    </form>
+                    <p id="footer-newsletter-form-status" class="form-status text-xs mt-2 hidden" role="status" aria-live="polite"></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

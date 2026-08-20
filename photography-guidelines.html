@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Photography & Video Guidelines — Glaubark Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest-deep: #082410;
+      --forest-mid:  #1a3d2a;
+      --forest:      #0d1a10;
+      --lime:        #a3e635;
+      --lime-light:  #d4f57a;
+      --cream:       #f7f5f0;
+      --ink:         #1c1c1c;
+      --sub:         #6b6b6b;
+      --border:      #e5e1d7;
+      --white:       #ffffff;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Cover Page ── */
+    .cover {
+      min-height: 100vh;
+      background: var(--forest-deep);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3.5rem 4rem;
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .cover-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(175,228,78,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .cover-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(163,230,53,0.07) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      pointer-events: none;
+    }
+
+    .cover-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cover-logo-mark {
+      width: 40px;
+      height: 40px;
+      background: var(--lime);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cover-logo-text {
+      font-size: 1.375rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      text-transform: lowercase;
+    }
+
+    .cover-doc-type {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.35rem 0.875rem;
+      border-radius: 9999px;
+    }
+
+    .cover-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.06;
+      color: var(--white);
+      max-width: 16ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-title em {
+      font-style: normal;
+      color: var(--lime);
+    }
+
+    .cover-subtitle {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+      max-width: 38rem;
+    }
+
+    .cover-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .cover-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .cover-meta-item {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .cover-meta-item strong {
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+
+    .cover-palette {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .cover-swatch {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── Page layout ── */
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 3rem;
+    }
+
+    @media (max-width: 640px) {
+      .page { padding: 2rem 1.25rem; }
+      .cover { padding: 2rem 1.5rem; }
+    }
+
+    /* ── Section dividers ── */
+    .doc-section {
+      margin-bottom: 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-num {
+      width: 36px;
+      height: 36px;
+      background: var(--forest-deep);
+      color: var(--lime);
+      font-size: 13px;
+      font-weight: 800;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .section-desc {
+      font-size: 14.5px;
+      color: var(--sub);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    /* ── Brand summary box ── */
+    .brand-box {
+      background: var(--forest-deep);
+      border-radius: 1.25rem;
+      padding: 2.25rem 2.5rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .brand-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(175,228,78,0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    .brand-box-content { position: relative; z-index: 1; }
+
+    .brand-box-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .brand-box-text {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .brand-stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+
+    .brand-stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 0.75rem;
+      padding: 0.875rem 1.25rem;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    .brand-stat-num {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--lime);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .brand-stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.35;
+    }
+
+    /* ── Visual principles grid ── */
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .principle-card {
+      background: var(--cream);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+
+    .principle-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .principle-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.375rem;
+    }
+
+    .principle-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--sub);
+    }
+
+    /* ── Shot category cards ── */
+    .shot-category {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .shot-category-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      background: var(--forest-mid);
+      color: var(--white);
+    }
+
+    .shot-cat-badge {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--forest-deep);
+      background: var(--lime);
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+      flex-shrink: 0;
+    }
+
+    .shot-cat-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .shot-cat-count {
+      margin-left: auto;
+      font-size: 11px;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+
+    .shot-category-body {
+      padding: 1.5rem;
+    }
+
+    .shot-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .shot-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .shot-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .shot-item-num {
+      width: 28px;
+      height: 28px;
+      background: var(--forest-deep);
+      color: var(--lime);
+      font-size: 11px;
+      font-weight: 800;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .shot-item-content {}
+
+    .shot-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.25rem;
+    }
+
+    .shot-item-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--sub);
+      margin-bottom: 0.5rem;
+    }
+
+    .shot-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .shot-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.625rem;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 9999px;
+    }
+
+    .shot-tag--angle {
+      color: #1a3d2a;
+      background: rgba(163,230,53,0.12);
+      border: 1px solid rgba(163,230,53,0.3);
+    }
+
+    .shot-tag--light {
+      color: #7c5700;
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.25);
+    }
+
+    .shot-tag--mood {
+      color: #374151;
+      background: rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* ── Palette section ── */
+    .palette-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .swatch-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.625rem;
+      min-width: 90px;
+    }
+
+    .swatch {
+      width: 70px;
+      height: 70px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: center;
+    }
+
+    .swatch-hex {
+      font-size: 11px;
+      font-family: 'Courier New', monospace;
+      color: var(--sub);
+    }
+
+    /* ── Do/Don't table ── */
+    .do-dont {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .do-col { background: rgba(163,230,53,0.07); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(163,230,53,0.25); }
+    .dont-col { background: rgba(239,68,68,0.05); border-radius: 1rem; padding: 1.5rem; border: 1px solid rgba(239,68,68,0.15); }
+
+    .do-col-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 13px;
+      font-weight: 700;
+      color: #1a3d2a;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .dont-col-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 13px;
+      font-weight: 700;
+      color: #991b1b;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .check-list li {
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--sub);
+      padding-left: 1.375rem;
+      position: relative;
+    }
+
+    .check-list li::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+    }
+
+    .do-col .check-list li::before { content: '✓'; color: #1a3d2a; font-weight: 700; }
+    .dont-col .check-list li::before { content: '✗'; color: #991b1b; font-weight: 700; }
+
+    /* ── Video section ── */
+    .video-card {
+      background: var(--cream);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .video-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--forest-deep);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .video-icon svg { width: 22px; height: 22px; color: var(--lime); }
+
+    .video-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.375rem;
+    }
+
+    .video-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--sub);
+      margin-bottom: 0.625rem;
+    }
+
+    .video-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .video-spec {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 0.25rem 0.625rem;
+      border-radius: 9999px;
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+
+    /* ── Drone section ── */
+    .drone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .drone-card {
+      background: var(--forest-deep);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drone-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(175,228,78,0.04) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .drone-card-content { position: relative; z-index: 1; }
+
+    .drone-icon {
+      font-size: 1.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .drone-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--lime);
+      margin-bottom: 0.375rem;
+    }
+
+    .drone-desc {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .drone-specs {
+      margin-top: 0.875rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .drone-spec {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.5);
+      padding-left: 0.875rem;
+      position: relative;
+    }
+
+    .drone-spec::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--lime);
+      font-weight: 700;
+    }
+
+    /* ── Tech specs table ── */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .specs-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sub);
+      padding: 0.75rem 1rem;
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .specs-table th:first-child { border-radius: 8px 0 0 0; }
+    .specs-table th:last-child { border-radius: 0 8px 0 0; }
+
+    .specs-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .specs-table tr:last-child td { border-bottom: none; }
+
+    .specs-table td:first-child {
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .specs-table td:last-child { color: var(--sub); }
+
+    /* ── Checklist ── */
+    .final-checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      font-size: 13.5px;
+      color: var(--sub);
+      padding: 0.625rem 0.875rem;
+      background: var(--cream);
+      border-radius: 0.625rem;
+    }
+
+    .checklist-box {
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--border);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Callout box ── */
+    .callout {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: rgba(163,230,53,0.08);
+      border: 1px solid rgba(163,230,53,0.3);
+      border-radius: 1rem;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 1px; }
+    .callout-text { font-size: 14px; line-height: 1.6; color: #1a3d2a; }
+    .callout-text strong { font-weight: 600; }
+
+    /* ── Print styles ── */
+    @media print {
+      .cover { min-height: auto; padding: 2.5rem 3rem; }
+      .page { padding: 2.5rem 3rem; max-width: 100%; }
+      .shot-category, .doc-section { page-break-inside: avoid; }
+      body { font-size: 13px; }
+    }
+
+    /* ── Print button ── */
+    .print-bar {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+    }
+
+    @media print { .print-bar { display: none; } }
+
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.375rem;
+      background: var(--forest-deep);
+      color: var(--white);
+      font-size: 13.5px;
+      font-weight: 600;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover { background: var(--forest-mid); }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       COVER PAGE
+  ══════════════════════════════════════════════ -->
+  <section class="cover">
+    <div class="cover-dots"></div>
+    <div class="cover-glow"></div>
+
+    <div class="cover-top">
+      <div class="cover-logo">
+        <div class="cover-logo-mark">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#082410" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6 2 2 7 2 12c0 6 6 10 10 10s10-4 10-10C22 7 18 2 12 2z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <span class="cover-logo-text">glaubark</span>
+      </div>
+      <span class="cover-doc-type">Creative Brief — Confidential</span>
+    </div>
+
+    <div class="cover-main">
+      <p class="cover-eyebrow">Visual Identity &amp; Content Creation</p>
+      <h1 class="cover-title">Photography &amp; Video <em>Guidelines</em></h1>
+      <p class="cover-subtitle">A comprehensive direction brief for photographers, videographers, and drone operators working on Glaubark Solutions' website and brand content.</p>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <p class="cover-meta-item"><strong>Brand:</strong> Glaubark Solutions Pvt. Ltd.</p>
+        <p class="cover-meta-item"><strong>Version:</strong> 1.0 — August 2026</p>
+        <p class="cover-meta-item"><strong>Usage:</strong> Website, Social Media, Brand Collateral</p>
+        <p class="cover-meta-item"><strong>Primary Locations:</strong> Maharashtra &amp; Karnataka, India</p>
+      </div>
+      <div class="cover-palette">
+        <div class="cover-swatch" style="background:#082410;"></div>
+        <div class="cover-swatch" style="background:#1a3d2a;"></div>
+        <div class="cover-swatch" style="background:#a3e635;"></div>
+        <div class="cover-swatch" style="background:#f7f5f0; border:1.5px solid rgba(255,255,255,0.15);"></div>
+        <div class="cover-swatch" style="background:#ffffff; border:1.5px solid rgba(255,255,255,0.2);"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       DOCUMENT BODY
+  ══════════════════════════════════════════════ -->
+  <div class="page">
+
+    <!-- ── 1. Brand Overview ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <h2 class="section-title">Who Is Glaubark? — The Photographer's Context</h2>
+      </div>
+
+      <div class="brand-box">
+        <div class="brand-box-content">
+          <p class="brand-box-label">Brand in one paragraph</p>
+          <p class="brand-box-text">Glaubark Solutions is an Indian agri-carbon company that helps smallholder farmers — primarily sugarcane growers in Maharashtra and Karnataka — adopt regenerative farming practices. These practices restore soil health, reduce input costs, and sequester carbon. The resulting CO₂ reductions are measured via satellite + field monitoring, verified by independent auditors, and issued as VCS-aligned carbon credits sold to global corporate buyers. Farmers earn a new income stream from the carbon their improved soil locks away. Glaubark bridges two worlds: rural Indian agriculture and global climate finance.</p>
+          <div class="brand-stats-row">
+            <div class="brand-stat">
+              <p class="brand-stat-num">2,800%</p>
+              <p class="brand-stat-label">Avg. farmer income uplift</p>
+            </div>
+            <div class="brand-stat">
+              <p class="brand-stat-num">88%</p>
+              <p class="brand-stat-label">Input cost reduction</p>
+            </div>
+            <div class="brand-stat">
+              <p class="brand-stat-num">10+</p>
+              <p class="brand-stat-label">Farming interventions</p>
+            </div>
+            <div class="brand-stat">
+              <p class="brand-stat-num">VCS</p>
+              <p class="brand-stat-label">Verified carbon standard</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="section-desc">Every image or video you create for Glaubark must communicate one of two things: <strong>the dignity and transformation of Indian farming communities</strong>, or <strong>the science and rigour behind the carbon outcomes they generate</strong>. The visual language sits between documentary journalism and premium editorial — never stock, never staged, never pity.</p>
+    </div>
+
+    <!-- ── 2. Visual Philosophy ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <h2 class="section-title">Visual Philosophy</h2>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">🌱</div>
+          <p class="principle-title">Grounded &amp; Honest</p>
+          <p class="principle-body">Real fields, real farmers, real soil. No overproduced setups. The camera should feel like it belongs there. Documentary instinct with editorial polish.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🔬</div>
+          <p class="principle-title">Scientific &amp; Precise</p>
+          <p class="principle-body">Technology and monitoring are part of the brand. Shots of tablets, soil probes, data collection, and satellite-referenced maps are as important as the field images.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">☀️</div>
+          <p class="principle-title">Hopeful &amp; Forward</p>
+          <p class="principle-body">This is not poverty porn. Farmers are skilled professionals transforming their land. The emotional register is confidence, optimism, and ownership — not hardship.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🇮🇳</div>
+          <p class="principle-title">Indian, Specific, Local</p>
+          <p class="principle-body">Sugarcane fields, red soil, Maharashtra light, Kolhapur saris, Karnataka hills. Avoid generic "global agriculture" aesthetics. This story is rooted here.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">🎨</div>
+          <p class="principle-title">On-Brand Palette</p>
+          <p class="principle-body">Deep greens, golden hour amber, earthy ochres, lime-tinted highlights. The visual palette should feel like it belongs to the brand without being forced.</p>
+        </div>
+        <div class="principle-card">
+          <div class="principle-icon">📐</div>
+          <p class="principle-title">Intentional Composition</p>
+          <p class="principle-body">Leave breathing room. Think about where text will sit. Horizontal thirds, negative space in sky, rows of crops as natural leading lines.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 3. Lighting Guide ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <h2 class="section-title">Lighting &amp; Time of Day</h2>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <p class="callout-text"><strong>Golden hour is your primary working window.</strong> Schedule all farmer portraits, field detail shots, and drone flights for 30 minutes after sunrise and 45 minutes before sunset. The Indian agricultural landscape is most photogenic and brand-aligned in warm, raking light.</p>
+      </div>
+
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Quality</th>
+            <th>Best For</th>
+            <th>Avoid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>5:30 – 7:00 AM</td>
+            <td>Soft, blue-to-amber transition. Morning mist if lucky.</td>
+            <td>Farmer arrival shots, early irrigation, mist over fields, drone altitude sweeps</td>
+            <td>Portrait close-ups (too cool)</td>
+          </tr>
+          <tr>
+            <td>7:00 – 9:00 AM</td>
+            <td>Golden, directional, warm. Best of the day.</td>
+            <td>All farmer portraits, field activity, soil close-ups, drone patterns</td>
+            <td>Nothing — this is the priority window</td>
+          </tr>
+          <tr>
+            <td>9:00 – 10:30 AM</td>
+            <td>Bright, slightly harder. Still good for technology shots.</td>
+            <td>Tablet/app use, group training, equipment shots</td>
+            <td>Skin-tone sensitive portraits</td>
+          </tr>
+          <tr>
+            <td>10:30 AM – 4:00 PM</td>
+            <td>Harsh, flat overhead. Kills depth and warmth.</td>
+            <td>Controlled indoor shots, equipment detail, document photography</td>
+            <td>Any field or farmer photography</td>
+          </tr>
+          <tr>
+            <td>4:00 – 6:00 PM</td>
+            <td>Returning warmth. Slightly softer than morning.</td>
+            <td>Field activity, community shots, group training sessions</td>
+            <td>Drone (often too hazy)</td>
+          </tr>
+          <tr>
+            <td>6:00 – 6:45 PM</td>
+            <td>Amber, cinematic, backlit magic.</td>
+            <td>Hero editorial shots, silhouettes, wide field scenes, final drone run</td>
+            <td>Technical documentation shots</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 4. Shot Categories ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <h2 class="section-title">Shot Categories — Directions for Each</h2>
+      </div>
+
+      <p class="section-desc">Each category below maps to a specific section or need on the Glaubark website. Deliver a minimum of 15 selects per category unless noted.</p>
+
+      <!-- Category A: Fields -->
+      <div class="shot-category">
+        <div class="shot-category-header">
+          <span class="shot-cat-badge">A</span>
+          <span class="shot-cat-title">Fields &amp; Landscape</span>
+          <span class="shot-cat-count">Min. 20 selects</span>
+        </div>
+        <div class="shot-category-body">
+          <ul class="shot-list">
+            <li class="shot-item">
+              <div class="shot-item-num">1</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">The Open Field — Hero Width</p>
+                <p class="shot-item-desc">Full-width landscape, ideally with the entire field visible from one end, natural rows of sugarcane or crop running as leading lines toward a horizon. Sky in the upper third. This is the hero banner image for every page — must work with text overlaid on it.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Ultra-wide / 14–24mm</span>
+                  <span class="shot-tag shot-tag--light">Golden hour only</span>
+                  <span class="shot-tag shot-tag--mood">Expansive, quiet, hopeful</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">2</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Crop Row — Walk-Through Perspective</p>
+                <p class="shot-item-desc">Camera low (knee height), looking down the tunnel formed by tall sugarcane or maize rows. Blurred leading lines converging to a point of light at the end. A farmer may be partially visible in the far distance — optional.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">35mm, low angle, f/2.8–4</span>
+                  <span class="shot-tag shot-tag--light">Backlit morning</span>
+                  <span class="shot-tag shot-tag--mood">Immersive, scale, depth</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">3</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Soil Close-Up — Hand in Earth</p>
+                <p class="shot-item-desc">Farmer's hand scooping or holding dark, rich soil. Focus on texture — visible aggregates, fine root hair, organic matter. Shoot with a macro lens or close-focus wide-angle. The hand should be weathered but dignified, not grimy.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Macro / 100mm, extreme close</span>
+                  <span class="shot-tag shot-tag--light">Soft diffused or shade</span>
+                  <span class="shot-tag shot-tag--mood">Scientific, tactile, reverent</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">4</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Root System &amp; Underground Shot</p>
+                <p class="shot-item-desc">Carefully excavate a 30cm section of soil wall to expose root networks. Shoot the root mass against the soil cross-section. This is powerful for carbon sequestration storytelling — roots = carbon = underground wealth. No mess, no mud smears on lens side.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Macro, eye level with soil</span>
+                  <span class="shot-tag shot-tag--light">Reflected fill card recommended</span>
+                  <span class="shot-tag shot-tag--mood">Scientific, revealing</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">5</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Before &amp; After Soil Contrast</p>
+                <p class="shot-item-desc">If possible, shoot conventional (lighter, depleted) soil beside regenerative (darker, richer) soil from enrolled plots. Side-by-side comparison in a single frame or matched pair. Critical for website's impact section.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Consistent framing both shots</span>
+                  <span class="shot-tag shot-tag--light">Shade or overcast (consistent)</span>
+                  <span class="shot-tag shot-tag--mood">Evidence, contrast, proof</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category B: Farmers -->
+      <div class="shot-category">
+        <div class="shot-category-header">
+          <span class="shot-cat-badge">B</span>
+          <span class="shot-cat-title">Farmer Portraits &amp; Human Moments</span>
+          <span class="shot-cat-count">Min. 20 selects</span>
+        </div>
+        <div class="shot-category-body">
+          <ul class="shot-list">
+            <li class="shot-item">
+              <div class="shot-item-num">1</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Standing Portrait — In the Field</p>
+                <p class="shot-item-desc">Farmer standing upright, at ease, in or beside their crop. Confident, not posed. Eye contact with camera for authority. Use the field as background (not blurred out entirely — keep context). Shoot both vertical (for cards) and horizontal (for banners).</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">85mm, f/2–2.8, eye level</span>
+                  <span class="shot-tag shot-tag--light">Golden hour, backlit OK if fill used</span>
+                  <span class="shot-tag shot-tag--mood">Dignity, ownership, pride</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">2</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Working Portrait — Mid-Action</p>
+                <p class="shot-item-desc">Farmer engaged in a specific task: adjusting drip line, applying bio-input, writing in a survey book, checking a plant stalk. Shoot candidly — do not ask them to look at camera. Two or three rapid burst sequences per activity so you have natural expressions to select from.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">35–50mm, candid distance</span>
+                  <span class="shot-tag shot-tag--light">Any directional light</span>
+                  <span class="shot-tag shot-tag--mood">Purposeful, skilled, active</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">3</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Environmental Wide — Farmer + Landscape</p>
+                <p class="shot-item-desc">Pull back to show the farmer as a small figure in a large, lush landscape. This communicates scale and relationship between person and land. Farmer in the lower third, sky and field occupying the rest. Works especially well at golden hour with silhouette.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">24–35mm, wide, low horizon</span>
+                  <span class="shot-tag shot-tag--light">Backlit golden hour</span>
+                  <span class="shot-tag shot-tag--mood">Epic, connected, purposeful</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">4</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Community &amp; Group Moments</p>
+                <p class="shot-item-desc">2–4 farmers together, either in conversation, looking at a tablet together, or gathered at a plot boundary. Must feel natural, not staged. Candid preferred. Include FPO coordinators with farmers where possible — shows the support structure.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">35mm, slight distance</span>
+                  <span class="shot-tag shot-tag--light">Open shade or morning</span>
+                  <span class="shot-tag shot-tag--mood">Collaborative, trusted, community</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">5</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Training Session</p>
+                <p class="shot-item-desc">Glaubark field coordinator demonstrating a practice to a group of farmers. Shoot from several angles — the coordinator's perspective looking at the group, the group's perspective watching, and a wide showing both. Include the crop or soil being discussed in frame.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Multiple: 24mm wide + 85mm tele</span>
+                  <span class="shot-tag shot-tag--light">Open shade or morning</span>
+                  <span class="shot-tag shot-tag--mood">Learning, transfer, expertise</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category C: Technology & MRV -->
+      <div class="shot-category">
+        <div class="shot-category-header">
+          <span class="shot-cat-badge">C</span>
+          <span class="shot-cat-title">Technology, Data &amp; MRV Systems</span>
+          <span class="shot-cat-count">Min. 15 selects</span>
+        </div>
+        <div class="shot-category-body">
+          <ul class="shot-list">
+            <li class="shot-item">
+              <div class="shot-item-num">1</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Farmer + Tablet / Smartphone Survey</p>
+                <p class="shot-item-desc">Farmer or field coordinator using the Glaubark digital survey app in the field. Screen content should be partially visible. The field should be in background — never in an office. This communicates field-tech integration. Shoot from behind the shoulder to include both face and screen, and also a tight shot of hands on screen with crop visible behind.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">50mm over-shoulder + 85mm portrait</span>
+                  <span class="shot-tag shot-tag--light">Shade (screen readability)</span>
+                  <span class="shot-tag shot-tag--mood">Modern, precise, field-native</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">2</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Soil Sampling Equipment</p>
+                <p class="shot-item-desc">Auger, probe, or sample bags laid on soil or being used. Include the field context. Label bags visible if possible. Also shoot the sample collection sequence: probe into ground → extract → bag → label. These shots support the "science and verification" narrative.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Close detail + mid-distance context</span>
+                  <span class="shot-tag shot-tag--light">Morning, directional</span>
+                  <span class="shot-tag shot-tag--mood">Rigorous, scientific, trusted</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">3</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">GPS Mapping &amp; Plot Boundary Walk</p>
+                <p class="shot-item-desc">Field coordinator walking the plot boundary with a GPS device or phone app. Capture both the walking action and a over-shoulder shot of the GPS screen showing the plot shape being traced. Drone shot of the plot boundary being walked is ideal if coordination is possible.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">35mm candid + drone overhead</span>
+                  <span class="shot-tag shot-tag--light">Morning, clear sky</span>
+                  <span class="shot-tag shot-tag--mood">Methodical, transparent, documented</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">4</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Drip Irrigation System</p>
+                <p class="shot-item-desc">Close-up of drip emitters delivering water to the root zone of sugarcane. Capture water droplets if possible. Also wide shot showing the full extent of drip lines running through a planted row. Farmer adjusting a dripper head — hands only, or with full figure. This is a key practice image.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Macro for emitter + 35mm wide</span>
+                  <span class="shot-tag shot-tag--light">Backlit droplets (morning)</span>
+                  <span class="shot-tag shot-tag--mood">Precision, resource efficiency</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Category D: Nature & Biodiversity -->
+      <div class="shot-category">
+        <div class="shot-category-header">
+          <span class="shot-cat-badge">D</span>
+          <span class="shot-cat-title">Nature, Biodiversity &amp; Ecosystem Detail</span>
+          <span class="shot-cat-count">Min. 10 selects</span>
+        </div>
+        <div class="shot-category-body">
+          <ul class="shot-list">
+            <li class="shot-item">
+              <div class="shot-item-num">1</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Pollinators &amp; Beneficial Insects</p>
+                <p class="shot-item-desc">Bees, butterflies, or beneficial wasps on flowers in or near the regenerative field. Signals ecosystem health returning — biodiversity as evidence of soil and practice improvement. Patience required. Early morning for best insect activity.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">100mm macro, eye-level insect</span>
+                  <span class="shot-tag shot-tag--light">Soft morning, diffused</span>
+                  <span class="shot-tag shot-tag--mood">Life returning, ecosystem health</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">2</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Cover Crop Texture &amp; Greenery</p>
+                <p class="shot-item-desc">Low angle through cover crops (dhaincha, cowpea) showing leaf texture, plant density, and the light filtering through. Works as both a standalone image and an abstract texture for web backgrounds. Multiple framings — portrait, landscape, extreme close.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Low angle, backlit, f/5.6–8</span>
+                  <span class="shot-tag shot-tag--light">Backlit morning for rim light</span>
+                  <span class="shot-tag shot-tag--mood">Abundance, green, alive</span>
+                </div>
+              </div>
+            </li>
+            <li class="shot-item">
+              <div class="shot-item-num">3</div>
+              <div class="shot-item-content">
+                <p class="shot-item-title">Earthworm &amp; Soil Biology Close-Up</p>
+                <p class="shot-item-desc">Healthy soil will have visible earthworms, mycorrhizal threads, or visible aggregation. Carefully expose a small soil section and photograph the biology present. This is hard to capture well but extremely powerful for the brand's science narrative.</p>
+                <div class="shot-tags">
+                  <span class="shot-tag shot-tag--angle">Macro, fill card for light</span>
+                  <span class="shot-tag shot-tag--light">Diffused, no harsh shadow</span>
+                  <span class="shot-tag shot-tag--mood">Alive, scientific, reverent</span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ── 5. Video Deliverables ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <h2 class="section-title">Video Deliverables</h2>
+      </div>
+
+      <p class="section-desc">Deliver all video in ProRes or H.264 4K minimum. Shoot log profile (S-Log or C-Log) where possible for colour grade flexibility. Audio: lapel mic for interviews, ambient for B-roll. Provide project files where possible.</p>
+
+      <div class="video-card">
+        <div class="video-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg>
+        </div>
+        <div>
+          <p class="video-title">01 — Brand Story Film (Hero Video)</p>
+          <p class="video-desc">A 90–120 second brand film that opens on the land, introduces a farmer by name, follows one practice adoption moment, and closes with the idea of carbon as income. Narration-free preferred — let ambient sound and on-screen text carry the story. Should work silently with subtitles (website autoplay). Cinematographic quality — this is the centrepiece of the homepage.</p>
+          <div class="video-specs">
+            <span class="video-spec">4K / 24fps cinematic</span>
+            <span class="video-spec">90–120 sec final</span>
+            <span class="video-spec">Landscape 16:9</span>
+            <span class="video-spec">+ 9:16 social cut</span>
+            <span class="video-spec">Log graded to brand palette</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </div>
+        <div>
+          <p class="video-title">02 — Farmer Testimonial Videos (×3)</p>
+          <p class="video-desc">Three individual farmer interviews, each 2–3 minutes (edit to 60–90 sec for web). Filmed on location — in the field, not in a meeting room. Farmer facing slightly off-camera (not directly into lens — aim for interview-style). Ask them: what farming was like before, what changed, and what they would tell other farmers. Film in their language (Marathi/Kannada), subtitle in English. Capture extensive B-roll of each farmer at work during the interview visit.</p>
+          <div class="video-specs">
+            <span class="video-spec">4K interview</span>
+            <span class="video-spec">60–90 sec web edit</span>
+            <span class="video-spec">Lapel mic essential</span>
+            <span class="video-spec">Field background mandatory</span>
+            <span class="video-spec">Subtitle-ready</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div>
+          <p class="video-title">03 — Process Explainer B-Roll Package</p>
+          <p class="video-desc">A library of 30+ B-roll clips covering every stage of the Glaubark process: farmer registration, GIS walk, soil sampling, practice demonstration, drip installation, coordinator review with tablet, and field monitoring. Each clip 10–30 seconds. No narration — these are assembled by the web team into an interactive process section. Focus on hands, tools, and detail rather than faces (faces have separate portraits).</p>
+          <div class="video-specs">
+            <span class="video-spec">4K / 24–30fps</span>
+            <span class="video-spec">30+ clips minimum</span>
+            <span class="video-spec">10–30 sec each</span>
+            <span class="video-spec">Ambient audio</span>
+            <span class="video-spec">Organized by process stage</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+        </div>
+        <div>
+          <p class="video-title">04 — "In Action" Website Clips (×3)</p>
+          <p class="video-desc">Three short 15–25 second autoplay-ready clips for the homepage video gallery section. These should be visually striking, loop-able, and work muted. Concept: (1) A field monitoring walk — coordinator moving through tall cane with tablet, (2) A drip line in action — close-up water at roots, gentle crop movement, (3) A farmer's hands working the soil — turning compost, checking a root. All three should have the brand's warm, golden, field aesthetic.</p>
+          <div class="video-specs">
+            <span class="video-spec">4K, loop-able</span>
+            <span class="video-spec">15–25 sec each</span>
+            <span class="video-spec">Silent-viewable</span>
+            <span class="video-spec">Landscape + portrait crops</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 6. Drone Shots ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <h2 class="section-title">Drone Shot List</h2>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">🚁</span>
+        <p class="callout-text"><strong>Equipment recommendation:</strong> DJI Mavic 3 Pro or equivalent. Fly at 6:00–7:30 AM and 5:30–6:30 PM. Check DGCA regulations for the shoot area in advance — obtain NOC if required. Keep a ground spotter present at all times. Do not fly over people without explicit consent.</p>
+      </div>
+
+      <div class="drone-grid">
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">📐</div>
+            <p class="drone-title">Top-Down Field Pattern</p>
+            <p class="drone-desc">Directly overhead at 40–80m. The geometric pattern of crop rows, plot boundaries, and irrigation lines from above. Shoot in both morning golden light and late afternoon for colour variation.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Altitude: 40–80m AGL</span>
+              <span class="drone-spec">Orientation: Straight down (nadir)</span>
+              <span class="drone-spec">Both stills + 4K video pan</span>
+              <span class="drone-spec">Multiple fields for variety</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">🌅</div>
+            <p class="drone-title">Golden Hour Landscape Sweep</p>
+            <p class="drone-desc">Low-altitude (15–30m) cinematic push or pull over the field at sunrise or sunset. The light should rake across the crop rows creating deep shadows and gold highlights on the leaves.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Altitude: 15–30m AGL</span>
+              <span class="drone-spec">Speed: Slow (2–4 m/s)</span>
+              <span class="drone-spec">Direction: Into light or cross-light</span>
+              <span class="drone-spec">4K video + photo bursts</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">🏘️</div>
+            <p class="drone-title">Village-to-Field Context Shot</p>
+            <p class="drone-desc">Pull back wide to show the farm in the context of the village — buildings, roads, surrounding landscape. Establishes that this is real India, not an isolated lab. Shows the scale of the land relative to habitation.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Altitude: 100–150m AGL</span>
+              <span class="drone-spec">Wide establishing, slow orbit</span>
+              <span class="drone-spec">Both video + still</span>
+              <span class="drone-spec">Morning light preferred</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">👤</div>
+            <p class="drone-title">Farmer Walking the Plot — Overhead</p>
+            <p class="drone-desc">Coordinate with the farmer to walk slowly along a crop row while drone follows from 20–25m directly above. The figure moving through the crop, seen from above, is a powerful visual metaphor — a person in their element, surrounded by growth.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Altitude: 20–25m AGL</span>
+              <span class="drone-spec">Nadir or slight angle (30°)</span>
+              <span class="drone-spec">Farmer walks slowly, no looking up</span>
+              <span class="drone-spec">4K video essential</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">🔄</div>
+            <p class="drone-title">Orbit Around Farmer / Landmark Tree</p>
+            <p class="drone-desc">360° orbit around a farmer standing in the field or a prominent tree on the farm boundary. Smooth, slow full revolution at eye level or slightly above. Creates a cinematic hero moment — strong for the brand story film.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Altitude: 3–6m AGL</span>
+              <span class="drone-spec">Radius: 8–12m from subject</span>
+              <span class="drone-spec">Full 360° in 20–30 sec</span>
+              <span class="drone-spec">4K video, stabilised</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="drone-card">
+          <div class="drone-card-content">
+            <div class="drone-icon">📊</div>
+            <p class="drone-title">Conventional vs. Regenerative Comparison</p>
+            <p class="drone-desc">If access permits, fly over both a conventional (neighbouring) farm and the enrolled regenerative plot in the same flight. Side-by-side top-down shots that visually compare crop density, colour saturation, and field health. Extremely powerful for website impact sections.</p>
+            <div class="drone-specs">
+              <span class="drone-spec">Matched framing both shots</span>
+              <span class="drone-spec">Same altitude, same time of day</span>
+              <span class="drone-spec">Still photography + video pan</span>
+              <span class="drone-spec">Coordinate access in advance</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 7. Do's and Don'ts ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <h2 class="section-title">Do's &amp; Don'ts — Non-Negotiable</h2>
+      </div>
+
+      <div class="do-dont">
+        <div class="do-col">
+          <p class="do-col-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Always Do
+          </p>
+          <ul class="check-list">
+            <li>Shoot in RAW format — no exceptions</li>
+            <li>Obtain verbal or written consent from every farmer photographed</li>
+            <li>Keep the field in frame — context is everything</li>
+            <li>Prioritise golden hour for all field work</li>
+            <li>Shoot both horizontal (16:9) and vertical (4:5, 9:16) variants of key images</li>
+            <li>Leave sky/negative space room for text overlay in banner images</li>
+            <li>Include close-ups AND establishing wides for every scene</li>
+            <li>Label all deliverables clearly by category and location</li>
+            <li>Capture ambient audio with every video sequence</li>
+            <li>Shoot with the brand palette in mind (greens, golds, earthy tones)</li>
+            <li>Respect the farmer's dignity in every frame — no pity aesthetics</li>
+            <li>Check every frame for distracting elements (litter, unrelated signage)</li>
+          </ul>
+        </div>
+        <div class="dont-col">
+          <p class="dont-col-header">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            Never Do
+          </p>
+          <ul class="check-list">
+            <li>Shoot in harsh midday light for any field or portrait work</li>
+            <li>Photograph farmers without consent or understanding</li>
+            <li>Use heavy filtering or over-saturated presets — editorial restraint</li>
+            <li>Stage scenes that don't reflect actual farming activity</li>
+            <li>Include branded materials from other companies in frame</li>
+            <li>Frame farmers in ways that emphasise poverty or hardship</li>
+            <li>Photograph only faces — always include hands, tools, land context</li>
+            <li>Deliver JPEGs only — RAW files mandatory alongside edits</li>
+            <li>Fly the drone without proper clearances in restricted zones</li>
+            <li>Use wide-angle distortion on portrait close-ups (minimum 50mm for faces)</li>
+            <li>Submit blurry or soft images — every select must be technically sharp</li>
+            <li>Crop tightly on sensitive cultural or personal elements without consent</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 8. Technical Specs ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <h2 class="section-title">Technical Specifications</h2>
+      </div>
+
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Asset Type</th>
+            <th>Minimum Resolution</th>
+            <th>File Format</th>
+            <th>Colour Space</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Hero / Banner Images</td>
+            <td>5000 × 3500px minimum</td>
+            <td>RAW + TIFF or high-quality JPG</td>
+            <td>sRGB (web delivery)</td>
+            <td>Must have text safe area. Horizontal only.</td>
+          </tr>
+          <tr>
+            <td>Portrait Cards</td>
+            <td>2500 × 3125px (4:5)</td>
+            <td>RAW + JPG</td>
+            <td>sRGB</td>
+            <td>Both vertical and horizontal per subject</td>
+          </tr>
+          <tr>
+            <td>Detail / Macro Shots</td>
+            <td>3000 × 2000px minimum</td>
+            <td>RAW + JPG</td>
+            <td>sRGB</td>
+            <td>Pixel-level sharpness mandatory</td>
+          </tr>
+          <tr>
+            <td>Website Video</td>
+            <td>4K (3840 × 2160)</td>
+            <td>ProRes 422 or H.264</td>
+            <td>Rec. 709</td>
+            <td>24fps or 25fps. Log if possible.</td>
+          </tr>
+          <tr>
+            <td>Social Media Video</td>
+            <td>1080 × 1920 (9:16)</td>
+            <td>H.264 MP4</td>
+            <td>Rec. 709</td>
+            <td>Must be independently edited — not just a crop</td>
+          </tr>
+          <tr>
+            <td>Drone Stills</td>
+            <td>Full sensor resolution (RAW)</td>
+            <td>DNG + JPG</td>
+            <td>sRGB</td>
+            <td>Geotag all images. GPS metadata must be intact.</td>
+          </tr>
+          <tr>
+            <td>Drone Video</td>
+            <td>4K minimum</td>
+            <td>MOV or MP4</td>
+            <td>D-Log or S-Log preferred</td>
+            <td>Smooth gimbal, no digital stabilisation artefacts</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ── 9. Colour Reference ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">09</div>
+        <h2 class="section-title">Brand Colour Reference — For Grading</h2>
+      </div>
+
+      <p class="section-desc">Do not force images to match the hex values below — but use these as reference when colour grading video and doing basic photo adjustments. The goal is a palette that <em>harmonises</em> with these tones, not one that replicates them artificially.</p>
+
+      <div class="palette-row">
+        <div class="swatch-card">
+          <div class="swatch" style="background:#082410;"></div>
+          <span class="swatch-name">Forest Deep</span>
+          <span class="swatch-hex">#082410</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#1a3d2a;"></div>
+          <span class="swatch-name">Forest Mid</span>
+          <span class="swatch-hex">#1a3d2a</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#0d1a10;"></div>
+          <span class="swatch-name">Forest</span>
+          <span class="swatch-hex">#0d1a10</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#a3e635;"></div>
+          <span class="swatch-name">Lime</span>
+          <span class="swatch-hex">#a3e635</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#f7f5f0; border:1px solid #e5e1d7;"></div>
+          <span class="swatch-name">Cream</span>
+          <span class="swatch-hex">#f7f5f0</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#d4a843;"></div>
+          <span class="swatch-name">Golden Hour</span>
+          <span class="swatch-hex">Reference</span>
+        </div>
+        <div class="swatch-card">
+          <div class="swatch" style="background:#8b6914;"></div>
+          <span class="swatch-name">Soil / Earth</span>
+          <span class="swatch-hex">Reference</span>
+        </div>
+      </div>
+
+      <div class="callout">
+        <span class="callout-icon">🎨</span>
+        <p class="callout-text"><strong>Grading direction:</strong> Lift the shadows slightly in greens. Keep skin tones warm and accurate — do not push Indian skin tones toward orange or desaturate toward grey. In general, slight warmth in highlights, cooler midtones, lifted and slightly green-tinged shadows. Think: Indian golden hour, not Californian desert or Scandinavian cool.</p>
+      </div>
+    </div>
+
+    <!-- ── 10. Master Checklist ── -->
+    <div class="doc-section">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <h2 class="section-title">Delivery Checklist</h2>
+      </div>
+
+      <p class="section-desc">Use this checklist before submitting the final deliverable package. Everything below is mandatory unless explicitly agreed otherwise with the Glaubark team.</p>
+
+      <div class="final-checklist">
+        <div class="checklist-item"><div class="checklist-box"></div>Category A: Field &amp; Landscape — 20+ selects (RAW + JPG)</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Category B: Farmer Portraits &amp; Moments — 20+ selects</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Category C: Technology &amp; MRV — 15+ selects</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Category D: Nature &amp; Biodiversity — 10+ selects</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Brand Story Film — 90–120 sec, 4K, colour graded</div>
+        <div class="checklist-item"><div class="checklist-box"></div>3× Farmer Testimonial Videos (raw + edited)</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Process B-Roll Package — 30+ clips, labelled</div>
+        <div class="checklist-item"><div class="checklist-box"></div>3× Homepage Video Gallery Clips — 15–25 sec, loopable</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Drone stills — all 6 shot types, RAW + JPG, geotagged</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Drone video — all flights, log format where available</div>
+        <div class="checklist-item"><div class="checklist-box"></div>All files labelled: Category_Subject_Location_Date</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Consent documentation for all named individuals</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Colour correction applied — not just raw exports</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Video audio synced and levels normalised (–12 to –6 dB)</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Delivered via shared drive link with folder structure intact</div>
+        <div class="checklist-item"><div class="checklist-box"></div>Contact sheet / PDF selects sent alongside for review</div>
+      </div>
+    </div>
+
+    <div style="background:var(--forest-deep); border-radius:1.25rem; padding:2rem 2.25rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-top:1rem;">
+      <div>
+        <p style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:0.375rem;">Questions? Reach the team</p>
+        <p style="font-size:15px; font-weight:500; color:var(--white);">hello@glaubark.com &nbsp;·&nbsp; glaubark.com</p>
+      </div>
+      <div style="font-size:12px; color:rgba(255,255,255,0.3);">
+        Glaubark Solutions Photography Guidelines v1.0 · August 2026<br/>
+        Internal use — do not distribute outside creative team
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Print button -->
+  <div class="print-bar">
+    <button class="print-btn" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+      Save as PDF
+    </button>
+  </div>
+
+</body>
+</html>
