@@ -6,6 +6,7 @@
   <title>About — Glaubark Solutions</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <!-- Animation engine: GSAP + ScrollTrigger + Lenis smooth-scroll -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -33,6 +34,219 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/custom.css" />
+
+  <style>
+    /* ══ Story Timeline — Scroll-Driven ══ */
+    .tl-step-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 0;
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .tl-step-btn { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+    }
+    .tl-step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      background: #0d1a10;
+      transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .tl-step-loc {
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.04em;
+      transition: color 0.4s ease;
+      white-space: nowrap;
+    }
+    .tl-step-btn.is-active .tl-step-num {
+      background: #84cc16;
+      border-color: #84cc16;
+      color: #0d1a10;
+      transform: scale(1.15);
+    }
+    .tl-step-btn.is-active .tl-step-loc { color: #84cc16; }
+    .tl-step-btn:hover:not(.is-active) .tl-step-num { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
+
+    /* Panel container — stacks all panels on top of each other */
+    .tl-panels {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+    /* All panels absolutely fill the container */
+    .tl-panel {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(var(--enter-y, 28px));
+      transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+    }
+    @media (max-width: 1023px) {
+      .tl-panel { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
+    }
+    .tl-panel.is-active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    /* outgoing panel: slides to --leave-y and fades */
+    .tl-panel.is-leaving {
+      opacity: 0;
+      transform: translateY(var(--leave-y, -24px));
+      transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
+      pointer-events: none;
+    }
+    .tl-panel-img { position: relative; overflow: hidden; border-radius: 1rem; }
+    .tl-panel-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; display: block; }
+    .tl-panel-img:hover img { transform: scale(1.04); }
+
+    /* Dots */
+    .tl-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.2);
+      transition: background 0.4s ease, width 0.4s ease;
+    }
+    .tl-dot.is-active { background: #84cc16; width: 20px; }
+
+    /* ══ What Makes Glaubark Different — Card Carousel ══ */
+    .diff-swiper { overflow: visible; }
+    .diff-swiper .swiper-slide { height: auto; }
+
+    .diff-card {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      height: 500px;
+      cursor: pointer;
+      border: 1px solid #e2e8e3;
+      display: flex;
+      flex-direction: column;
+    }
+    .diff-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.09;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .diff-card:hover .diff-card-bg,
+    .diff-card.is-active .diff-card-bg { opacity: 1; }
+
+    .diff-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(4,12,6,0.92) 30%, rgba(4,12,6,0.38) 70%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+    .diff-card:hover .diff-card-overlay,
+    .diff-card.is-active .diff-card-overlay { opacity: 1; }
+
+    .diff-card-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.75rem 1.75rem 5.5rem;
+    }
+    .diff-card-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #1c1c1c;
+      transition: color 0.4s ease;
+      margin: 0;
+    }
+    .diff-card:hover .diff-card-title,
+    .diff-card.is-active .diff-card-title { color: #fff; }
+
+    .diff-card-gap { flex: 1; }
+
+    .diff-card-desc {
+      font-size: 16px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.82);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.5s ease, opacity 0.4s ease 0.06s;
+    }
+    .diff-card:hover .diff-card-desc,
+    .diff-card.is-active .diff-card-desc {
+      max-height: 240px;
+      opacity: 1;
+    }
+    .diff-card-btn {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.75rem;
+      z-index: 3;
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      background: #84cc16;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0d1a10;
+      transition: transform 0.2s ease;
+    }
+    .diff-card-btn:hover { transform: scale(1.1); }
+    .diff-card-btn svg { width: 18px; height: 18px; }
+
+    .diff-icon-minus { display: none; }
+    .diff-card.is-active .diff-icon-plus { display: none; }
+    .diff-card.is-active .diff-icon-minus { display: block; }
+
+    .diff-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 9999px;
+      border: 1.5px solid #d1d9d3;
+      background: #fff;
+      color: #1c1c1c;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    .diff-nav-btn:hover { background: #0d1a10; color: #fff; border-color: #0d1a10; }
+    .diff-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
+  </style>
 </head>
 <body class="bg-white text-ink" data-page="about">
 
@@ -145,79 +359,128 @@
       </div>
     </section>
 
-    <!-- Our Story -->
-    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
-      <div class="story-card bg-cream rounded-xl p-6 sm:p-10 md:p-14">
-        <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-sub mb-4">Our Story</p>
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-12 md:mb-14">
-          How Glaubark began
-        </h2>
+    <!-- Our Story — Scroll-Driven Sticky Timeline -->
+    <!-- Outer section is tall to give each step one viewport of scroll space -->
+    <section class="story-tl-outer" style="height: 500vh; position: relative;">
+      <!-- Sticky shell — stays pinned for the whole scroll journey -->
+      <div class="story-tl-sticky sticky top-0 h-screen bg-[#0d1a10] overflow-hidden flex flex-col">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 w-full flex flex-col h-full pt-14 pb-6 md:pt-18 md:pb-8">
 
-        <div class="story-timeline">
-          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
-            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Mumbai<br />Tata Sons</div>
-            <div class="story-step-line-col relative flex justify-center">
-              <span class="story-step-dot"></span>
-            </div>
-            <div class="pb-10 md:pb-12">
-              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A research paper that changed direction</h3>
-              <p class="text-sm md:text-[15px] text-sub leading-relaxed ">
-                Glaubark began with an internship. While working at Tata Sons in Mumbai, co-founder Dhruv Sakore was writing a research paper on green finance and its role in the global energy transition. In the course of that research, he discovered carbon credits &mdash; and became deeply interested in their potential to fund climate-positive projects at scale.
-              </p>
+          <!-- Header -->
+          <div class="shrink-0 mb-6 md:mb-8">
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-3">Our Story</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-tight leading-snug">How Glaubark began</h2>
+          </div>
+
+          <!-- Timeline step nav -->
+          <div class="tl-nav relative shrink-0 mb-6 md:mb-8">
+            <div class="absolute top-[22px] left-0 right-0 h-px bg-white/10 hidden md:block" aria-hidden="true"></div>
+            <div class="tl-progress-bar absolute top-[22px] left-0 h-px bg-[#84cc16] hidden md:block" style="width:0%; transition: width 0.7s cubic-bezier(0.4,0,0.2,1);"></div>
+            <div class="flex flex-row justify-between gap-0">
+
+              <button class="tl-step-btn is-active" data-tl-idx="0">
+                <span class="tl-step-num">01</span>
+                <span class="tl-step-loc hidden md:block">Mumbai · Tata Sons</span>
+              </button>
+              <button class="tl-step-btn" data-tl-idx="1">
+                <span class="tl-step-num">02</span>
+                <span class="tl-step-loc hidden md:block">Marathwada · Maharashtra</span>
+              </button>
+              <button class="tl-step-btn" data-tl-idx="2">
+                <span class="tl-step-num">03</span>
+                <span class="tl-step-loc hidden md:block">The Insight</span>
+              </button>
+              <button class="tl-step-btn" data-tl-idx="3">
+                <span class="tl-step-num">04</span>
+                <span class="tl-step-loc hidden md:block">London · University</span>
+              </button>
+              <button class="tl-step-btn" data-tl-idx="4">
+                <span class="tl-step-num">05</span>
+                <span class="tl-step-loc hidden md:block">Today · Pan-India</span>
+              </button>
+
             </div>
           </div>
 
-          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
-            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Marathwada<br />Maharashtra</div>
-            <div class="story-step-line-col relative flex justify-center">
-              <span class="story-step-dot"></span>
+          <!-- Stacked panels — only one visible at a time -->
+          <div class="tl-panels">
+
+            <div class="tl-panel is-active" data-tl-panel="0">
+              <div class="tl-panel-text">
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Mumbai · Tata Sons</span>
+                <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A research paper that changed direction</h3>
+                <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Glaubark began with an internship. While working at Tata Sons in Mumbai, co-founder Dhruv Sakore was writing a research paper on green finance and its role in the global energy transition. In the course of that research, he discovered carbon credits &mdash; and became deeply interested in their potential to fund climate-positive projects at scale.</p>
+              </div>
+              <div class="tl-panel-img aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Research and green finance" />
+              </div>
             </div>
-            <div class="pb-10 md:pb-12">
-              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A personal connection to agrarian distress</h3>
-              <p class="text-sm md:text-[15px] text-sub leading-relaxed ">
-                The idea immediately connected with something personal. Dhruv comes from Marathwada &mdash; a drought-prone region of Maharashtra with some of the highest rates of farmer distress in India. Growing up in an agricultural family, he had witnessed firsthand how unseasonal rainfall, depleted soils, volatile crop prices, and limited access to modern farming knowledge erode farmer livelihoods over generations.
-              </p>
+
+            <div class="tl-panel" data-tl-panel="1">
+              <div class="tl-panel-text">
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Marathwada · Maharashtra</span>
+                <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A personal connection to agrarian distress</h3>
+                <p class="text-white/65 text-[15px] md:text-base leading-relaxed">The idea immediately connected with something personal. Dhruv comes from Marathwada &mdash; a drought-prone region of Maharashtra with some of the highest rates of farmer distress in India. Growing up in an agricultural family, he had witnessed firsthand how unseasonal rainfall, depleted soils, volatile crop prices, and limited access to modern farming knowledge erode farmer livelihoods over generations.</p>
+              </div>
+              <div class="tl-panel-img aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=80" alt="Drought-prone farmland in Marathwada" />
+              </div>
             </div>
+
+            <div class="tl-panel" data-tl-panel="2">
+              <div class="tl-panel-text">
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">The Insight</span>
+                <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">Carbon credits as a farmer finance tool</h3>
+                <p class="text-white/65 text-[15px] md:text-base leading-relaxed">This made Dhruv see carbon credits differently &mdash; not just as an environmental accounting mechanism, but as a financing tool for farmers. If farmers adopted regenerative practices that improved soil health, reduced emissions, and sequestered carbon, they should also be able to earn from the carbon credit market. Climate action and farmer welfare didn&rsquo;t have to be separate goals.</p>
+              </div>
+              <div class="tl-panel-img aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922559?auto=format&fit=crop&w=900&q=80" alt="Carbon credits insight" />
+              </div>
+            </div>
+
+            <div class="tl-panel" data-tl-panel="3">
+              <div class="tl-panel-text">
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">London · University</span>
+                <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A co-founder joins from London</h3>
+                <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Dhruv began sharing the idea with friends. One of those conversations reached Vatsal Agarwal, a friend and fellow student in London. Vatsal was looking to build something meaningful and new &mdash; and saw strong potential in the vision. After several deep discussions, Vatsal came on board, and together they founded Glaubark Solutions.</p>
+              </div>
+              <div class="tl-panel-img aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=900&q=80" alt="Co-founders collaborating" />
+              </div>
+            </div>
+
+            <div class="tl-panel" data-tl-panel="4">
+              <div class="tl-panel-text">
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Today · Pan-India</span>
+                <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">From student idea to national presence</h3>
+                <p class="text-white/65 text-[15px] md:text-base leading-relaxed">What started as a student-led research idea has grown into a company working directly with farmers, FPOs, sugar factories, and agricultural partners across Maharashtra, Punjab, Kerala, and Meghalaya &mdash; approaching 100,000 hectares of land under carbon project development.</p>
+                <div class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#84cc16]">
+                  <span class="w-2 h-2 rounded-full bg-[#84cc16] animate-pulse"></span>
+                  Active across 4+ Indian states
+                </div>
+              </div>
+              <div class="tl-panel-img aspect-[4/3]">
+                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" alt="Pan-India agricultural operations" />
+              </div>
+            </div>
+
           </div>
 
-          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
-            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">The Insight</div>
-            <div class="story-step-line-col relative flex justify-center">
-              <span class="story-step-dot"></span>
+          <!-- Bottom: dots + scroll hint -->
+          <div class="shrink-0 flex items-center justify-between pt-5 mt-5 border-t border-white/10">
+            <div class="tl-dots flex items-center gap-2">
+              <span class="tl-dot is-active"></span>
+              <span class="tl-dot"></span>
+              <span class="tl-dot"></span>
+              <span class="tl-dot"></span>
+              <span class="tl-dot"></span>
             </div>
-            <div class="pb-10 md:pb-12">
-              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">Carbon credits as a farmer finance tool</h3>
-              <p class="text-sm md:text-[15px] text-sub leading-relaxed ">
-                This made Dhruv see carbon credits differently &mdash; not just as an environmental accounting mechanism, but as a financing tool for farmers. If farmers adopted regenerative practices that improved soil health, reduced emissions, and sequestered carbon, they should also be able to earn from the carbon credit market. Climate action and farmer welfare didn&rsquo;t have to be separate goals.
-              </p>
-            </div>
+            <p class="tl-scroll-hint text-white/30 text-xs flex items-center gap-2 transition-opacity duration-500">
+              <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              Scroll to continue
+            </p>
           </div>
 
-          <div class="story-step grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
-            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">London<br />University</div>
-            <div class="story-step-line-col relative flex justify-center">
-              <span class="story-step-dot"></span>
-            </div>
-            <div class="pb-10 md:pb-12">
-              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">A co-founder joins from London</h3>
-              <p class="text-sm md:text-[15px] text-sub leading-relaxed ">
-                Dhruv began sharing the idea with friends. One of those conversations reached Vatsal Agarwal, a friend and fellow student in London. Vatsal was looking to build something meaningful and new &mdash; and saw strong potential in the vision. After several deep discussions, Vatsal came on board, and together they founded Glaubark Solutions.
-              </p>
-            </div>
-          </div>
-
-          <div class="story-step story-step-last grid grid-cols-[92px_20px_1fr] sm:grid-cols-[140px_24px_1fr] gap-x-3 sm:gap-x-6">
-            <div class="text-right text-[11px] sm:text-xs text-gray-400 leading-snug pt-1">Today<br />Pan-India</div>
-            <div class="story-step-line-col relative flex justify-center">
-              <span class="story-step-dot"></span>
-            </div>
-            <div>
-              <h3 class="text-base md:text-lg font-semibold text-ink mb-2">From student idea to national presence</h3>
-              <p class="text-sm md:text-[15px] text-sub leading-relaxed ">
-                What started as a student-led research idea has grown into a company working directly with farmers, FPOs, sugar factories, and agricultural partners across Maharashtra, Punjab, Kerala, and Meghalaya &mdash; approaching 100,000 hectares of land under carbon project development.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -248,240 +511,438 @@
       </div>
     </section>
 
-    <!-- What Makes Glaubark Different -->
-    <section class="bg-forest text-white py-16 md:py-24">
+    <!-- What Makes Glaubark Different — Card Carousel -->
+    <section class="py-16 md:py-24 bg-white border-t border-[#e8ebe9]">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight mb-10 md:mb-14">What Makes Glaubark Different</h2>
 
-        <div class="services-accordion relative" role="tablist">
-          <div class="services-accordion-highlight" aria-hidden="true"></div>
-
-          <div class="services-accordion-item is-open" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="true">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Farmers as Participants, Not Just Beneficiaries</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
+        <div class="flex items-end justify-between mb-10 md:mb-12">
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-3">Our Approach</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink tracking-tight leading-snug">What Makes Glaubark Different</h2>
+          </div>
+          <div class="flex items-center gap-3">
+            <button class="diff-nav-btn diff-prev" aria-label="Previous">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    Glaubark doesn&rsquo;t develop carbon credits on behalf of farmers &mdash; it builds carbon projects with them. Farmers are active participants in the process, and direct beneficiaries of the climate finance it generates.
-                  </p>
+            <button class="diff-nav-btn diff-next" aria-label="Next">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="swiper diff-swiper">
+          <div class="swiper-wrapper">
+
+            <!-- 1 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
+                     alt="Farmers as participants in carbon projects" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Farmers as Participants,<br/>Not Just Beneficiaries</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">Glaubark doesn&rsquo;t develop carbon credits on behalf of farmers &mdash; it builds carbon projects with them. Farmers are active participants in the process, and direct beneficiaries of the climate finance it generates.</p>
                 </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 2 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1573497019236-17f8177b81e8?auto=format&fit=crop&w=900&q=80"
+                     alt="Field teams rooted in farming communities" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Roots in<br/>the Community</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">Our field teams live and work in the regions we serve, building trust with farmers through direct, ongoing relationships rather than one-off transactions.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 3 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=900&q=80"
+                     alt="Leadership working directly in the field with farmers" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Leadership That Works<br/>in the Field</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">Our founders and senior team spend real time on the ground with farmers and FPOs, not just behind a desk &mdash; decisions are shaped by what actually works on-farm.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 4 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80"
+                     alt="End-to-end carbon project lifecycle management" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Full Project Cycle,<br/>End to End</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">From farmer onboarding and practice adoption to MRV, verification, and credit issuance, we manage every stage of the carbon project lifecycle in-house.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 5 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80"
+                     alt="Regenerative practices designed for real farm economics" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Practices Farmers<br/>Can Actually Adopt</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">We design regenerative interventions that fit real farm economics and local conditions, so adoption is practical, not just theoretically sound.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 6 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
+                     alt="Technology built for transparent carbon monitoring" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Technology Built<br/>for Transparency</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">Purpose-built monitoring and data tools give farmers, partners, and carbon buyers a transparent, audit-ready view of impact on the ground.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+            <!-- 7 -->
+            <div class="swiper-slide">
+              <article class="diff-card" data-diff-card>
+                <img src="https://images.unsplash.com/photo-1536147116438-62986a88dcbc?auto=format&fit=crop&w=900&q=80"
+                     alt="Carbon markets as a rural development tool" class="diff-card-bg" />
+                <div class="diff-card-overlay"></div>
+                <div class="diff-card-body">
+                  <h3 class="diff-card-title">Carbon Markets as a Tool<br/>for Rural Development</h3>
+                  <div class="diff-card-gap"></div>
+                  <p class="diff-card-desc">We treat carbon finance as a means to an end &mdash; rural income and resilience &mdash; not as a standalone commodity play.</p>
+                </div>
+                <button class="diff-card-btn" aria-label="Toggle details">
+                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                </button>
+              </article>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Long-Term Goals — Bento Grid -->
+    <section class="py-16 md:py-24 bg-[#f7f5f0] border-t border-[#e8ebe9]">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+
+        <!-- Header -->
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-14">
+          <div>
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-3">Where We're Headed</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">Long-Term Goals</h2>
+          </div>
+          <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-lg">
+            Glaubark&rsquo;s ambition is to become one of India&rsquo;s leading carbon project developers — across regenerative agriculture, afforestation, agroforestry, and broader land-use climate solutions.
+          </p>
+        </div>
+
+        <!-- Bento Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+
+          <!-- Goal 01 — tall card (spans 2 rows on lg) -->
+          <div class="lg:row-span-2 relative overflow-hidden rounded-2xl min-h-[340px] lg:min-h-0 group">
+            <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?auto=format&fit=crop&w=800&q=80"
+                 alt="Farmers in the field" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-between p-7 md:p-8">
+              <span class="text-[80px] font-black leading-none text-white/10 select-none">01</span>
+              <div>
+                <h3 class="text-white text-xl md:text-2xl font-semibold leading-snug mb-3">Scale that reaches<br/>the grassroots</h3>
+                <p class="text-white/70 text-sm md:text-[15px] leading-relaxed">Bringing thousands of small and marginal farmers into the climate finance ecosystem — across geographies, crop types, and farming contexts.</p>
               </div>
             </div>
           </div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Roots in the Community</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    Our field teams live and work in the regions we serve, building trust with farmers through direct, ongoing relationships rather than one-off transactions.
-                  </p>
-                </div>
+          <!-- Goal 02 -->
+          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
+            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
+                 alt="Carbon credits and trust" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-between p-7">
+              <span class="text-[72px] font-black leading-none text-white/10 select-none">02</span>
+              <div>
+                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Credits the market<br/>can trust</h3>
+                <p class="text-white/70 text-sm leading-relaxed">High-integrity, verifiable credits backed by technology-enabled MRV systems that make agricultural carbon transparent and audit-ready.</p>
               </div>
             </div>
           </div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Leadership That Works in the Field</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    Our founders and senior team spend real time on the ground with farmers and FPOs, not just behind a desk &mdash; decisions are shaped by what actually works on-farm.
-                  </p>
-                </div>
+          <!-- Goal 03 -->
+          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
+            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80"
+                 alt="Partnerships and network" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-between p-7">
+              <span class="text-[72px] font-black leading-none text-white/10 select-none">03</span>
+              <div>
+                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Partnerships that<br/>multiply impact</h3>
+                <p class="text-white/70 text-sm leading-relaxed">FPOs, NGOs, corporates, and government institutions that extend our reach and embed climate action within existing agricultural systems.</p>
               </div>
             </div>
           </div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Full Project Cycle, End to End</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    From farmer onboarding and practice adoption to MRV, verification, and credit issuance, we manage every stage of the carbon project lifecycle in-house.
-                  </p>
-                </div>
+          <!-- Goal 04 -->
+          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
+            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
+                 alt="Better outcomes for farmers" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-between p-7">
+              <span class="text-[72px] font-black leading-none text-white/10 select-none">04</span>
+              <div>
+                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Better outcomes<br/>for farmers</h3>
+                <p class="text-white/70 text-sm leading-relaxed">Improving soil fertility, reducing input costs, and building resilience against climate risk — so regenerative practice pays off economically, not just ecologically.</p>
               </div>
             </div>
           </div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Practices Farmers Can Actually Adopt</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    We design regenerative interventions that fit real farm economics and local conditions, so adoption is practical, not just theoretically sound.
-                  </p>
-                </div>
+          <!-- Goal 05 — wide card -->
+          <div class="sm:col-span-2 lg:col-span-1 relative overflow-hidden rounded-2xl min-h-[280px] group">
+            <img src="https://images.unsplash.com/photo-1518281420975-50db6e5d0a97?auto=format&fit=crop&w=1000&q=80"
+                 alt="Global credibility for Indian agriculture" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col justify-between p-7">
+              <span class="text-[72px] font-black leading-none text-white/10 select-none">05</span>
+              <div>
+                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">A globally credible<br/>Indian sustainability company</h3>
+                <p class="text-white/70 text-sm leading-relaxed">Positioning Indian agriculture as a meaningful climate solution on the world stage, known for rural impact and carbon market integrity.</p>
               </div>
             </div>
           </div>
 
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Technology Built for Transparency</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    Purpose-built monitoring and data tools give farmers, partners, and carbon buyers a transparent, audit-ready view of impact on the ground.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="services-accordion-item" data-services-accordion>
-            <button type="button" class="services-accordion-toggle relative w-full flex items-center justify-between gap-6 py-6 md:py-7 text-left" aria-expanded="false">
-              <span class="text-lg md:text-xl font-normal tracking-tight">Carbon Markets as a Tool for Rural Development</span>
-              <span class="services-accordion-icon shrink-0 w-8 h-8 flex items-center justify-center">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
-              </span>
-            </button>
-            <div class="services-accordion-panel">
-              <div class="services-accordion-panel-inner">
-                <div class="services-accordion-body pb-6 md:pb-7 max-w-3xl">
-                  <p class="text-white/70 text-sm md:text-base leading-relaxed">
-                    We treat carbon finance as a means to an end &mdash; rural income and resilience &mdash; not as a standalone commodity play.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Long-Term Goals -->
-    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
-      <div class="max-w-2xl mb-12 md:mb-16">
-        <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight mb-5">Long-Term Goals</h2>
-        <p class="text-sm md:text-[15px] text-sub leading-relaxed">
-          Glaubark&rsquo;s long-term ambition is to become one of India&rsquo;s leading carbon project developers &mdash; across regenerative agriculture, improved land management, afforestation, agroforestry, and broader land-use based climate solutions. To get there, the company is working toward:
-        </p>
-      </div>
+    <!-- Vision / Mission / Goal — Editorial Dark -->
+    <section class="bg-[#0d1a10] py-20 md:py-28">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
 
-      <div class="goal-list border-t border-gray-200">
-        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
-          <div class="goal-thumb rounded-lg overflow-hidden w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0">
-            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">01.</span>Scale that reaches the grassroots</h3>
-            <p class="text-sm text-sub leading-relaxed max-w-2xl">Bringing thousands of small and marginal farmers into the climate finance ecosystem &mdash; across geographies, crop types, and farming contexts &mdash; through scalable carbon projects built on real field relationships.</p>
-          </div>
+        <!-- Label + headline -->
+        <div class="mb-14 md:mb-18">
+          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Our Foundation</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-tight leading-snug max-w-xl">Built on a clear purpose,<br/>driven by real impact.</h2>
         </div>
 
-        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
-          <div class="goal-thumb rounded-lg overflow-hidden w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0">
-            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">02.</span>Credits the market can trust</h3>
-            <p class="text-sm text-sub leading-relaxed max-w-2xl">Developing high-integrity, verifiable carbon credits that meet global buyer expectations, backed by technology-enabled MRV systems that make agricultural carbon projects transparent and audit-ready.</p>
-          </div>
-        </div>
+        <!-- 3-column panels -->
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
 
-        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
-          <div class="goal-thumb rounded-lg overflow-hidden w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0">
-            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">03.</span>Partnerships that multiply impact</h3>
-            <p class="text-sm text-sub leading-relaxed max-w-2xl">Building a network of partners &mdash; sugar factories, FPOs, NGOs, CSR teams, corporates, government-linked institutions, and sustainability organizations &mdash; that extends Glaubark&rsquo;s reach and embeds climate action within existing agricultural systems.</p>
-          </div>
-        </div>
-
-        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
-          <div class="goal-thumb rounded-lg overflow-hidden w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0">
-            <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">04.</span>Better outcomes for farmers</h3>
-            <p class="text-sm text-sub leading-relaxed max-w-2xl">Helping farmers improve soil fertility, reduce input costs, use water more efficiently, and build resilience against climate risk &mdash; so the transition to regenerative practice is worth it economically, not just ecologically.</p>
-          </div>
-        </div>
-
-        <div class="goal-row flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 py-8 md:py-9 border-b border-gray-200">
-          <div class="goal-thumb rounded-lg overflow-hidden w-full sm:w-28 md:w-32 aspect-[4/3] sm:aspect-square shrink-0">
-            <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=400&q=80" alt="" class="w-full h-full object-cover" />
-          </div>
-          <div>
-            <h3 class="text-base md:text-lg font-semibold text-ink mb-2"><span class="text-sub font-normal mr-2">05.</span>A globally credible Indian sustainability company</h3>
-            <p class="text-sm text-sub leading-relaxed max-w-2xl">Positioning Indian agriculture as a meaningful climate solution on the world stage, while building Glaubark into an institution known for rural impact and carbon market integrity &mdash; not just credit volume.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision / Mission / Goal -->
-    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24">
-      <div class="relative overflow-hidden rounded-3xl">
-        <div class="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1920&q=80"
-            alt="Wind turbines in a green field"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="relative z-10 px-5 md:px-8 lg:px-12 py-16 md:py-24">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
-            <div class="vmg-card rounded-xl p-7 md:p-8">
-              <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Vision</h3>
-              <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">To make Indian agriculture a global model for climate action, farmer prosperity, and regenerative land management.</p>
+          <!-- Vision -->
+          <div class="md:pr-10 lg:pr-14 pb-10 md:pb-0">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="inline-block w-8 h-8 rounded-full bg-[#84cc16]/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-[#84cc16]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+              </span>
+              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16]">Vision</span>
             </div>
-            <div class="vmg-card rounded-xl p-7 md:p-8 md:mt-8">
-              <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Mission</h3>
-              <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">To empower farmers through sustainable and regenerative farming practices, generate high-quality and verifiable carbon credits, and unlock climate finance as a new source of rural income.</p>
+            <p class="text-white/90 text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight">
+              "To make Indian agriculture a global model for climate action, farmer prosperity, and regenerative land management."
+            </p>
+          </div>
+
+          <!-- Mission -->
+          <div class="md:px-10 lg:px-14 pt-10 md:pt-0 pb-10 md:pb-0">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="inline-block w-8 h-8 rounded-full bg-[#84cc16]/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-[#84cc16]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </span>
+              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16]">Mission</span>
             </div>
-            <div class="vmg-card rounded-xl p-7 md:p-8">
-              <h3 class="text-lg md:text-xl font-semibold text-ink mb-4">Goal</h3>
-              <p class="text-sm md:text-[15px] text-ink/80 leading-relaxed">Become one of India&rsquo;s foremost farmer-centric carbon project developers, building a bridge between rural communities and global climate finance, while creating a more sustainable, resilient, and profitable agricultural future for the farmers.</p>
+            <p class="text-white/90 text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight">
+              "To empower farmers through regenerative practices, generate high-integrity carbon credits, and unlock climate finance as a new source of rural income."
+            </p>
+          </div>
+
+          <!-- Goal -->
+          <div class="md:pl-10 lg:pl-14 pt-10 md:pt-0">
+            <div class="flex items-center gap-3 mb-6">
+              <span class="inline-block w-8 h-8 rounded-full bg-[#84cc16]/15 flex items-center justify-center shrink-0">
+                <svg class="w-4 h-4 text-[#84cc16]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+              </span>
+              <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16]">Goal</span>
             </div>
+            <p class="text-white/90 text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight">
+              "Become India&rsquo;s foremost farmer-centric carbon developer — bridging rural communities and global climate finance for a more sustainable agricultural future."
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Bottom divider + stat strip -->
+        <div class="mt-14 md:mt-18 pt-10 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">10+</p>
+            <p class="text-white/50 text-xs leading-snug">Regenerative interventions per farm</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">VCS</p>
+            <p class="text-white/50 text-xs leading-snug">Verified Carbon Standard certified</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">100%</p>
+            <p class="text-white/50 text-xs leading-snug">Farmer-first revenue model</p>
+          </div>
+          <div>
+            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">∞</p>
+            <p class="text-white/50 text-xs leading-snug">Long-term partnerships, not one-off transactions</p>
           </div>
         </div>
+
       </div>
     </section>
   </main>
 
   <div id="site-footer-slot"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/components.js"></script>
   <script src="js/forms.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
+
+  <script>
+    /* ── Story Timeline — Scroll-Driven ── */
+    (function () {
+      var TOTAL       = 5;
+      var current     = 0;
+      var outer       = document.querySelector('.story-tl-outer');
+      var stepBtns    = document.querySelectorAll('.tl-step-btn');
+      var panels      = document.querySelectorAll('.tl-panel');
+      var dots        = document.querySelectorAll('.tl-dot');
+      var progressBar = document.querySelector('.tl-progress-bar');
+      var scrollHint  = document.querySelector('.tl-scroll-hint');
+
+      /* ── activate a step ── */
+      function goTo(idx, direction) {
+        if (idx === current) return;
+        var prev = current;
+        current = idx;
+
+        /* outgoing panel: slide in opposite direction */
+        var outDir = direction === 'up' ? 1 : -1;
+        panels[prev].style.setProperty('--leave-y', (outDir * 24) + 'px');
+        panels[prev].classList.add('is-leaving');
+        panels[prev].classList.remove('is-active');
+
+        /* incoming panel: start offset in scroll direction */
+        panels[current].style.setProperty('--enter-y', (direction === 'up' ? -24 : 24) + 'px');
+        panels[current].classList.add('is-active');
+
+        /* clean up leaving class after transition */
+        var leavingPanel = panels[prev];
+        setTimeout(function() { leavingPanel.classList.remove('is-leaving'); }, 450);
+
+        /* sync indicators */
+        stepBtns.forEach(function(b, i) { b.classList.toggle('is-active', i === current); });
+        dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+
+        if (progressBar) {
+          progressBar.style.width = (current / (TOTAL - 1) * 100) + '%';
+        }
+
+        /* hide scroll hint on last step */
+        if (scrollHint) scrollHint.style.opacity = current === TOTAL - 1 ? '0' : '1';
+      }
+
+      /* ── scroll → step mapping ── */
+      function onScroll() {
+        var rect        = outer.getBoundingClientRect();
+        var sectionH    = outer.offsetHeight;
+        var scrollRange = sectionH - window.innerHeight;
+        var scrolled    = -rect.top;
+
+        if (scrolled < 0 || scrolled > scrollRange) return;
+
+        var progress = scrolled / scrollRange;
+        var idx      = Math.min(Math.floor(progress * TOTAL), TOTAL - 1);
+
+        if (idx !== current) {
+          goTo(idx, idx > current ? 'up' : 'down');
+        }
+      }
+
+      /* ── step button → scroll to that step's position ── */
+      function scrollToStep(idx) {
+        var sectionTop  = outer.getBoundingClientRect().top + window.scrollY;
+        var scrollRange = outer.offsetHeight - window.innerHeight;
+        var targetY     = sectionTop + (idx / TOTAL) * scrollRange;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      }
+
+      stepBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          scrollToStep(parseInt(btn.dataset.tlIdx));
+        });
+      });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); /* run once on load */
+    })();
+
+    (function () {
+      new Swiper('.diff-swiper', {
+        slidesPerView: 1.15,
+        spaceBetween: 14,
+        grabCursor: true,
+        navigation: { nextEl: '.diff-next', prevEl: '.diff-prev' },
+        breakpoints: {
+          640:  { slidesPerView: 2.1,  spaceBetween: 16 },
+          1024: { slidesPerView: 3.15, spaceBetween: 20 },
+        },
+      });
+
+      document.querySelectorAll('[data-diff-card]').forEach(function(card) {
+        var btn = card.querySelector('.diff-card-btn');
+        if (!btn) return;
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          card.classList.toggle('is-active');
+        });
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -13,6 +13,7 @@
       page: 'about',
       children: [
         { label: 'Our Story', href: 'about.html' },
+        { label: 'Our Founders', href: 'founders.html' },
         { label: 'Our Team', href: 'about.html#team' },
         { label: 'Mission & Vision', href: 'about.html#mission' },
       ],
@@ -31,7 +32,7 @@
   function desktopNavItem(link) {
     const activeClass = isActive(link.page)
       ? 'underline underline-offset-8 decoration-1'
-      : 'hover:opacity-80';
+      : 'hover:text-[#2fce65]';
 
     if (link.children) {
       return `
@@ -165,6 +166,7 @@
       title: 'Company',
       links: [
         { label: 'About Us', href: 'about.html' },
+        { label: 'Our Founders', href: 'founders.html' },
         { label: 'Our Team', href: 'about.html#team' },
         { label: 'Careers', href: 'about.html#careers' },
         { label: 'Contact', href: 'contact.html' },
@@ -260,31 +262,31 @@
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-16 md:pt-20 pb-8">
         <!-- Top row -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 pb-12 md:pb-16 border-b border-white/10">
-          <!-- Brand -->
-          <div class="lg:col-span-4">
-            <a href="index.html" class="inline-flex items-center gap-3 mb-6">
-              <img src="assets/images/logo.svg" alt="" class="w-10 h-10" aria-hidden="true" />
-              <span class="text-2xl lowercase tracking-tight">glaubark</span>
+          <!-- Brand — compact -->
+          <div class="lg:col-span-3">
+            <a href="index.html" class="inline-flex items-center gap-3 mb-5">
+              <img src="assets/images/logo.svg" alt="" class="w-8 h-8" aria-hidden="true" />
+              <span class="text-xl lowercase tracking-tight">glaubark</span>
             </a>
-            <p class="text-white/60 text-sm leading-relaxed max-w-sm mb-8">
-              Empowering farmers with regenerative farming solutions and carbon credits for a sustainable future.
+            <p class="text-white/50 text-sm leading-relaxed mb-6">
+              Regenerative farming &amp; carbon credits for India's farmers.
             </p>
-            <div class="flex items-center gap-4">
-              <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="LinkedIn" data-magnetic data-magnetic-strength="0.5">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <div class="flex items-center gap-3">
+              <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="LinkedIn" data-magnetic data-magnetic-strength="0.5">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </a>
-              <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Twitter" data-magnetic data-magnetic-strength="0.5">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Twitter" data-magnetic data-magnetic-strength="0.5">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               </a>
-              <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Instagram" data-magnetic data-magnetic-strength="0.5">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              <a href="#" class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" aria-label="Instagram" data-magnetic data-magnetic-strength="0.5">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               </a>
             </div>
           </div>
 
           <!-- Link columns: accordion on mobile, grid on desktop -->
-          <div class="lg:col-span-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 md:gap-8">
+          <div class="lg:col-span-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 md:gap-6">
               ${footerColumns
                 .map(
                   (col, i) => `
@@ -301,12 +303,12 @@
                     </svg>
                   </button>
                   <div id="footer-panel-${i}" class="footer-accordion-content md:!max-h-none md:overflow-visible">
-                    <ul class="pb-5 md:pb-0 space-y-3">
+                    <ul class="pb-5 md:pb-0 md:mt-4 space-y-2.5">
                       ${col.links
                         .map(
                           (link) => `
                         <li>
-                          <a href="${link.href}" class="footer-link text-sm text-white/60 hover:text-white transition-colors">${link.label}</a>
+                          <a href="${link.href}" class="footer-link text-sm text-white/50 hover:text-white transition-colors">${link.label}</a>
                         </li>`
                         )
                         .join('')}
@@ -315,43 +317,40 @@
                 </div>`
                 )
                 .join('')}
-              <div class="footer-accordion-item border-b border-white/10 md:border-0 footer-newsletter-col" data-footer-accordion>
-                <button
-                  type="button"
-                  class="footer-accordion-toggle w-full flex items-center justify-between py-5 md:py-0 md:pointer-events-none md:cursor-default"
-                  aria-expanded="false"
-                  aria-controls="footer-panel-newsletter"
-                >
-                  <span class="text-sm font-semibold uppercase tracking-wider">Newsletter</span>
-                  <svg class="footer-accordion-icon w-5 h-5 md:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                  </svg>
-                </button>
-                <div id="footer-panel-newsletter" class="footer-accordion-content md:!max-h-none md:overflow-visible">
-                  <div class="pb-5 md:pb-0">
-                    <p class="text-sm text-white/60 leading-relaxed mb-3">Field updates and news, in your inbox.</p>
-                    <form id="footer-newsletter-form" class="footer-newsletter-form" data-newsletter-form novalidate>
-                      <label for="footer-newsletter-email" class="sr-only">Email address</label>
-                      <input
-                        type="email"
-                        id="footer-newsletter-email"
-                        name="email"
-                        autocomplete="email"
-                        placeholder="you@email.com"
-                        required
-                        class="footer-newsletter-input"
-                      />
-                      <button type="submit" class="footer-newsletter-submit" data-newsletter-submit aria-label="Subscribe to newsletter">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                        </svg>
-                      </button>
-                    </form>
-                    <p id="footer-newsletter-form-status" class="form-status text-xs mt-2 hidden" role="status" aria-live="polite"></p>
-                  </div>
-                </div>
-              </div>
             </div>
+          </div>
+
+          <!-- Newsletter — wide, clean input -->
+          <div class="lg:col-span-3 lg:border-l lg:border-white/10 lg:pl-10">
+            <p class="text-sm font-semibold uppercase tracking-wider mb-3">Newsletter</p>
+            <h3 class="text-xl md:text-2xl font-semibold leading-snug mb-3 max-w-xs">
+              Stay connected with the field
+            </h3>
+            <p class="text-sm text-white/55 leading-relaxed mb-8 max-w-sm">
+              Farmer programs, carbon project updates, and field stories from across India — straight to your inbox.
+            </p>
+            <form id="footer-newsletter-form" class="footer-newsletter-form" data-newsletter-form novalidate>
+              <label for="footer-newsletter-email" class="sr-only">Email address</label>
+              <div style="display:flex;align-items:stretch;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:9999px;padding:6px 6px 6px 20px;gap:8px;">
+                <input
+                  type="email"
+                  id="footer-newsletter-email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder="Enter your email address"
+                  required
+                  style="flex:1;background:transparent;border:none;width:150px;outline:none;color:#fff;font-size:14px;font-family:inherit;min-width:0;"
+                />
+                <button type="submit" data-newsletter-submit aria-label="Subscribe to newsletter"
+                  style="flex-shrink:0;background:#fff;color:#0d1a10;border:none;border-radius:9999px;padding:10px 22px;font-size:13px;font-weight:600;font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity 0.2s ease;"
+                  onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                  Subscribe
+                  
+                </button>
+              </div>
+            </form>
+            <p id="footer-newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
+            <p class="text-sm text-white/30 mt-4">No spam. Unsubscribe any time.</p>
           </div>
         </div>
 

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Founders — Glaubark Solutions</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animation engine: GSAP + ScrollTrigger + Lenis smooth-scroll -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      content: ['./*.html', './js/**/*.js'],
+      safelist: ['hidden', 'lg:block', 'lg:hidden', 'md:hidden', 'lg:flex', 'lg:justify-between'],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: '#1c1c1c',
+            sub: '#6b6b6b',
+            forest: '#0d1a10',
+            'forest-mid': '#1a3d2a',
+            cream: '#f7f5f0',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+
+  <style>
+    /* ── Page banner ── */
+    .page-banner {
+      min-height: 480px;
+      padding-top: 120px;
+      padding-bottom: 80px;
+    }
+    @media (min-width: 768px) { .page-banner { min-height: 560px; padding-top: 160px; padding-bottom: 100px; } }
+
+    /* ── Founder photo frame ── */
+    .founder-photo {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .founder-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(13,26,16,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .founder-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(.25,.46,.45,.94);
+    }
+    .founder-card:hover .founder-photo img { transform: scale(1.04); }
+
+    /* ── Grain texture overlay ── */
+    .grain-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+    }
+
+    /* ── Tag pill ── */
+    .tag-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .tag-pill-dark { background: #0d1a10; color: #fff; }
+    .tag-pill-light { background: #e8f0ea; color: #1a3d2a; }
+    .tag-pill-cream { background: #f7f5f0; color: #1c1c1c; }
+
+    /* ── Fact grid cards ── */
+    .fact-card {
+      padding: 1.25rem 1.5rem;
+      border-radius: 0.875rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .fact-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+
+    /* ── Quote block ── */
+    .founder-quote {
+      position: relative;
+      padding: 2rem 2rem 2rem 3rem;
+      border-left: 3px solid #1a3d2a;
+    }
+    .founder-quote::before {
+      content: '\201C';
+      position: absolute;
+      left: 0.5rem;
+      top: 1rem;
+      font-size: 4rem;
+      line-height: 1;
+      color: #1a3d2a;
+      font-family: Georgia, serif;
+      opacity: 0.4;
+    }
+
+    /* ── Divider leaf ── */
+    .leaf-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .leaf-divider::before, .leaf-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8e3;
+    }
+
+    /* ── Green banner / CTA ── */
+    .green-banner {
+      background: linear-gradient(135deg, #0d1a10 0%, #1a3d2a 50%, #2a5a3a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .green-banner::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .green-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -40%;
+      left: -5%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      pointer-events: none;
+    }
+
+    /* ── Connection line ── */
+    .connect-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .connect-line::before {
+      content: '';
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, #1a3d2a, transparent);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); }
+
+    /* ── Number stat ── */
+    .stat-number {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0d1a10, #2a5a3a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Founder index badge ── */
+    .founder-index {
+      font-size: 7rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: #f0f4f1;
+      user-select: none;
+    }
+
+    /* ── Mobile stacking ── */
+    @media (max-width: 1023px) {
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-grid-reverse { direction: ltr; }
+    }
+
+    /* ── Hover CTA btn ── */
+    .btn-forest {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 9999px;
+      background: #0d1a10;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid #0d1a10;
+      transition: background 0.3s ease, color 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-forest:hover { background: transparent; color: #0d1a10; }
+
+    .btn-forest-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 9999px;
+      background: transparent;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.5);
+      transition: background 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+    }
+    .btn-forest-outline:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+
+    /* ── Parallax photo ── */
+    .parallax-img { will-change: transform; }
+
+    /* ── Crop icon bg ── */
+    .crop-icon-bg {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #e8f0ea;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .crop-icon-bg svg { width: 22px; height: 22px; color: #1a3d2a; }
+  </style>
+</head>
+<body class="bg-white text-ink" data-page="founders">
+
+  <div id="site-header-slot"></div>
+
+  <main>
+
+    <!-- ══════════════════════════════════════════
+         HERO BANNER
+    ══════════════════════════════════════════ -->
+    <section class="page-banner relative flex items-end">
+      <div class="absolute inset-0 z-0">
+        <img
+          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80"
+          alt="Agricultural fields at dawn"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80"></div>
+        <div class="grain-overlay"></div>
+      </div>
+
+      <div class="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pb-14 md:pb-20">
+        <div class="reveal">
+          <span class="tag-pill bg-white/15 text-white/90 backdrop-blur-sm mb-5 inline-flex">
+            <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>
+            Our Founders
+          </span>
+        </div>
+        <h1 class="reveal text-4xl md:text-5xl lg:text-[4rem] xl:text-[5rem] font-semibold text-white leading-[1.06] tracking-tight max-w-4xl">
+          Pioneering a<br />greener Glaubark
+        </h1>
+        <p class="reveal mt-6 text-white/75 text-base md:text-lg max-w-xl leading-relaxed">
+          Two founders. One shared belief: that the farmers who feed the world should also profit from healing it.
+        </p>
+
+        <!-- Scroll hint -->
+        <div class="reveal mt-12 flex items-center gap-3">
+          <div class="w-px h-10 bg-white/30"></div>
+          <span class="text-xs font-medium text-white/50 tracking-widest uppercase">Scroll to explore</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         INTRO STRIP
+    ══════════════════════════════════════════ -->
+    <section class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-14 md:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_1.6fr] gap-8 lg:gap-16 items-center">
+        <div class="reveal">
+          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">The Founding Story</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
+            A research paper.<br />A personal calling.<br />A shared vision.
+          </h2>
+        </div>
+        <div class="reveal">
+          <p class="text-sm md:text-base text-sub leading-relaxed mb-4">
+            Glaubark Solutions was born at the intersection of two worlds — the rigor of climate finance research and the lived reality of agrarian distress. What began as an internship insight grew into a company working across Maharashtra, Punjab, Kerala, and Meghalaya, approaching 100,000 hectares of land under carbon project development.
+          </p>
+          <p class="text-sm md:text-base text-sub leading-relaxed">
+            Behind it are two co-founders who brought different perspectives, backgrounds, and strengths — united by a single conviction that climate action and farmer welfare are the same goal.
+          </p>
+        </div>
+      </div>
+
+      <!-- Impact strip -->
+      <div class="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="reveal fact-card bg-cream">
+          <p class="stat-number">~1L</p>
+          <p class="text-xs text-sub mt-2 font-medium">Hectares in development</p>
+        </div>
+        <div class="reveal fact-card bg-cream">
+          <p class="stat-number">4</p>
+          <p class="text-xs text-sub mt-2 font-medium">States across India</p>
+        </div>
+        <div class="reveal fact-card bg-cream">
+          <p class="stat-number">2</p>
+          <p class="text-xs text-sub mt-2 font-medium">Co-founders, one mission</p>
+        </div>
+        <div class="reveal fact-card bg-[#0d1a10] text-white">
+          <p class="text-3xl md:text-4xl font-bold leading-none tracking-tight text-white/90">2024</p>
+          <p class="text-xs text-white/60 mt-2 font-medium">Year of founding</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         FOUNDER 1 — DHRUV SAKORE
+    ══════════════════════════════════════════ -->
+    <section class="founder-card py-16 md:py-24 bg-[#fafaf9] border-y border-[#eae8e3]">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+
+        <!-- Index + label -->
+        <div class="flex items-baseline gap-4 mb-10 md:mb-14 reveal">
+          <span class="founder-index select-none">01</span>
+          <span class="tag-pill tag-pill-light">Co-founder</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[420px_1fr] xl:grid-cols-[480px_1fr] gap-10 lg:gap-16 items-start">
+
+          <!-- Photo col -->
+          <div class="reveal">
+            <div class="founder-photo shadow-2xl shadow-forest/10">
+              <img
+                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80"
+                alt="Dhruv Sakore — Co-founder, Glaubark Solutions"
+                class="parallax-img"
+              />
+            </div>
+            <!-- Location badge -->
+            <div class="mt-4 flex items-center gap-2 text-xs text-sub">
+              <svg class="w-3.5 h-3.5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              Marathwada, Maharashtra
+            </div>
+          </div>
+
+          <!-- Content col -->
+          <div>
+            <div class="reveal">
+              <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight mb-1">
+                Dhruv Sakore
+              </h2>
+              <p class="text-base md:text-lg text-forest-mid font-medium mb-6">Co-founder &amp; CEO</p>
+            </div>
+
+            <!-- Bio -->
+            <div class="reveal space-y-4 text-sm md:text-[15px] text-sub leading-relaxed mb-8">
+              <p>
+                Dhruv grew up in Marathwada — one of Maharashtra's most drought-prone regions, where unseasonal rainfall, depleted soils, and volatile crop prices erode farmer livelihoods over generations. Agriculture wasn't an abstract subject for him; it was home.
+              </p>
+              <p>
+                While interning at Tata Sons in Mumbai, he was writing a research paper on green finance and the global energy transition. In that research, he discovered carbon credits — and immediately saw their potential not just as an environmental accounting mechanism, but as a direct financing tool for farmers.
+              </p>
+              <p>
+                <strong class="text-ink font-semibold">That realisation became Glaubark.</strong> If farmers adopted regenerative practices that improved soil health, sequestered carbon, and reduced emissions, they should also earn from the carbon credit market. Climate action and farmer welfare didn't have to be separate goals.
+              </p>
+            </div>
+
+            <!-- Quote -->
+            <div class="reveal founder-quote bg-white rounded-xl mb-8">
+              <p class="text-base md:text-lg font-medium text-ink leading-snug">
+                "Carbon credits should not just be traded in boardrooms. They should reach the hands that grow our food."
+              </p>
+              <p class="mt-3 text-xs text-sub font-semibold tracking-wide uppercase">— Dhruv Sakore</p>
+            </div>
+
+            <!-- Key facts -->
+            <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div class="fact-card bg-white border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Tata Sons, Mumbai</p>
+                  <p class="text-xs text-sub">Green finance research internship</p>
+                </div>
+              </div>
+              <div class="fact-card bg-white border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Marathwada Roots</p>
+                  <p class="text-xs text-sub">First-hand understanding of agrarian distress</p>
+                </div>
+              </div>
+              <div class="fact-card bg-white border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Carbon Markets Pioneer</p>
+                  <p class="text-xs text-sub">Bridging voluntary carbon markets &amp; small farmers</p>
+                </div>
+              </div>
+              <div class="fact-card bg-white border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Regenerative Farming</p>
+                  <p class="text-xs text-sub">Soil health, water efficiency &amp; long-term resilience</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal">
+              <a href="contact.html" class="btn-forest">
+                Connect with Dhruv
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         DIVIDER — Connection
+    ══════════════════════════════════════════ -->
+    <div class="py-8 flex flex-col items-center gap-3 bg-white">
+      <div class="connect-line"></div>
+      <div class="leaf-divider w-full max-w-xs">
+        <span class="flex-shrink-0 w-8 h-8 rounded-full bg-[#e8f0ea] flex items-center justify-center">
+          <svg class="w-4 h-4 text-forest-mid" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"/>
+          </svg>
+        </span>
+      </div>
+      <p class="text-xs text-sub font-medium tracking-wider uppercase">They found each other</p>
+      <div class="connect-line"></div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         FOUNDER 2 — VATSAL AGARWAL
+    ══════════════════════════════════════════ -->
+    <section class="founder-card py-16 md:py-24 bg-white">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+
+        <!-- Index + label -->
+        <div class="flex items-baseline gap-4 mb-10 md:mb-14 reveal justify-end lg:justify-start">
+          <span class="founder-index select-none">02</span>
+          <span class="tag-pill tag-pill-dark">Co-founder</span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px] gap-10 lg:gap-16 items-start">
+
+          <!-- Content col (left on desktop) -->
+          <div class="order-2 lg:order-1">
+            <div class="reveal">
+              <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight mb-1">
+                Vatsal Agarwal
+              </h2>
+              <p class="text-base md:text-lg text-forest-mid font-medium mb-6">Co-founder &amp; COO</p>
+            </div>
+
+            <!-- Bio -->
+            <div class="reveal space-y-4 text-sm md:text-[15px] text-sub leading-relaxed mb-8">
+              <p>
+                Vatsal was in London, studying and looking for an opportunity to build something meaningful — not just something that would work on paper, but something that would create tangible change at scale.
+              </p>
+              <p>
+                When Dhruv shared the Glaubark idea with him, Vatsal saw it clearly: a genuine market gap, a real social need, and a founder with deep personal skin in the game. After several intense conversations about the model, the mission, and the path forward, he decided to come on board.
+              </p>
+              <p>
+                Vatsal brings a systems-level perspective to Glaubark's operations — from building the structures that make carbon project development repeatable, to forging the institutional partnerships that connect Indian farmland to global climate finance.
+              </p>
+            </div>
+
+            <!-- Quote -->
+            <div class="reveal founder-quote bg-[#fafaf9] rounded-xl mb-8">
+              <p class="text-base md:text-lg font-medium text-ink leading-snug">
+                "The climate crisis has an agricultural solution. We just need to build the infrastructure to unlock it."
+              </p>
+              <p class="mt-3 text-xs text-sub font-semibold tracking-wide uppercase">— Vatsal Agarwal</p>
+            </div>
+
+            <!-- Key facts -->
+            <div class="reveal grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div class="fact-card bg-[#fafaf9] border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">London University</p>
+                  <p class="text-xs text-sub">International finance &amp; climate strategy</p>
+                </div>
+              </div>
+              <div class="fact-card bg-[#fafaf9] border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Operations Architect</p>
+                  <p class="text-xs text-sub">End-to-end carbon project lifecycle systems</p>
+                </div>
+              </div>
+              <div class="fact-card bg-[#fafaf9] border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Institutional Partnerships</p>
+                  <p class="text-xs text-sub">Connecting FPOs, factories &amp; carbon markets</p>
+                </div>
+              </div>
+              <div class="fact-card bg-[#fafaf9] border border-[#e8ebe9] flex items-start gap-3">
+                <div class="crop-icon-bg">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs font-semibold text-ink mb-0.5">Scale-First Thinking</p>
+                  <p class="text-xs text-sub">Repeatable models built for pan-India impact</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="reveal">
+              <a href="contact.html" class="btn-forest">
+                Connect with Vatsal
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Photo col (right on desktop) -->
+          <div class="order-1 lg:order-2 reveal">
+            <div class="founder-photo shadow-2xl shadow-forest/10">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+                alt="Vatsal Agarwal — Co-founder, Glaubark Solutions"
+                class="parallax-img"
+              />
+            </div>
+            <div class="mt-4 flex items-center gap-2 text-xs text-sub">
+              <svg class="w-3.5 h-3.5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              London, United Kingdom → Pune, India
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         SHARED VALUES GRID
+    ══════════════════════════════════════════ -->
+    <section class="py-16 md:py-24 bg-cream">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">Shared Principles</p>
+          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
+            What both founders believe
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+          <div class="reveal fact-card bg-white col-span-1 md:col-span-2 lg:col-span-1 flex flex-col justify-between min-h-[220px]">
+            <div class="crop-icon-bg mb-5">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink mb-2">Farmers First</h3>
+              <p class="text-sm text-sub leading-relaxed">Farmers are participants in the process, not just beneficiaries. Every decision is made with their welfare as the primary measure of success.</p>
+            </div>
+          </div>
+
+          <div class="reveal fact-card bg-[#0d1a10] text-white flex flex-col justify-between min-h-[220px]">
+            <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-5">
+              <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-white mb-2">Ground-Up Verification</h3>
+              <p class="text-sm text-white/65 leading-relaxed">Real on-farm data, not assumptions. MRV infrastructure built from the ground level up to meet international carbon standards.</p>
+            </div>
+          </div>
+
+          <div class="reveal fact-card bg-white flex flex-col justify-between min-h-[220px]">
+            <div class="crop-icon-bg mb-5">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink mb-2">Skin in the Game</h3>
+              <p class="text-sm text-sub leading-relaxed">The founders spend real time in the field. Decisions are shaped by what works on-farm, not what looks good on a slide deck.</p>
+            </div>
+          </div>
+
+          <div class="reveal fact-card bg-white flex flex-col justify-between min-h-[220px]">
+            <div class="crop-icon-bg mb-5">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink mb-2">Speed &amp; Rigour Together</h3>
+              <p class="text-sm text-sub leading-relaxed">Moving fast enough to matter for farmers facing climate stress, while building the documentation quality that credit buyers demand.</p>
+            </div>
+          </div>
+
+          <div class="reveal fact-card bg-white flex flex-col justify-between min-h-[220px]">
+            <div class="crop-icon-bg mb-5">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink mb-2">Climate &amp; Livelihoods</h3>
+              <p class="text-sm text-sub leading-relaxed">Proving that healing the planet and improving farmer incomes are not competing goals — they are the same goal pursued together.</p>
+            </div>
+          </div>
+
+          <div class="reveal fact-card bg-white flex flex-col justify-between min-h-[220px]">
+            <div class="crop-icon-bg mb-5">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+            </div>
+            <div>
+              <h3 class="text-base font-semibold text-ink mb-2">Regenerative by Design</h3>
+              <p class="text-sm text-sub leading-relaxed">Every intervention must improve soil, water, and biodiversity — carbon sequestration is the outcome, not a bolt-on metric.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════════════════
+         GREEN CTA BANNER
+    ══════════════════════════════════════════ -->
+    <section class="green-banner py-16 md:py-24">
+      <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 items-center">
+          <div class="reveal">
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-white/50 mb-4">Work With Us</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-white leading-snug tracking-tight mb-4 max-w-2xl">
+              Ready to build the next generation of agricultural carbon projects?
+            </h2>
+            <p class="text-sm md:text-base text-white/65 max-w-xl leading-relaxed">
+              Whether you're a farmer, FPO, agricultural company, or climate investor — Dhruv and Vatsal want to hear from you.
+            </p>
+          </div>
+          <div class="reveal flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-stretch shrink-0">
+            <a href="contact.html" class="btn-forest-outline text-center justify-center">
+              Get in Touch
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            </a>
+            <a href="about.html" class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-white text-forest font-semibold text-sm transition-opacity hover:opacity-90">
+              Our Story
+            </a>
+          </div>
+        </div>
+
+        <!-- Testimonial / stat strip -->
+        <div class="mt-14 pt-10 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="reveal">
+            <p class="text-2xl md:text-3xl font-bold text-white">~1L ha</p>
+            <p class="text-xs text-white/50 mt-1 font-medium">Land under development</p>
+          </div>
+          <div class="reveal">
+            <p class="text-2xl md:text-3xl font-bold text-white">4 States</p>
+            <p class="text-xs text-white/50 mt-1 font-medium">Across India</p>
+          </div>
+          <div class="reveal">
+            <p class="text-2xl md:text-3xl font-bold text-white">High-Quality</p>
+            <p class="text-xs text-white/50 mt-1 font-medium">Carbon credits, verified</p>
+          </div>
+          <div class="reveal">
+            <p class="text-2xl md:text-3xl font-bold text-white">End-to-End</p>
+            <p class="text-xs text-white/50 mt-1 font-medium">Project lifecycle in-house</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer-slot"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+
+  <script>
+    // ── Founders Page Animations ──────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Smooth scroll (Lenis)
+      const lenis = new Lenis({ lerp: 0.08, smooth: true });
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+
+      // Reveal on scroll
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach((el, i) => {
+        const delay = (i % 4) * 0.07;
+        gsap.fromTo(el,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.85,
+            ease: 'power3.out',
+            delay,
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+
+      // Parallax on founder photos
+      document.querySelectorAll('.parallax-img').forEach(img => {
+        gsap.to(img, {
+          yPercent: -8,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.founder-photo'),
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          }
+        });
+      });
+
+      // Founder index number roll-in
+      document.querySelectorAll('.founder-index').forEach(el => {
+        gsap.fromTo(el,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 1,
+            ease: 'power4.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+            }
+          }
+        );
+      });
+
+      // Stat numbers count-up
+      document.querySelectorAll('.stat-number').forEach(el => {
+        const text = el.textContent.trim();
+        const num = parseFloat(text.replace(/[^0-9.]/g, ''));
+        const suffix = text.replace(/[0-9.]/g, '');
+        if (!isNaN(num)) {
+          gsap.fromTo({ val: 0 }, { val: num }, {
+            duration: 1.8,
+            ease: 'power2.out',
+            onUpdate: function () {
+              el.textContent = Math.round(this.targets()[0].val).toLocaleString() + suffix;
+            },
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            }
+          });
+        }
+      });
+
+      // Hero headline stagger
+      const heroH1 = document.querySelector('.page-banner h1');
+      if (heroH1) {
+        gsap.fromTo(heroH1,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', delay: 0.3 }
+        );
+      }
+
+      // Fact cards hover tilt (subtle)
+      document.querySelectorAll('.fact-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(card, { rotateX: -y * 4, rotateY: x * 4, duration: 0.3, ease: 'power1.out', transformPerspective: 800 });
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, { rotateX: 0, rotateY: 0, duration: 0.5, ease: 'power2.out' });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
