@@ -73,6 +73,7 @@
         timestamp: new Date().toISOString(),
         fullName: String(data.get('fullName') || '').trim(),
         email: String(data.get('email') || '').trim(),
+        contactType: String(data.get('contactType') || '').trim(),
         subject: String(data.get('subject') || '').trim(),
         message: String(data.get('message') || '').trim(),
       };

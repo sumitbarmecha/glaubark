@@ -24,52 +24,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/custom.css" />
 </head>
-<body class="bg-white text-ink" data-page="blog">
+<body class="bg-white text-ink light-hero" data-page="blog">
   <div id="site-header-slot"></div>
+
+  <div class="post-progress" aria-hidden="true"><div class="post-progress-bar"></div></div>
 
   <main>
 
-    <!-- ── Article Header ── -->
-    <section class="post-hero bg-[#0d1a10] relative overflow-hidden">
-      <div class="post-hero-dots" aria-hidden="true"></div>
-      <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-[140px] md:pt-[160px] pb-14 md:pb-20">
+    <!-- ── Article hero: split (content left, image right) ── -->
+    <section class="post-hero-split">
+      <div class="post-hero-split-glow" aria-hidden="true"></div>
+
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-[100px] md:pt-[112px] pb-12 md:pb-14">
         <a href="blog.html" class="post-back-link">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
           Back to Blog
         </a>
-        <div class="flex flex-wrap items-center gap-3 mt-8 mb-5">
-          <span class="blog-cat blog-cat--orange">Field Stories</span>
-          <span class="blog-meta-dot post-meta-dot" aria-hidden="true"></span>
-          <time class="post-meta-item" datetime="2026-07-10">10 July 2026</time>
-          <span class="blog-meta-dot post-meta-dot" aria-hidden="true"></span>
-          <span class="post-meta-item">5 min read</span>
-        </div>
-        <h1 class="post-title">From Debt to Carbon Income: One Farmer's Regenerative Journey in Maharashtra</h1>
-        <p class="post-lead">Ramesh Patil grew sugarcane the conventional way for two decades. Then Glaubark's field team knocked on his door. This is his story, told in his own words from Kolhapur.</p>
-        <div class="flex items-center gap-4 mt-8">
-          <img src="https://i.pravatar.cc/56?img=33" alt="" class="w-12 h-12 rounded-full object-cover border-2 border-white/20" />
+
+        <div class="post-hero-split-grid mt-7 md:mt-9">
+
+          <!-- Left: content -->
           <div>
-            <p class="text-white font-semibold text-sm">Glaubark Editorial</p>
-            <p class="text-white/50 text-xs">Field &amp; Community</p>
+            <div class="flex flex-wrap items-center gap-3 mb-5">
+              <span class="blog-cat blog-cat--orange">Field Stories</span>
+              <span class="blog-meta-dot post-meta-dot" aria-hidden="true"></span>
+              <time class="post-meta-item" datetime="2026-07-10">10 July 2026</time>
+              <span class="blog-meta-dot post-meta-dot" aria-hidden="true"></span>
+              <span class="post-meta-item">5 min read</span>
+            </div>
+
+            <h1 class="post-title">From Debt to Carbon Income: One Farmer's Regenerative Journey in Maharashtra</h1>
+            <p class="post-lead">Ramesh Patil grew sugarcane the conventional way for two decades. Then Glaubark's field team knocked on his door. This is his story, told in his own words from Kolhapur.</p>
+
+            <div class="post-hero-split-foot">
+              <img src="https://i.pravatar.cc/96?img=33" alt="" class="post-byline-avatar" />
+              <div>
+                <p class="post-byline-name">Glaubark Editorial</p>
+                <p class="post-byline-role">Field &amp; Community</p>
+              </div>
+            </div>
           </div>
+
+          <!-- Right: image -->
+          <figure class="post-hero-split-figure">
+            <div class="post-hero-split-frame" aria-hidden="true"></div>
+            <div class="post-hero-split-img-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1200&auto=format&fit=crop"
+                alt="A farmer standing at the edge of a green field at dusk"
+                class="post-hero-split-img"
+              />
+            </div>
+            <figcaption class="post-hero-split-caption">Ramesh Patil at the edge of his sugarcane field in Kolhapur — the soil is darker and richer than it was three years ago.</figcaption>
+          </figure>
+
         </div>
       </div>
     </section>
 
-    <!-- ── Hero image ── -->
-    <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 -mt-1">
-      <div class="post-hero-img-wrap">
-        <img
-          src="https://images.unsplash.com/photo-1528693404014-b13ebe6e723e?q=80&w=1600&auto=format&fit=crop"
-          alt="A farmer standing at the edge of a green field at dusk"
-          class="post-hero-img"
-        />
-        <p class="post-img-caption">Ramesh Patil at the edge of his sugarcane field in Kolhapur — the soil is darker and richer than it was three years ago.</p>
-      </div>
-    </div>
-
     <!-- ── Field story body + sidebar ── -->
-    <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-14 md:py-20">
+    <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-10 md:py-14">
       <div class="post-layout">
 
         <!-- Main content -->
@@ -187,9 +201,9 @@
     </div>
 
     <!-- ── Related articles ── -->
-    <section class="bg-cream py-16 md:py-20">
+    <section class="bg-cream py-12 md:py-16">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-        <h2 class="text-xl md:text-2xl font-semibold text-ink mb-8">More from Glaubark</h2>
+        <h2 class="text-xl md:text-2xl font-semibold text-ink mb-6">More from Glaubark</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
           <a href="blog-carbon-credits-india.html" class="blog-card group bg-white">
@@ -232,5 +246,6 @@
   <script src="js/forms.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/post.js"></script>
 </body>
 </html>

@@ -103,7 +103,7 @@
           <!-- Logo -->
           <a href="index.html" class="flex items-center gap-3 shrink-0 min-w-0 group">
             <span class="w-9 h-9 md:w-10 md:h-10 text-white shrink-0">
-              <img src="assets/images/logo.svg" alt="" class="w-full h-full" aria-hidden="true" />
+              <img src="assets/images/logo.svg" alt="" class="site-header-logo-img w-full h-full" aria-hidden="true" />
             </span>
             <span class="text-xl md:text-2xl font-normal tracking-tight lowercase">glaubark</span>
           </a>
@@ -203,54 +203,37 @@
 
   const newsletterHTML = `
     <section class="site-newsletter-section" aria-labelledby="site-newsletter-heading">
-      <div class="site-newsletter-bg" aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1920&q=80"
-          alt=""
-          class="site-newsletter-bg-img"
-        />
-      </div>
       <div class="site-newsletter-inner">
-        <div class="site-newsletter-card">
-          <div class="site-newsletter-grid">
+        <div class="site-newsletter-grid">
+          <div>
+            <p class="site-newsletter-eyebrow">Newsletter</p>
             <h2 id="site-newsletter-heading" class="site-newsletter-title">Stay connected with Glaubark</h2>
-            <div class="site-newsletter-graphic" aria-hidden="true">
-              <svg class="site-newsletter-graphic-svg" fill="none" stroke="currentColor" stroke-width="1.25" viewBox="0 0 120 80">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8 58 C20 48 28 52 38 44 C48 36 58 40 68 34 C78 28 88 32 98 26"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M18 58 L18 46 L30 46 L30 58 Z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M52 58 L52 38 L72 38 L72 58 Z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M58 38 L65 28 L72 38"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M86 58 L86 50 L98 50 L98 58 Z"/>
-                <circle cx="98" cy="22" r="7"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M95 22 L98 19 L101 22"/>
-              </svg>
-            </div>
             <p class="site-newsletter-desc">
-              Be the first to know about farmer programs, carbon project updates, and field stories from across India.
+              Farmer programs, carbon project updates, and field stories from across India — a few times a year, never more.
             </p>
-            <div class="site-newsletter-form-wrap">
-              <form id="newsletter-form" class="site-newsletter-form" data-newsletter-form novalidate>
-                <label for="newsletter-email" class="sr-only">Email address</label>
-                <input
-                  type="email"
-                  id="newsletter-email"
-                  name="email"
-                  autocomplete="email"
-                  placeholder="you@email.com"
-                  required
-                  class="site-newsletter-input"
-                />
-                <button type="submit" class="site-newsletter-submit group" data-newsletter-submit>
-                  <span>Submit</span>
-                  <span class="site-newsletter-submit-icon" aria-hidden="true">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                    </svg>
-                  </span>
-                </button>
-              </form>
-              <p id="newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
-            </div>
+          </div>
+
+          <div>
+            <form id="newsletter-form" class="site-newsletter-form" data-newsletter-form novalidate>
+              <label for="newsletter-email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                autocomplete="email"
+                placeholder="Enter your email address"
+                required
+                class="site-newsletter-input"
+              />
+              <button type="submit" class="site-newsletter-submit" data-newsletter-submit>
+                <span>Subscribe</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </button>
+            </form>
+            <p class="site-newsletter-note">No spam. Unsubscribe any time.</p>
+            <p id="newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -323,12 +306,10 @@
           <!-- Newsletter — wide, clean input -->
           <div class="lg:col-span-3 lg:border-l lg:border-white/10 lg:pl-10">
             <p class="text-sm font-semibold uppercase tracking-wider mb-3">Newsletter</p>
-            <h3 class="text-xl md:text-2xl font-semibold leading-snug mb-3 max-w-xs">
+            <h3 class="text-xl md:text-xl font-medium leading-tight mb-3 max-w-md">
               Stay connected with the field
             </h3>
-            <p class="text-sm text-white/55 leading-relaxed mb-8 max-w-sm">
-              Farmer programs, carbon project updates, and field stories from across India — straight to your inbox.
-            </p>
+            
             <form id="footer-newsletter-form" class="footer-newsletter-form" data-newsletter-form novalidate>
               <label for="footer-newsletter-email" class="sr-only">Email address</label>
               <div style="display:flex;align-items:stretch;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:9999px;padding:6px 6px 6px 20px;gap:8px;">

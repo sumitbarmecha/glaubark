@@ -6,10 +6,14 @@
   <title>Contact Us — Glaubark Solutions</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+
   <script>
     tailwind.config = {
       content: ['./*.html', './js/**/*.js'],
-      safelist: ['hidden', 'lg:block', 'lg:hidden', 'md:hidden', 'lg:flex', 'lg:justify-between', 'rounded-xl', 'rounded-3xl'],
+      safelist: ['hidden', 'lg:block', 'lg:hidden', 'md:hidden', 'lg:flex', 'lg:justify-between'],
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
@@ -34,152 +38,481 @@
   <div id="site-header-slot"></div>
 
   <main>
-    <section class="page-banner relative flex items-end">
-      <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1423666639045-f5600c027da8?auto=format&fit=crop&w=1920&q=80" alt="" class="w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+
+    <!-- ══ HERO ═══════════════════════════════════════════════ -->
+    <section class="c-hero">
+      <div class="c-hero-media" aria-hidden="true">
+        <img src="https://images.unsplash.com/photo-1423666639045-f5600c027da8?auto=format&fit=crop&w=1920&q=80" alt="" />
+        <div class="c-hero-veil"></div>
       </div>
-      <div class="relative z-10 max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[120px] pb-16 md:pb-20">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white tracking-tight">Contact Us</h1>
-        <p class="text-white/80 mt-4 max-w-lg text-sm md:text-base">Get in touch with our team to learn how Glaubark can support your goals.</p>
+
+      <div class="relative z-10 max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[140px] pb-14 md:pb-20">
+        <p class="c-eyebrow c-eyebrow--light mb-7" data-hero="1">Contact</p>
+
+        <h1 class="c-hero-title mb-7 max-w-4xl" data-hero="2">
+          Let&rsquo;s start a <em>conversation</em>
+        </h1>
+
+        <p class="c-hero-lead mb-12 md:mb-16" data-hero="3">
+          Farmer, buyer, partner, or simply curious — tell us what you&rsquo;re working on and we&rsquo;ll take it from there.
+        </p>
+
+        <div class="c-hero-meta" data-hero="4">
+          <div>
+            <span class="c-hero-meta-label">Email</span>
+            <a href="mailto:hello@glaubarksolutions.com" class="c-hero-meta-value">hello@glaubarksolutions.com</a>
+          </div>
+          <div>
+            <span class="c-hero-meta-label">Based in</span>
+            <span class="c-hero-meta-value">Maharashtra, India</span>
+          </div>
+          <div>
+            <span class="c-hero-meta-label">Response time</span>
+            <span class="c-hero-meta-value">Within 24 hours</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Contact form + intro -->
-    <section class="contact-form-section bg-gradient-to-b from-forest via-forest-mid to-cream text-white">
-      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-24 lg:py-28">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 xl:gap-20 items-start">
-          <div class="lg:pt-4 lg:pr-4">
-            <p class="text-[11px] md:text-xs font-semibold tracking-[0.15em] uppercase text-white/60 mb-5">Get in touch</p>
-            <h2 class="text-3xl md:text-4xl lg:text-[42px] font-semibold leading-tight tracking-tight text-white max-w-md">
-              Whether you&rsquo;re a farmer, a buyer, a partner, or just curious &mdash; we&rsquo;d love to hear from you.
-            </h2>
+    <!-- ══ FORM + CHANNELS ════════════════════════════════════ -->
+    <section id="contact-form-section" class="bg-cream py-16 md:py-24 lg:py-28">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 xl:gap-24 items-start">
+
+          <!-- Left: intro + direct channels -->
+          <div class="lg:sticky lg:top-28" data-reveal>
+            <p class="c-eyebrow mb-6">Get in touch</p>
+            <h2 class="c-title mb-5 max-w-sm">We read every message and reply personally.</h2>
+            <p class="c-lead mb-10 max-w-sm">
+              No bots, no auto-replies, no ticket numbers. Someone from our core team will get back to you.
+            </p>
+
+            <div>
+              <a href="mailto:hello@glaubarksolutions.com" class="c-channel">
+                <svg class="c-channel-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span class="c-channel-body">
+                  <span class="c-channel-label">General enquiries</span>
+                  <span class="c-channel-value">hello@glaubarksolutions.com</span>
+                </span>
+                <svg class="c-channel-arrow w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+
+              <a href="mailto:partnerships@glaubarksolutions.com" class="c-channel">
+                <svg class="c-channel-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.36-1.86M17 20H7m10 0v-2c0-.66-.13-1.3-.36-1.86m0 0A5 5 0 007 18v2m10-8a3 3 0 11-6 0 3 3 0 016 0zM7 20H2v-2a3 3 0 015.36-1.86M7 20v-2c0-.66.13-1.3.36-1.86"/>
+                </svg>
+                <span class="c-channel-body">
+                  <span class="c-channel-label">Partnerships &amp; carbon buyers</span>
+                  <span class="c-channel-value">partnerships@glaubarksolutions.com</span>
+                </span>
+                <svg class="c-channel-arrow w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+
+              <a href="https://instagram.com/glaubark" target="_blank" rel="noopener noreferrer" class="c-channel">
+                <svg class="c-channel-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+                <span class="c-channel-body">
+                  <span class="c-channel-label">Social</span>
+                  <span class="c-channel-value">@glaubark on Instagram</span>
+                </span>
+                <svg class="c-channel-arrow w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+
+              <div class="c-channel">
+                <svg class="c-channel-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span class="c-channel-body">
+                  <span class="c-channel-label">Visit us</span>
+                  <span class="c-channel-value">Maharashtra, India</span>
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div class="contact-form-card bg-white text-ink rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_24px_64px_rgba(0,0,0,0.18)]">
-            <form id="contact-form" class="space-y-5" novalidate>
-              <div>
-                <label for="contact-name" class="contact-label">Full Name</label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="fullName"
-                  autocomplete="name"
-                  placeholder="Your name"
-                  required
-                  class="contact-input"
-                />
-              </div>
-              <div>
-                <label for="contact-email" class="contact-label">Email Address</label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  autocomplete="email"
-                  placeholder="you@email.com"
-                  required
-                  class="contact-input"
-                />
-              </div>
-              <div>
-                <label for="contact-subject" class="contact-label">Subject</label>
-                <input
-                  type="text"
-                  id="contact-subject"
-                  name="subject"
-                  placeholder="General inquiry"
-                  required
-                  class="contact-input"
-                />
-              </div>
-              <div>
-                <label for="contact-message" class="contact-label">Message</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  rows="5"
-                  placeholder="Write your message"
-                  required
-                  class="contact-input contact-textarea resize-y min-h-[140px]"
-                ></textarea>
+          <!-- Right: form -->
+          <div class="c-form-card" data-reveal>
+            <h3 class="text-lg font-medium text-ink mb-3">Send a message</h3>
+            <div class="c-assure mb-9">
+              <span>Reply within 24h</span>
+              <span>No data sharing</span>
+              <span>Real people</span>
+            </div>
+
+            <form id="contact-form" class="space-y-7" novalidate>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                <div>
+                  <label for="contact-name" class="contact-label">Full name</label>
+                  <input type="text" id="contact-name" name="fullName" autocomplete="name" placeholder="Your name" required class="contact-input" />
+                </div>
+                <div>
+                  <label for="contact-email" class="contact-label">Email address</label>
+                  <input type="email" id="contact-email" name="email" autocomplete="email" placeholder="you@email.com" required class="contact-input" />
+                </div>
               </div>
 
-              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pt-2">
-                <p id="contact-form-status" class="form-status text-sm hidden" role="status" aria-live="polite"></p>
-                <button type="submit" class="contact-submit-btn group ml-auto w-full sm:w-auto" data-contact-submit>
-                  <span>Send Message</span>
-                  <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                <div>
+                  <label for="contact-type" class="contact-label">I am a</label>
+                  <select id="contact-type" name="contactType" class="contact-input contact-select">
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="farmer">Farmer / FPO</option>
+                    <option value="corporate">Corporate / CSR team</option>
+                    <option value="buyer">Carbon buyer / investor</option>
+                    <option value="ngo">NGO / Research organisation</option>
+                    <option value="media">Media / Journalist</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="contact-subject" class="contact-label">Subject</label>
+                  <input type="text" id="contact-subject" name="subject" placeholder="What's this about?" required class="contact-input" />
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-message" class="contact-label">Message</label>
+                <textarea id="contact-message" name="message" rows="4" placeholder="Tell us a little about what you have in mind" required class="contact-input contact-textarea"></textarea>
+              </div>
+
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 pt-2">
+                <p class="text-[11px] leading-relaxed text-sub max-w-xs">
+                  We use your details only to respond to this enquiry.
+                </p>
+                <button type="submit" class="contact-submit-btn group w-full sm:w-auto flex-shrink-0" data-contact-submit>
+                  <span>Send message</span>
+                  <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                   </svg>
                 </button>
               </div>
+
+              <p id="contact-form-status" class="form-status text-sm hidden" role="status" aria-live="polite"></p>
             </form>
           </div>
+
         </div>
       </div>
     </section>
 
-    <!-- Direct email cards -->
+    <!-- ══ WHAT HAPPENS NEXT ══════════════════════════════════ -->
     <section class="bg-white py-16 md:py-24">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-        <h2 class="text-2xl md:text-3xl font-semibold text-ink tracking-tight mb-8 md:mb-12">Prefer to email us directly?</h2>
+        <div class="mb-12 md:mb-16" data-reveal>
+          <p class="c-eyebrow mb-6">Our process</p>
+          <h2 class="c-title max-w-lg">What happens after you reach out</h2>
+        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-5">
-          <a href="mailto:hello@glaubarksolutions.com" class="contact-info-card group">
-            <span class="contact-info-icon" aria-hidden="true">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
-              </svg>
-            </span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-sub">General Inquiries</span>
-            <span class="text-sm md:text-[15px] font-medium text-ink group-hover:text-forest-mid transition-colors">hello@glaubarksolutions.com</span>
-          </a>
-
-          <a href="mailto:partnerships@glaubarksolutions.com" class="contact-info-card group">
-            <span class="contact-info-icon" aria-hidden="true">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/>
-              </svg>
-            </span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-sub">Partnerships &amp; Carbon Buyers</span>
-            <span class="text-sm md:text-[15px] font-medium text-ink group-hover:text-forest-mid transition-colors">partnerships@glaubarksolutions.com</span>
-          </a>
-
-          <div class="contact-info-card">
-            <span class="contact-info-icon" aria-hidden="true">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
-              </svg>
-            </span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-sub">Visit Us</span>
-            <span class="text-sm md:text-[15px] font-medium text-ink">Maharashtra, India</span>
+        <div class="c-steps" data-reveal>
+          <div class="c-step">
+            <p class="c-step-num">01</p>
+            <h3 class="c-step-title">We receive your message</h3>
+            <p class="c-step-body">It lands directly with our team — no tickets, no bots. We read every enquiry the same day.</p>
           </div>
-
-          <a href="https://instagram.com/glaubark" target="_blank" rel="noopener noreferrer" class="contact-info-card group">
-            <span class="contact-info-icon" aria-hidden="true">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-                <rect x="3" y="3" width="18" height="18" rx="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-            </span>
-            <span class="text-xs font-semibold uppercase tracking-wider text-sub">Social</span>
-            <span class="text-sm md:text-[15px] font-medium text-ink group-hover:text-forest-mid transition-colors">Instagram: @glaubark</span>
-          </a>
+          <div class="c-step">
+            <p class="c-step-num">02</p>
+            <h3 class="c-step-title">The right person responds</h3>
+            <p class="c-step-body">Your enquiry is routed to the most relevant team member: farmer relations, partnerships, or technical.</p>
+          </div>
+          <div class="c-step">
+            <p class="c-step-num">03</p>
+            <h3 class="c-step-title">A real conversation</h3>
+            <p class="c-step-body">We follow up with a personalised reply, and where it makes sense, invite you to a call.</p>
+          </div>
+          <div class="c-step">
+            <p class="c-step-num">04</p>
+            <h3 class="c-step-title">Next steps agreed</h3>
+            <p class="c-step-body">A farm visit, a partnership proposal, or a project scoping — you leave with something concrete.</p>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- ══ FAQ ════════════════════════════════════════════════ -->
+    <section id="faq" class="bg-cream py-16 md:py-24 lg:py-28">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-20 items-start">
+
+          <div class="lg:sticky lg:top-28" data-reveal>
+            <p class="c-eyebrow mb-6">FAQ</p>
+            <h2 class="c-title mb-5 max-w-xs">Common questions about working with us</h2>
+            <p class="c-lead max-w-xs">
+              Don&rsquo;t see yours here? Send us a message and we&rsquo;ll answer it directly.
+            </p>
+          </div>
+
+          <div data-reveal>
+            <div class="c-faq-item" data-faq>
+              <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="faq-panel-1">
+                <span class="c-faq-index">01</span>
+                <span class="c-faq-text">Who can work with Glaubark?</span>
+                <span class="c-faq-toggle" aria-hidden="true"></span>
+              </button>
+              <div class="c-faq-a" id="faq-panel-1" role="region">
+                <div class="c-faq-a-inner">
+                  <p>Farmers, Farmer Producer Organisations (FPOs), sugar factories, corporates with CSR or net-zero targets, NGOs, research institutions, and voluntary carbon market buyers. If you have land, capital, or a goal tied to regenerative agriculture or carbon, we&rsquo;d love to connect.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-faq-item" data-faq>
+              <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="faq-panel-2">
+                <span class="c-faq-index">02</span>
+                <span class="c-faq-text">How quickly can a carbon project get started?</span>
+                <span class="c-faq-toggle" aria-hidden="true"></span>
+              </button>
+              <div class="c-faq-a" id="faq-panel-2" role="region">
+                <div class="c-faq-a-inner">
+                  <p>After an initial scoping call, project design typically takes 4&ndash;8 weeks depending on scale and existing data. Farmer onboarding can begin in parallel, with methodology compliance and MRV setup following in subsequent months. We&rsquo;ll give you a clear timeline for your specific context.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-faq-item" data-faq>
+              <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="faq-panel-3">
+                <span class="c-faq-index">03</span>
+                <span class="c-faq-text">Do you work outside Maharashtra?</span>
+                <span class="c-faq-toggle" aria-hidden="true"></span>
+              </button>
+              <div class="c-faq-a" id="faq-panel-3" role="region">
+                <div class="c-faq-a-inner">
+                  <p>Our active operations are currently centred in Maharashtra, but we are expanding into other states. If you&rsquo;re based elsewhere, still get in touch — we&rsquo;d like to explore whether a partnership makes sense, especially for larger-scale projects.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-faq-item" data-faq>
+              <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="faq-panel-4">
+                <span class="c-faq-index">04</span>
+                <span class="c-faq-text">What do corporate and CSR partners get?</span>
+                <span class="c-faq-toggle" aria-hidden="true"></span>
+              </button>
+              <div class="c-faq-a" id="faq-panel-4" role="region">
+                <div class="c-faq-a-inner">
+                  <p>Access to verified carbon credits, measurable farmer livelihood impact data, detailed impact reporting, co-branding opportunities, and a clear story of where the climate investment goes. We run the entire programme — from farmer onboarding through MRV to credit issuance.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="c-faq-item" data-faq>
+              <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="faq-panel-5">
+                <span class="c-faq-index">05</span>
+                <span class="c-faq-text">Is there a minimum project size?</span>
+                <span class="c-faq-toggle" aria-hidden="true"></span>
+              </button>
+              <div class="c-faq-a" id="faq-panel-5" role="region">
+                <div class="c-faq-a-inner">
+                  <p>For carbon project development, groups of at least 50&ndash;100 farmers (roughly 500&ndash;1,000 acres) usually make economic sense given MRV and certification costs. That said, we do explore smaller pilots for organisations wanting to test the model before scaling.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA ════════════════════════════════════════════════ -->
+    <section class="c-cta">
+      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-20">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8" data-reveal>
+          <div>
+            <p class="c-eyebrow c-eyebrow--light mb-6">Ready when you are</p>
+            <h2 class="c-cta-title max-w-lg">Regenerative agriculture starts with one conversation.</h2>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+            <a href="#contact-form-section" class="c-btn c-btn--solid">
+              Send a message
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+            <a href="mailto:hello@glaubarksolutions.com" class="c-btn c-btn--ghost">Email directly</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <div id="site-newsletter-slot"></div>
-
   <div id="site-footer-slot"></div>
 
   <script src="js/components.js"></script>
   <script src="js/forms.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
   <script src="js/contact.js"></script>
+
+  <script>
+  (function () {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* ── Scroll reveal (CSS class driven — never leaves content hidden) ── */
+    function initReveal() {
+      const items = document.querySelectorAll('[data-reveal]');
+      if (!items.length) return;
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        items.forEach((el) => el.classList.add('reveal-init', 'is-visible'));
+        return;
+      }
+
+      items.forEach((el) => el.classList.add('reveal-init'));
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          });
+        },
+        { rootMargin: '0px 0px -12% 0px', threshold: 0.05 }
+      );
+
+      items.forEach((el) => io.observe(el));
+
+      // Safety net: reveal anything still hidden after load.
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          items.forEach((el) => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight) el.classList.add('is-visible');
+          });
+        }, 100);
+      });
+    }
+
+    /* ── Hero entrance ── */
+    function initHero() {
+      const parts = document.querySelectorAll('[data-hero]');
+      if (!parts.length) return;
+
+      if (reduceMotion || typeof gsap === 'undefined') {
+        parts.forEach((el) => (el.style.opacity = '1'));
+        return;
+      }
+
+      gsap.set(parts, { opacity: 0, y: 26 });
+      gsap.to(parts, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+        stagger: 0.11,
+        delay: 0.15,
+      });
+    }
+
+    /* ── FAQ accordion ── */
+    function initFaq() {
+      const items = Array.from(document.querySelectorAll('[data-faq]'));
+      if (!items.length) return;
+
+      function close(item) {
+        const btn = item.querySelector('.c-faq-q');
+        const panel = item.querySelector('.c-faq-a');
+        if (!btn || !panel) return;
+        // Pin the current height (it may be `auto`) and force a reflow so the
+        // collapse actually animates instead of snapping shut.
+        panel.style.height = panel.scrollHeight + 'px';
+        void panel.offsetHeight;
+        panel.style.height = '0px';
+        btn.setAttribute('aria-expanded', 'false');
+        item.classList.remove('is-open');
+      }
+
+      function open(item) {
+        const btn = item.querySelector('.c-faq-q');
+        const panel = item.querySelector('.c-faq-a');
+        const inner = item.querySelector('.c-faq-a-inner');
+        if (!btn || !panel || !inner) return;
+        panel.style.height = inner.offsetHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        item.classList.add('is-open');
+      }
+
+      items.forEach((item) => {
+        const btn = item.querySelector('.c-faq-q');
+        const panel = item.querySelector('.c-faq-a');
+        if (!btn || !panel) return;
+
+        // Let the panel size to content once it has finished opening,
+        // so long answers stay correct if the text reflows.
+        panel.addEventListener('transitionend', (e) => {
+          if (e.propertyName !== 'height') return;
+          if (item.classList.contains('is-open')) panel.style.height = 'auto';
+        });
+
+        btn.addEventListener('click', () => {
+          const wasOpen = item.classList.contains('is-open');
+          items.forEach((other) => {
+            if (other.classList.contains('is-open')) close(other);
+          });
+          if (!wasOpen) open(item);
+        });
+      });
+
+      // Keep an open panel correct on resize.
+      let resizeId;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeId);
+        resizeId = setTimeout(() => {
+          const openItem = items.find((i) => i.classList.contains('is-open'));
+          if (!openItem) return;
+          const panel = openItem.querySelector('.c-faq-a');
+          if (panel) panel.style.height = 'auto';
+        }, 150);
+      });
+    }
+
+    /* ── In-page anchor scrolling ── */
+    function initAnchors() {
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        const href = a.getAttribute('href');
+        if (!href || href === '#') return;
+
+        let target;
+        try {
+          target = document.querySelector(href);
+        } catch (err) {
+          return;
+        }
+        if (!target) return;
+
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (window.__glaubarkLenis) {
+            window.__glaubarkLenis.scrollTo(target, { offset: -80 });
+          } else {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initHero();
+      initReveal();
+      initFaq();
+      // Layout components are injected by main.js on DOMContentLoaded,
+      // so bind anchors after that pass completes.
+      setTimeout(initAnchors, 0);
+    });
+  })();
+  </script>
 </body>
 </html>
