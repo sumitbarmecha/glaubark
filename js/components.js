@@ -14,14 +14,18 @@
       children: [
         { label: 'Our Story', href: 'about.html' },
         { label: 'Our Founders', href: 'founders.html' },
-        { label: 'Our Team', href: 'about.html#team' },
-        { label: 'Mission & Vision', href: 'about.html#mission' },
+        // { label: 'Our Team', href: 'about.html#team' },
+        // { label: 'Mission & Vision', href: 'about.html#mission' },
       ],
     },
-    { label: 'Our Process', href: 'process.html', page: 'process' },
+    // { label: 'Our Process', href: 'process.html', page: 'process' },
     { label: 'Services', href: 'services.html', page: 'services' },
-    { label: 'Blog', href: 'blog.html', page: 'blog' },
-    { label: 'Technology', href: 'technology.html', page: 'technology' },
+    { label: 'Case Studies', href: 'blog.html', page: 'blog', children: [
+      { label: 'Carbon Credits', href: 'blog.html#carbon-credits' },
+      { label: 'Regenerative Farming', href: 'blog.html#regenerative-farming' },
+      { label: 'Carbon Credits', href: 'blog.html#carbon-credits' },
+    ]},
+    // { label: 'Technology', href: 'technology.html', page: 'technology' },
     { label: 'Contact Us', href: 'contact.html', page: 'contact' },
   ];
 

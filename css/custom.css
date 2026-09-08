@@ -216,12 +216,12 @@ line-height: 1.2 !important;
 
 /* Page banner (inner pages) */
 .page-banner {
-  min-height: 55vh;
+  min-height: 65vh;
 }
 
 @media (min-width: 768px) {
   .page-banner {
-    min-height: 65vh;
+    min-height: 75vh;
   }
 }
 

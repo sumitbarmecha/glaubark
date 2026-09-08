@@ -37,15 +37,15 @@
   <style>
     /* ── Page banner ── */
     .page-banner {
-      min-height: 480px;
+      min-height: 580px;
       padding-top: 120px;
       padding-bottom: 80px;
     }
-    @media (min-width: 768px) { .page-banner { min-height: 560px; padding-top: 160px; padding-bottom: 100px; } }
+    @media (min-width: 768px) { .page-banner { min-height: 660px; padding-top: 160px; padding-bottom: 100px; } }
 
     /* ── Founder photo frame ── */
     .founder-photo {
-      position: relative;
+      position: sticky;
       border-radius: 1.5rem;
       overflow: hidden;
       aspect-ratio: 4/5;
@@ -387,9 +387,7 @@
               <p>
                 While interning at Tata Sons in Mumbai, he was writing a research paper on green finance and the global energy transition. In that research, he discovered carbon credits — and immediately saw their potential not just as an environmental accounting mechanism, but as a direct financing tool for farmers.
               </p>
-              <p>
-                <strong class="text-ink font-semibold">That realisation became Glaubark.</strong> If farmers adopted regenerative practices that improved soil health, sequestered carbon, and reduced emissions, they should also earn from the carbon credit market. Climate action and farmer welfare didn't have to be separate goals.
-              </p>
+              
             </div>
 
             <!-- Quote -->
@@ -747,19 +745,7 @@
       });
 
       // Parallax on founder photos
-      document.querySelectorAll('.parallax-img').forEach(img => {
-        gsap.to(img, {
-          yPercent: -8,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: img.closest('.founder-photo'),
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          }
-        });
-      });
-
+      
       // Founder index number roll-in
       document.querySelectorAll('.founder-index').forEach(el => {
         gsap.fromTo(el,
