@@ -20,12 +20,18 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          // Driven by the CSS custom properties in css/custom.css :root
           colors: {
-            ink: '#1c1c1c',
-            sub: '#6b6b6b',
-            forest: '#0d1a10',
-            'forest-mid': '#1a3d2a',
-            cream: '#f7f5f0',
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            'forest-deep': 'rgb(var(--forest-deep-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
           },
         },
       },
@@ -63,7 +69,7 @@
       font-size: 13px;
       font-weight: 600;
       color: rgba(255,255,255,0.4);
-      background: #0d1a10;
+      background: var(--forest);
       transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, transform 0.4s ease;
       flex-shrink: 0;
       z-index: 1;
@@ -79,34 +85,35 @@
     .tl-step-btn.is-active .tl-step-num {
       background: #84cc16;
       border-color: #84cc16;
-      color: #0d1a10;
+      color: var(--forest);
       transform: scale(1.15);
     }
     .tl-step-btn.is-active .tl-step-loc { color: #84cc16; }
     .tl-step-btn:hover:not(.is-active) .tl-step-num { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
 
-    /* Panel container — stacks all panels on top of each other */
+    /* Panel container — stacks all panels on top of each other.
+       Height must cover the tallest panel (panel 4 adds a status row). */
     .tl-panels {
       position: relative;
-      flex: 1;
-      min-height: 0;
+      height: 310px;
       overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .tl-panels { height: 260px; }
     }
     /* All panels absolutely fill the container */
     .tl-panel {
       position: absolute;
       inset: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 680px;
       opacity: 0;
       transform: translateY(var(--enter-y, 28px));
       transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
       pointer-events: none;
-    }
-    @media (max-width: 1023px) {
-      .tl-panel { grid-template-columns: 1fr; gap: 1.5rem; overflow-y: auto; }
     }
     .tl-panel.is-active {
       opacity: 1;
@@ -120,9 +127,6 @@
       transition: opacity 0.45s cubic-bezier(0.4,0,0.2,1), transform 0.45s cubic-bezier(0.4,0,0.2,1);
       pointer-events: none;
     }
-    .tl-panel-img { position: relative; overflow: hidden; border-radius: 1rem; }
-    .tl-panel-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; display: block; }
-    .tl-panel-img:hover img { transform: scale(1.04); }
 
     /* Dots */
     .tl-dot {
@@ -133,6 +137,22 @@
       transition: background 0.4s ease, width 0.4s ease;
     }
     .tl-dot.is-active { background: #84cc16; width: 20px; }
+
+    .tl-arrow-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s, background 0.25s;
+    }
+    .tl-arrow-btn:hover { border-color: #84cc16; color: #84cc16; }
+    /* arrows loop around so they're never disabled */
 
     /* ══ What Makes Glaubark Different — Card Carousel ══ */
     .diff-swiper { overflow: visible; }
@@ -154,23 +174,31 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.09;
-      transition: opacity 0.45s ease;
+      opacity: 1;
+      transform: scale(1.05);
+      transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
     .diff-card:hover .diff-card-bg,
-    .diff-card.is-active .diff-card-bg { opacity: 1; }
+    .diff-card.is-active .diff-card-bg { transform: scale(1); }
 
+    /* Rest: heading veil. Hover veil fades in on ::after so it interpolates. */
     .diff-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(4,12,6,0.72) 0%, rgba(4,12,6,0.28) 38%, transparent 62%);
+      pointer-events: none;
+    }
+    .diff-card-overlay::after {
+      content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(4,12,6,0.92) 30%, rgba(4,12,6,0.38) 70%, transparent 100%);
       opacity: 0;
-      transition: opacity 0.45s ease;
-      pointer-events: none;
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .diff-card:hover .diff-card-overlay,
-    .diff-card.is-active .diff-card-overlay { opacity: 1; }
+    .diff-card:hover .diff-card-overlay::after,
+    .diff-card.is-active .diff-card-overlay::after { opacity: 1; }
 
     .diff-card-body {
       position: relative;
@@ -184,12 +212,9 @@
       font-size: 1.2rem;
       font-weight: 600;
       line-height: 1.3;
-      color: #1c1c1c;
-      transition: color 0.4s ease;
+      color: #fff;
       margin: 0;
     }
-    .diff-card:hover .diff-card-title,
-    .diff-card.is-active .diff-card-title { color: #fff; }
 
     .diff-card-gap { flex: 1; }
 
@@ -200,12 +225,17 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.5s ease, opacity 0.4s ease 0.06s;
+      transform: translateY(14px);
+      transition:
+        max-height 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
     }
     .diff-card:hover .diff-card-desc,
     .diff-card.is-active .diff-card-desc {
       max-height: 240px;
       opacity: 1;
+      transform: translateY(0);
     }
     .diff-card-btn {
       position: absolute;
@@ -221,7 +251,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0d1a10;
+      color: var(--forest);
       transition: transform 0.2s ease;
     }
     .diff-card-btn:hover { transform: scale(1.1); }
@@ -240,11 +270,11 @@
       border-radius: 9999px;
       border: 1.5px solid #d1d9d3;
       background: #fff;
-      color: #1c1c1c;
+      color: var(--ink);
       cursor: pointer;
       transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
-    .diff-nav-btn:hover { background: #0d1a10; color: #fff; border-color: #0d1a10; }
+    .diff-nav-btn:hover { background: var(--forest); color: #fff; border-color: var(--forest); }
     .diff-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
   </style>
 </head>
@@ -361,10 +391,9 @@
 
     <!-- Our Story — Scroll-Driven Sticky Timeline -->
     <!-- Outer section is tall to give each step one viewport of scroll space -->
-    <section class="story-tl-outer" style="height: 500vh; position: relative;">
-      <!-- Sticky shell — stays pinned for the whole scroll journey -->
-      <div class="story-tl-sticky sticky top-0 h-screen bg-[#0d1a10] overflow-hidden flex flex-col">
-        <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 w-full flex flex-col h-full pt-14 pb-6 md:pt-18 md:pb-8">
+    <section class="story-tl-outer">
+      <div class="story-tl-sticky bg-forest overflow-hidden flex flex-col">
+        <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 w-full flex flex-col pt-14 pb-10 md:pt-16 md:pb-12">
 
           <!-- Header -->
           <div class="shrink-0 mb-6 md:mb-8">
@@ -375,7 +404,7 @@
           <!-- Timeline step nav -->
           <div class="tl-nav relative shrink-0 mb-6 md:mb-8">
             <div class="absolute top-[22px] left-0 right-0 h-px bg-white/10 hidden md:block" aria-hidden="true"></div>
-            <div class="tl-progress-bar absolute top-[22px] left-0 h-px bg-[#84cc16] hidden md:block" style="width:0%; transition: width 0.7s cubic-bezier(0.4,0,0.2,1);"></div>
+            <div class="tl-progress-bar absolute top-[22px] left-0 h-px bg-[#84cc16] hidden md:block" style="width:0%;"></div>
             <div class="flex flex-row justify-between gap-0">
 
               <button class="tl-step-btn is-active" data-tl-idx="0">
@@ -411,9 +440,6 @@
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A research paper that changed direction</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Glaubark began with an internship. While working at Tata Sons in Mumbai, co-founder Dhruv Sakore was writing a research paper on green finance and its role in the global energy transition. In the course of that research, he discovered carbon credits &mdash; and became deeply interested in their potential to fund climate-positive projects at scale.</p>
               </div>
-              <div class="tl-panel-img aspect-[4/3]">
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80" alt="Research and green finance" />
-              </div>
             </div>
 
             <div class="tl-panel" data-tl-panel="1">
@@ -421,9 +447,6 @@
                 <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Marathwada · Maharashtra</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A personal connection to agrarian distress</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">The idea immediately connected with something personal. Dhruv comes from Marathwada &mdash; a drought-prone region of Maharashtra with some of the highest rates of farmer distress in India. Growing up in an agricultural family, he had witnessed firsthand how unseasonal rainfall, depleted soils, volatile crop prices, and limited access to modern farming knowledge erode farmer livelihoods over generations.</p>
-              </div>
-              <div class="tl-panel-img aspect-[4/3]">
-                <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=900&q=80" alt="Drought-prone farmland in Marathwada" />
               </div>
             </div>
 
@@ -433,9 +456,6 @@
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">Carbon credits as a farmer finance tool</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">This made Dhruv see carbon credits differently &mdash; not just as an environmental accounting mechanism, but as a financing tool for farmers. If farmers adopted regenerative practices that improved soil health, reduced emissions, and sequestered carbon, they should also be able to earn from the carbon credit market. Climate action and farmer welfare didn&rsquo;t have to be separate goals.</p>
               </div>
-              <div class="tl-panel-img aspect-[4/3]">
-                <img src="https://images.unsplash.com/photo-1593113630400-ea4288922559?auto=format&fit=crop&w=900&q=80" alt="Carbon credits insight" />
-              </div>
             </div>
 
             <div class="tl-panel" data-tl-panel="3">
@@ -443,9 +463,6 @@
                 <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">London · University</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A co-founder joins from London</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Dhruv began sharing the idea with friends. One of those conversations reached Vatsal Agarwal, a friend and fellow student in London. Vatsal was looking to build something meaningful and new &mdash; and saw strong potential in the vision. After several deep discussions, Vatsal came on board, and together they founded Glaubark Solutions.</p>
-              </div>
-              <div class="tl-panel-img aspect-[4/3]">
-                <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=900&q=80" alt="Co-founders collaborating" />
               </div>
             </div>
 
@@ -458,9 +475,6 @@
                   <span class="w-2 h-2 rounded-full bg-[#84cc16] animate-pulse"></span>
                   Active across 4+ Indian states
                 </div>
-              </div>
-              <div class="tl-panel-img aspect-[4/3]">
-                <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=900&q=80" alt="Pan-India agricultural operations" />
               </div>
             </div>
 
@@ -475,10 +489,14 @@
               <span class="tl-dot"></span>
               <span class="tl-dot"></span>
             </div>
-            <p class="tl-scroll-hint text-white/30 text-xs flex items-center gap-2 transition-opacity duration-500">
-              <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-              Scroll to continue
-            </p>
+            <div class="flex gap-2 shrink-0">
+              <button class="tl-arrow-btn" id="tl-prev" aria-label="Previous step">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="tl-arrow-btn" id="tl-next" aria-label="Next step">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7"/></svg>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -666,100 +684,12 @@
     </section>
 
     <!-- Long-Term Goals — Bento Grid -->
-    <section class="py-16 md:py-24 bg-[#f7f5f0] border-t border-[#e8ebe9]">
+    
+
+    <!-- Vision / Mission / Goal — forest card on white, separated from the footer -->
+    <section class="bg-white py-16 md:py-20">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
-
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-14">
-          <div>
-            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-3">Where We're Headed</p>
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">Long-Term Goals</h2>
-          </div>
-          <p class="text-sm md:text-[15px] text-sub leading-relaxed max-w-lg">
-            Glaubark&rsquo;s ambition is to become one of India&rsquo;s leading carbon project developers — across regenerative agriculture, afforestation, agroforestry, and broader land-use climate solutions.
-          </p>
-        </div>
-
-        <!-- Bento Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
-
-          <!-- Goal 01 — tall card (spans 2 rows on lg) -->
-          <div class="lg:row-span-2 relative overflow-hidden rounded-2xl min-h-[340px] lg:min-h-0 group">
-            <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?auto=format&fit=crop&w=800&q=80"
-                 alt="Farmers in the field" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-between p-7 md:p-8">
-              <span class="text-[80px] font-black leading-none text-white/10 select-none">01</span>
-              <div>
-                <h3 class="text-white text-xl md:text-2xl font-semibold leading-snug mb-3">Scale that reaches<br/>the grassroots</h3>
-                <p class="text-white/70 text-sm md:text-[15px] leading-relaxed">Bringing thousands of small and marginal farmers into the climate finance ecosystem — across geographies, crop types, and farming contexts.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Goal 02 -->
-          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
-            <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80"
-                 alt="Carbon credits and trust" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-between p-7">
-              <span class="text-[72px] font-black leading-none text-white/10 select-none">02</span>
-              <div>
-                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Credits the market<br/>can trust</h3>
-                <p class="text-white/70 text-sm leading-relaxed">High-integrity, verifiable credits backed by technology-enabled MRV systems that make agricultural carbon transparent and audit-ready.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Goal 03 -->
-          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
-            <img src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?auto=format&fit=crop&w=800&q=80"
-                 alt="Partnerships and network" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-between p-7">
-              <span class="text-[72px] font-black leading-none text-white/10 select-none">03</span>
-              <div>
-                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Partnerships that<br/>multiply impact</h3>
-                <p class="text-white/70 text-sm leading-relaxed">FPOs, NGOs, corporates, and government institutions that extend our reach and embed climate action within existing agricultural systems.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Goal 04 -->
-          <div class="relative overflow-hidden rounded-2xl min-h-[280px] group">
-            <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=80"
-                 alt="Better outcomes for farmers" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-between p-7">
-              <span class="text-[72px] font-black leading-none text-white/10 select-none">04</span>
-              <div>
-                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">Better outcomes<br/>for farmers</h3>
-                <p class="text-white/70 text-sm leading-relaxed">Improving soil fertility, reducing input costs, and building resilience against climate risk — so regenerative practice pays off economically, not just ecologically.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Goal 05 — wide card -->
-          <div class="sm:col-span-2 lg:col-span-1 relative overflow-hidden rounded-2xl min-h-[280px] group">
-            <img src="https://images.unsplash.com/photo-1518281420975-50db6e5d0a97?auto=format&fit=crop&w=1000&q=80"
-                 alt="Global credibility for Indian agriculture" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#040c06]/90 via-[#040c06]/40 to-transparent"></div>
-            <div class="absolute inset-0 flex flex-col justify-between p-7">
-              <span class="text-[72px] font-black leading-none text-white/10 select-none">05</span>
-              <div>
-                <h3 class="text-white text-lg md:text-xl font-semibold leading-snug mb-2">A globally credible<br/>Indian sustainability company</h3>
-                <p class="text-white/70 text-sm leading-relaxed">Positioning Indian agriculture as a meaningful climate solution on the world stage, known for rural impact and carbon market integrity.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Vision / Mission / Goal — Editorial Dark -->
-    <section class="bg-[#0d1a10] py-20 md:py-28">
-      <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
+      <div class="bg-forest rounded-[1.75rem] md:rounded-[2.25rem] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
 
         <!-- Label + headline -->
         <div class="mb-14 md:mb-18">
@@ -832,6 +762,7 @@
         </div>
 
       </div>
+      </div>
     </section>
   </main>
 
@@ -844,82 +775,178 @@
   <script src="js/animations.js"></script>
 
   <script>
-    /* ── Story Timeline — Scroll-Driven ── */
+    /* ── Story Timeline — starts in view, stops on the last step ── */
     (function () {
-      var TOTAL       = 5;
-      var current     = 0;
-      var outer       = document.querySelector('.story-tl-outer');
+      var TOTAL    = 5;
+      var LAST     = TOTAL - 1;
+      var AUTO_MS  = 4000;
+      var current  = 0;
+      var timer    = null;
+      var hoverResume = null;
+      var inView   = false;
+      var hovering = false;
+      var finished = false;
+
+      var section     = document.querySelector('.story-tl-outer') || document.querySelector('.story-tl-sticky');
       var stepBtns    = document.querySelectorAll('.tl-step-btn');
       var panels      = document.querySelectorAll('.tl-panel');
       var dots        = document.querySelectorAll('.tl-dot');
       var progressBar = document.querySelector('.tl-progress-bar');
-      var scrollHint  = document.querySelector('.tl-scroll-hint');
+      var prevBtn     = document.getElementById('tl-prev');
+      var nextBtn     = document.getElementById('tl-next');
 
-      /* ── activate a step ── */
-      function goTo(idx, direction) {
+      function barPct(idx) { return (idx / LAST * 100) + '%'; }
+
+      function setBar(pct, durationMs) {
+        if (!progressBar) return;
+        progressBar.style.transition = durationMs
+          ? 'width ' + (durationMs / 1000).toFixed(2) + 's linear'
+          : 'none';
+        progressBar.style.width = pct;
+      }
+
+      function freezeBar() {
+        if (!progressBar) return;
+        var computed = getComputedStyle(progressBar).width;
+        var parentW  = progressBar.parentElement ? progressBar.parentElement.offsetWidth : 1;
+        setBar((parseFloat(computed) / parentW * 100).toFixed(1) + '%', 0);
+      }
+
+      function goTo(idx, direction, isAuto) {
+        idx = ((idx % TOTAL) + TOTAL) % TOTAL;
         if (idx === current) return;
-        var prev = current;
-        current = idx;
 
-        /* outgoing panel: slide in opposite direction */
-        var outDir = direction === 'up' ? 1 : -1;
-        panels[prev].style.setProperty('--leave-y', (outDir * 24) + 'px');
+        var prev = current;
+        current  = idx;
+        finished = current === LAST;
+
+        if (!direction) {
+          direction = idx > prev ? 'forward' : 'back';
+          if (prev === LAST && idx === 0) direction = 'forward';
+          if (prev === 0 && idx === LAST) direction = 'back';
+        }
+
+        panels[prev].style.setProperty('--leave-y', direction === 'forward' ? '-24px' : '24px');
         panels[prev].classList.add('is-leaving');
         panels[prev].classList.remove('is-active');
 
-        /* incoming panel: start offset in scroll direction */
-        panels[current].style.setProperty('--enter-y', (direction === 'up' ? -24 : 24) + 'px');
+        panels[current].style.setProperty('--enter-y', direction === 'forward' ? '24px' : '-24px');
         panels[current].classList.add('is-active');
 
-        /* clean up leaving class after transition */
-        var leavingPanel = panels[prev];
-        setTimeout(function() { leavingPanel.classList.remove('is-leaving'); }, 450);
+        var leaving = panels[prev];
+        setTimeout(function () { leaving.classList.remove('is-leaving'); }, 450);
 
-        /* sync indicators */
-        stepBtns.forEach(function(b, i) { b.classList.toggle('is-active', i === current); });
-        dots.forEach(function(d, i) { d.classList.toggle('is-active', i === current); });
+        stepBtns.forEach(function (b, i) { b.classList.toggle('is-active', i === current); });
+        dots.forEach(function (d, i)     { d.classList.toggle('is-active', i === current); });
 
-        if (progressBar) {
-          progressBar.style.width = (current / (TOTAL - 1) * 100) + '%';
+        if (finished) {
+          stopAuto();
+          setBar('100%', isAuto ? 0 : 400);
+          return;
         }
 
-        /* hide scroll hint on last step */
-        if (scrollHint) scrollHint.style.opacity = current === TOTAL - 1 ? '0' : '1';
-      }
-
-      /* ── scroll → step mapping ── */
-      function onScroll() {
-        var rect        = outer.getBoundingClientRect();
-        var sectionH    = outer.offsetHeight;
-        var scrollRange = sectionH - window.innerHeight;
-        var scrolled    = -rect.top;
-
-        if (scrolled < 0 || scrolled > scrollRange) return;
-
-        var progress = scrolled / scrollRange;
-        var idx      = Math.min(Math.floor(progress * TOTAL), TOTAL - 1);
-
-        if (idx !== current) {
-          goTo(idx, idx > current ? 'up' : 'down');
+        if (isAuto) {
+          setBar(barPct(current), 0);
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              if (timer) setBar(barPct(current + 1), AUTO_MS);
+            });
+          });
+        } else {
+          setBar(barPct(current), 400);
         }
       }
 
-      /* ── step button → scroll to that step's position ── */
-      function scrollToStep(idx) {
-        var sectionTop  = outer.getBoundingClientRect().top + window.scrollY;
-        var scrollRange = outer.offsetHeight - window.innerHeight;
-        var targetY     = sectionTop + (idx / TOTAL) * scrollRange;
-        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      function startAuto() {
+        if (!inView || finished || current >= LAST) return;
+        clearInterval(timer);
+        timer = setInterval(function () {
+          if (current >= LAST) {
+            stopAuto();
+            return;
+          }
+          goTo(current + 1, 'forward', true);
+        }, AUTO_MS);
+        setBar(barPct(current + 1), AUTO_MS);
       }
 
-      stepBtns.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          scrollToStep(parseInt(btn.dataset.tlIdx));
+      function stopAuto() {
+        clearInterval(timer);
+        timer = null;
+      }
+
+      function restartAuto() {
+        stopAuto();
+        clearTimeout(hoverResume);
+        if (finished || current >= LAST) {
+          setBar('100%', 400);
+          return;
+        }
+        setBar(barPct(current), 0);
+        requestAnimationFrame(function () { requestAnimationFrame(startAuto); });
+      }
+
+      /* Hover pauses the marquee; after 4s it continues even if still hovering. */
+      function onHoverStart() {
+        hovering = true;
+        clearTimeout(hoverResume);
+        if (timer) freezeBar();
+        stopAuto();
+        if (finished) return;
+        hoverResume = setTimeout(function () {
+          if (inView && !finished) startAuto();
+        }, AUTO_MS);
+      }
+
+      function onHoverEnd() {
+        hovering = false;
+        clearTimeout(hoverResume);
+        if (inView && !finished) startAuto();
+      }
+
+      if (section) {
+        section.addEventListener('mouseenter', onHoverStart);
+        section.addEventListener('mouseleave', onHoverEnd);
+        section.addEventListener('focusin',    onHoverStart);
+        section.addEventListener('focusout',   onHoverEnd);
+
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              inView = entry.isIntersecting;
+              if (inView) {
+                if (!finished) startAuto();
+              } else {
+                if (timer) freezeBar();
+                stopAuto();
+                clearTimeout(hoverResume);
+              }
+            });
+          }, { threshold: 0.35 });
+          io.observe(section);
+        } else {
+          inView = true;
+          startAuto();
+        }
+      }
+
+      stepBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          goTo(parseInt(btn.dataset.tlIdx, 10), null, false);
+          restartAuto();
         });
       });
 
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); /* run once on load */
+      if (prevBtn) prevBtn.addEventListener('click', function () {
+        goTo(current - 1, 'back', false);
+        restartAuto();
+      });
+      if (nextBtn) nextBtn.addEventListener('click', function () {
+        goTo(current + 1, 'forward', false);
+        restartAuto();
+      });
+
+      if (progressBar) setBar('0%', 0);
     })();
 
     (function () {

@@ -90,6 +90,37 @@
     });
   }
 
+  function initFooterReveal() {
+    const footer = document.querySelector('.site-footer');
+    if (!footer) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      footer.classList.add('is-visible');
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          footer.classList.add('is-visible');
+          io.disconnect();
+        });
+      },
+      { threshold: 0.14 }
+    );
+
+    io.observe(footer);
+    /* If the footer is already on screen (short pages), paint immediately. */
+    requestAnimationFrame(() => {
+      const rect = footer.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        footer.classList.add('is-visible');
+        io.disconnect();
+      }
+    });
+  }
+
   function initFooterAccordion() {
     const items = document.querySelectorAll('[data-footer-accordion]');
     const useGSAP = typeof gsap !== 'undefined';
@@ -244,6 +275,7 @@
     initHeaderScroll();
     initMobileDrawer();
     initFooterAccordion();
+    initFooterReveal();
     initCarousel();
     initAccordionToggle();
     initStatCounters();

@@ -107,27 +107,34 @@
     if (!hero) return;
 
     const bgImg = hero.querySelector('.hero-bg-img');
-    const headline = hero.querySelector('.hero-headline');
+    const eyebrow = hero.querySelector('.hero-eyebrow');
     const tagline = hero.querySelector('.hero-tagline');
+    const tags = hero.querySelectorAll('.hero-tag');
     const statCards = hero.querySelectorAll('.hero-stats > div');
-    const lines = headline ? headline.querySelectorAll('.split-line-inner') : [];
+    // Every .hero-headline gets split, so collect lines across all of them.
+    const lines = hero.querySelectorAll('.hero-headline .split-line-inner');
+
+    const fadeUp = [eyebrow, tagline].filter(Boolean);
 
     if (prefersReducedMotion) {
-      gsap.set([tagline, statCards], { opacity: 1, y: 0 });
+      gsap.set([...fadeUp, tags, statCards], { opacity: 1, y: 0 });
       gsap.set(lines, { yPercent: 0 });
       return;
     }
 
     gsap.set(lines, { yPercent: 110 });
-    gsap.set(tagline, { opacity: 0, y: 16 });
+    gsap.set(fadeUp, { opacity: 0, y: 16 });
+    gsap.set(tags, { opacity: 0, y: 12 });
     gsap.set(statCards, { opacity: 0, y: 40 });
 
     gsap
       .timeline({ defaults: { ease: 'power4.out' }, delay: 0.2 })
       .fromTo(bgImg, { scale: 1.15 }, { scale: 1, duration: 2.2, ease: 'power2.out' }, 0)
-      .to(lines, { yPercent: 0, duration: 1.1, stagger: 0.12 }, 0.15)
-      .to(tagline, { opacity: 1, y: 0, duration: 0.8 }, 0.55)
-      .to(statCards, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 0.6);
+      .to(eyebrow, { opacity: 1, y: 0, duration: 0.7 }, 0.1)
+      .to(lines, { yPercent: 0, duration: 1.1, stagger: 0.12 }, 0.25)
+      .to(tagline, { opacity: 1, y: 0, duration: 0.8 }, 0.6)
+      .to(tags, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.72)
+      .to(statCards, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12 }, 0.68);
   }
 
   /** Gentle idle float on the carousel slides — a continuous ambient touch, not scroll-linked. */

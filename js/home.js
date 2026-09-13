@@ -69,6 +69,71 @@
   }
 
   /**
+   * Case-study carousel: slides start from the left edge; the next card
+   * peeks in on the right. No centredSlides, no autoplay.
+   * Matches the svc-swiper pattern: swiper overflow:visible, section overflow:hidden.
+   */
+  function initImpactSwiper() {
+    const el = document.querySelector('.impact-swiper');
+    if (!el || typeof Swiper === 'undefined') return;
+
+    new Swiper(el, {
+      slidesPerView: 1.2,
+      spaceBetween: 12,
+      loop: true,
+      grabCursor: true,
+      speed: 650,
+      autoplay: {
+        delay: 3200,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      },
+      pagination: {
+        el: '.impact-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 2.15,
+          spaceBetween: 14,
+        },
+        1024: {
+          slidesPerView: 4,
+          spaceBetween: 20,
+          loop: false,
+          autoplay: false,
+          allowTouchMove: false,
+        },
+      },
+    });
+  }
+
+  function initCaseStudySwiper() {
+    const el = document.querySelector('.case-swiper');
+    if (!el || typeof Swiper === 'undefined') return;
+
+    new Swiper(el, {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      loop: true,
+      grabCursor: true,
+      speed: 600,
+      navigation: {
+        prevEl: '[data-case-prev]',
+        nextEl: '[data-case-next]',
+      },
+      pagination: {
+        el: '.case-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        768:  { spaceBetween: 24 },
+        1024: { spaceBetween: 32 },
+      },
+    });
+  }
+
+  /**
    * "In Action" gallery: first panel is expanded and playing by default.
    * Hovering (or tapping/focusing, for touch and keyboard users) another
    * panel expands it and starts its video; the rest collapse back to their
@@ -119,6 +184,8 @@
     init() {
       initBackToTop();
       initTestimonialSwiper();
+      initImpactSwiper();
+      initCaseStudySwiper();
       initVideoGallery();
     },
   };

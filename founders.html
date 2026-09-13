@@ -19,12 +19,18 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          // Driven by the CSS custom properties in css/custom.css :root
           colors: {
-            ink: '#1c1c1c',
-            sub: '#6b6b6b',
-            forest: '#0d1a10',
-            'forest-mid': '#1a3d2a',
-            cream: '#f7f5f0',
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            'forest-deep': 'rgb(var(--forest-deep-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
           },
         },
       },
@@ -54,7 +60,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(160deg, rgba(13,26,16,0.12) 0%, transparent 60%);
+      background: linear-gradient(160deg, rgb(var(--forest-rgb) / 0.12) 0%, transparent 60%);
       pointer-events: none;
     }
     .founder-photo img {
@@ -87,9 +93,9 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .tag-pill-dark { background: #0d1a10; color: #fff; }
-    .tag-pill-light { background: #e8f0ea; color: #1a3d2a; }
-    .tag-pill-cream { background: #f7f5f0; color: #1c1c1c; }
+    .tag-pill-dark { background: var(--forest); color: #fff; }
+    .tag-pill-light { background: #e8f0ea; color: var(--forest-mid); }
+    .tag-pill-cream { background: var(--cream); color: var(--ink); }
 
     /* ── Fact grid cards ── */
     .fact-card {
@@ -103,7 +109,7 @@
     .founder-quote {
       position: relative;
       padding: 2rem 2rem 2rem 3rem;
-      border-left: 3px solid #1a3d2a;
+      border-left: 3px solid var(--forest-mid);
     }
     .founder-quote::before {
       content: '\201C';
@@ -112,7 +118,7 @@
       top: 1rem;
       font-size: 4rem;
       line-height: 1;
-      color: #1a3d2a;
+      color: var(--forest-mid);
       font-family: Georgia, serif;
       opacity: 0.4;
     }
@@ -132,7 +138,7 @@
 
     /* ── Green banner / CTA ── */
     .green-banner {
-      background: linear-gradient(135deg, #0d1a10 0%, #1a3d2a 50%, #2a5a3a 100%);
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 50%, #2a5a3a 100%);
       position: relative;
       overflow: hidden;
     }
@@ -170,7 +176,7 @@
       content: '';
       width: 1px;
       height: 80px;
-      background: linear-gradient(to bottom, transparent, #1a3d2a, transparent);
+      background: linear-gradient(to bottom, transparent, var(--forest-mid), transparent);
     }
 
     /* ── Scroll reveal ── */
@@ -182,7 +188,7 @@
       font-weight: 700;
       line-height: 1;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #0d1a10, #2a5a3a);
+      background: linear-gradient(135deg, var(--forest), #2a5a3a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -211,15 +217,15 @@
       gap: 8px;
       padding: 12px 28px;
       border-radius: 9999px;
-      background: #0d1a10;
+      background: var(--forest);
       color: #fff;
       font-size: 14px;
       font-weight: 600;
-      border: 2px solid #0d1a10;
+      border: 2px solid var(--forest);
       transition: background 0.3s ease, color 0.3s ease;
       text-decoration: none;
     }
-    .btn-forest:hover { background: transparent; color: #0d1a10; }
+    .btn-forest:hover { background: transparent; color: var(--forest); }
 
     .btn-forest-outline {
       display: inline-flex;
@@ -251,7 +257,7 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .crop-icon-bg svg { width: 22px; height: 22px; color: #1a3d2a; }
+    .crop-icon-bg svg { width: 22px; height: 22px; color: var(--forest-mid); }
   </style>
 </head>
 <body class="bg-white text-ink" data-page="founders">
@@ -332,7 +338,7 @@
           <p class="stat-number">2</p>
           <p class="text-xs text-sub mt-2 font-medium">Co-founders, one mission</p>
         </div>
-        <div class="reveal fact-card bg-[#0d1a10] text-white">
+        <div class="reveal fact-card bg-forest text-white">
           <p class="text-3xl md:text-4xl font-bold leading-none tracking-tight text-white/90">2024</p>
           <p class="text-xs text-white/60 mt-2 font-medium">Year of founding</p>
         </div>
@@ -601,7 +607,7 @@
             </div>
           </div>
 
-          <div class="reveal fact-card bg-[#0d1a10] text-white flex flex-col justify-between min-h-[220px]">
+          <div class="reveal fact-card bg-forest text-white flex flex-col justify-between min-h-[220px]">
             <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-5">
               <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
             </div>

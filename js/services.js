@@ -97,90 +97,201 @@
     const panelTitle = document.querySelector('[data-panel-title]');
     const panelBody  = document.querySelector('[data-panel-body]');
     const panelBar   = document.querySelector('[data-panel-bar]');
+    const panelCopy  = document.querySelector('[data-panel-copy]');
+    const imgA       = document.querySelector('[data-panel-img="a"]');
+    const imgB       = document.querySelector('[data-panel-img="b"]');
+
+    if (!imgA || !imgB) return;
 
     const BENEFITS = Array.from(items).map((el) => ({
       icon: el.dataset.icon || '',
       name: el.querySelector('.svc-benefit-name')?.textContent || '',
       body: el.dataset.body || '',
       index: el.querySelector('.svc-benefit-num')?.textContent || '',
+      image: el.dataset.image || '',
     }));
 
-    let activeIndex = 0;
-    let isAnimating = false;
+    // Preload every benefit image up front
+    BENEFITS.forEach((b) => {
+      if (!b.image) return;
+      const preload = new Image();
+      preload.src = b.image;
+    });
 
-    function setPanel(idx, animate = true) {
-      if (idx === activeIndex && animate) return;
-      activeIndex = idx;
+    let activeIndex = -1;
+    let frontImg = imgA;
+    let backImg = imgB;
+    let copyTimer = null;
+    let imageGen = 0;
 
-      const b = BENEFITS[idx];
-      const pct = ((idx + 1) / BENEFITS.length) * 100;
+    function syncActiveClass(idx) {
+      items.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+    }
 
-      if (!animate || prefersReducedMotion || typeof gsap === 'undefined') {
-        if (panelIcon)  panelIcon.innerHTML  = b.icon;
-        if (panelIndex) panelIndex.textContent = `${b.index} / 0${BENEFITS.length}`;
-        if (panelTitle) panelTitle.textContent = b.name;
-        if (panelBody)  panelBody.innerHTML   = b.body;
-        if (panelBar)   panelBar.style.width  = `${pct}%`;
-        return;
-      }
+    function writeCopy(b, idx) {
+      if (panelIcon)  panelIcon.innerHTML = b.icon;
+      if (panelIndex) panelIndex.textContent = `${b.index} / 0${BENEFITS.length}`;
+      if (panelTitle) panelTitle.textContent = b.name;
+      if (panelBody)  panelBody.innerHTML = b.body;
+      if (panelBar)   panelBar.style.width = `${((idx + 1) / BENEFITS.length) * 100}%`;
+    }
 
-      if (isAnimating) return;
-      isAnimating = true;
-
-      const fadeOuts = [panelIndex, panelTitle, panelBody].filter(Boolean);
-
-      gsap.to(fadeOuts, {
-        opacity: 0,
-        y: -10,
-        duration: 0.22,
-        ease: 'power2.in',
-        onComplete: () => {
-          if (panelIcon)  panelIcon.innerHTML  = b.icon;
-          if (panelIndex) panelIndex.textContent = `${b.index} / 0${BENEFITS.length}`;
-          if (panelTitle) panelTitle.textContent = b.name;
-          if (panelBody)  panelBody.innerHTML   = b.body;
-          if (panelBar)   panelBar.style.width  = `${pct}%`;
-
-          gsap.fromTo(
-            fadeOuts,
-            { opacity: 0, y: 10 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.38,
-              ease: 'power3.out',
-              onComplete: () => { isAnimating = false; },
-            }
-          );
-        },
-      });
-
-      // Icon cross-fade
-      if (panelIcon && typeof gsap !== 'undefined') {
-        gsap.fromTo(panelIcon, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.4)' });
+    function sameImage(el, src) {
+      if (!src) return !(el.getAttribute('src'));
+      try {
+        return el.src === new URL(src, window.location.href).href;
+      } catch (_) {
+        return (el.getAttribute('src') || '') === src;
       }
     }
 
-    // Wire each item
+    function crossfadeImage(src) {
+      if (!src) return;
+      const gen = ++imageGen;
+
+      if (sameImage(frontImg, src)) return;
+
+      const finish = () => {
+        if (gen !== imageGen) return;
+        backImg.classList.add('is-active');
+        frontImg.classList.remove('is-active');
+        const prev = frontImg;
+        frontImg = backImg;
+        backImg = prev;
+      };
+
+      const startFade = () => {
+        if (gen !== imageGen) return;
+        void backImg.offsetWidth;
+        requestAnimationFrame(finish);
+      };
+
+      backImg.onload = startFade;
+      backImg.onerror = startFade;
+      backImg.src = src;
+
+      if (backImg.complete && backImg.naturalWidth > 0) {
+        backImg.onload = null;
+        startFade();
+      }
+    }
+
+    function swapCopy(b, idx, animate) {
+      if (copyTimer) {
+        clearTimeout(copyTimer);
+        copyTimer = null;
+      }
+
+      if (!animate || prefersReducedMotion || !panelCopy) {
+        if (panelCopy) {
+          panelCopy.classList.remove('is-exiting', 'is-entering');
+        }
+        writeCopy(b, idx);
+        return;
+      }
+
+      panelCopy.classList.remove('is-entering');
+      panelCopy.classList.add('is-exiting');
+
+      copyTimer = setTimeout(() => {
+        writeCopy(b, idx);
+        panelCopy.classList.remove('is-exiting');
+        panelCopy.classList.add('is-entering');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            panelCopy.classList.remove('is-entering');
+          });
+        });
+        copyTimer = null;
+      }, 220);
+    }
+
+    function activate(idx, { animate = true, restartTimer = false } = {}) {
+      if (idx < 0 || idx >= BENEFITS.length) return;
+      if (idx === activeIndex) {
+        if (restartTimer) restartAutoplay();
+        return;
+      }
+
+      activeIndex = idx;
+      syncActiveClass(idx);
+
+      const b = BENEFITS[idx];
+      swapCopy(b, idx, animate);
+      crossfadeImage(b.image);
+
+      if (restartTimer) restartAutoplay();
+    }
+
     items.forEach((item, i) => {
-      function activate() {
-        items.forEach((el) => el.classList.remove('is-active'));
-        item.classList.add('is-active');
-        setPanel(i);
-      }
-
-      item.addEventListener('click', activate);
+      item.addEventListener('click', () => activate(i, { animate: true, restartTimer: true }));
       item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate(i, { animate: true, restartTimer: true });
+        }
       });
-
-      if (hasFinePointer) {
-        item.addEventListener('mouseenter', activate);
-      }
     });
 
-    // Bootstrap with first item
-    setPanel(0, false);
+    // Initial paint — no animation
+    const first = BENEFITS[0];
+    if (first?.image) {
+      frontImg.src = first.image;
+      frontImg.classList.add('is-active');
+      backImg.classList.remove('is-active');
+    }
+    writeCopy(first, 0);
+    activeIndex = 0;
+    syncActiveClass(0);
+
+    /* ── Auto-rotate ── */
+    const explorer = document.querySelector('.svc-explorer');
+    const AUTO_MS = 5000;
+    let autoTimer = null;
+    let paused = false;
+
+    function goNext() {
+      activate((activeIndex + 1) % BENEFITS.length, { animate: true });
+    }
+
+    function stopAutoplay() {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    }
+
+    function startAutoplay() {
+      if (prefersReducedMotion || paused) return;
+      stopAutoplay();
+      autoTimer = setInterval(goNext, AUTO_MS);
+    }
+
+    function restartAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
+    if (explorer && !prefersReducedMotion) {
+      explorer.addEventListener('mouseenter', () => {
+        paused = true;
+        stopAutoplay();
+      });
+      explorer.addEventListener('mouseleave', () => {
+        paused = false;
+        startAutoplay();
+      });
+      explorer.addEventListener('focusin', () => {
+        paused = true;
+        stopAutoplay();
+      });
+      explorer.addEventListener('focusout', (e) => {
+        if (explorer.contains(e.relatedTarget)) return;
+        paused = false;
+        startAutoplay();
+      });
+      startAutoplay();
+    }
   }
 
   /** Scroll-triggered reveal for [data-svc-reveal] blocks */

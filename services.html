@@ -17,14 +17,18 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          // Driven by the CSS custom properties in css/custom.css :root
           colors: {
-            ink: '#1c1c1c',
-            sub: '#6b6b6b',
-            forest: '#0d1a10',
-            'forest-mid': '#1a3d2a',
-            'forest-deep': '#082410',
-            cream: '#f7f5f0',
-            lime: '#a3e635',
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            'forest-deep': 'rgb(var(--forest-deep-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
           },
         },
       },
@@ -100,7 +104,7 @@
           <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">The Solution</p>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-16">
             <h2 id="svc-solution-heading" class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight">What the solution does</h2>
-            <p class="text-sm md:text-[15px] text-sub leading-relaxed lg:pt-2 max-w-lg">Glaubark&rsquo;s solution helps farmers adopt regenerative and sustainable farming practices that generate measurable environmental outcomes &mdash; while developing the technical, operational, and documentation framework needed to produce high-quality, verifiable carbon credits.</p>
+            <p class="text-sm md:text-[15px] text-sub leading-relaxed lg:pt-2 max-w-lg">Glaubark&rsquo;s solution helps farmers adopt regenerative and sustainable farming practices that generate measurable environmental outcomes &mdash; while developing the technical, operational, and documentation frame work needed to produce high-quality, verifiable carbon credits.</p>
           </div>
         </div>
 
@@ -108,13 +112,18 @@
         <div class="svc-explorer" data-svc-reveal>
           <!-- Left: active benefit panel -->
           <div class="svc-explorer-panel" aria-live="polite" aria-atomic="true">
+            <div class="svc-explorer-panel-media" aria-hidden="true">
+              <img class="svc-explorer-panel-img is-active" data-panel-img="a" alt="" />
+              <img class="svc-explorer-panel-img" data-panel-img="b" alt="" />
+              <div class="svc-explorer-panel-overlay"></div>
+            </div>
             <div class="svc-explorer-panel-inner">
-              <span class="svc-panel-icon" data-panel-icon aria-hidden="true">
-                <!-- filled by JS -->
-              </span>
-              <p class="svc-panel-index" data-panel-index></p>
-              <h3 class="svc-panel-title" data-panel-title></h3>
-              <p class="svc-panel-body" data-panel-body></p>
+              <span class="svc-panel-icon" data-panel-icon aria-hidden="true"></span>
+              <div class="svc-panel-copy" data-panel-copy>
+                <p class="svc-panel-index" data-panel-index></p>
+                <h3 class="svc-panel-title" data-panel-title></h3>
+                <p class="svc-panel-body" data-panel-body></p>
+              </div>
               <div class="svc-panel-bar" aria-hidden="true"><div class="svc-panel-bar-fill" data-panel-bar></div></div>
             </div>
           </div>
@@ -122,6 +131,7 @@
           <!-- Right: list of benefits -->
           <ol class="svc-benefit-list" aria-label="Benefits — select to explore">
             <li class="svc-benefit-item is-active" data-benefit="0" role="button" tabindex="0"
+                data-image="./assets/images/shoot/DSC01034.JPG"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2C6.5 2 3 7 3 12s3.5 10 9 10 9-5 9-10S17.5 2 12 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 12c-2.5 0-4-1.5-4-4 0 3 1.5 6 4 6s4-3 4-6c0 2.5-1.5 4-4 4z"/></svg>'
                 data-body="Farming interventions restore soil fertility, improve organic matter, and build long-term agricultural productivity — turning degraded land into productive, carbon-rich farmland.">
               <span class="svc-benefit-num">01</span>
@@ -129,6 +139,7 @@
               <span class="svc-benefit-arrow" aria-hidden="true">→</span>
             </li>
             <li class="svc-benefit-item" data-benefit="1" role="button" tabindex="0"
+                data-image="./assets/images/Reduces_greenhouse.jpg"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v4M4.2 8.2l2.8 2.8M19.8 8.2l-2.8 2.8M3 16h18M7 16v-2a5 5 0 0110 0v2"/></svg>'
                 data-body="Sustainable practices cut on-farm emissions from tillage, residue burning, synthetic fertilisers, and inefficient irrigation — reducing the sector&rsquo;s climate footprint at scale.">
               <span class="svc-benefit-num">02</span>
@@ -136,6 +147,7 @@
               <span class="svc-benefit-arrow" aria-hidden="true">→</span>
             </li>
             <li class="svc-benefit-item" data-benefit="2" role="button" tabindex="0"
+                data-image="./assets/images/carbon_sequestration.jpg"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>'
                 data-body="Regenerative practices lock carbon into the soil, contributing to verified emission reductions and carbon credit generation that can be sold on voluntary carbon markets.">
               <span class="svc-benefit-num">03</span>
@@ -143,6 +155,7 @@
               <span class="svc-benefit-arrow" aria-hidden="true">→</span>
             </li>
             <li class="svc-benefit-item" data-benefit="3" role="button" tabindex="0"
+                data-image="./assets/images/water_Efficiency.jpg"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2"/></svg>'
                 data-body="Drip irrigation, mulching, and soil management practices reduce water dependency and improve resilience to drought — critical for rain-fed farming regions across India.">
               <span class="svc-benefit-num">04</span>
@@ -150,6 +163,7 @@
               <span class="svc-benefit-arrow" aria-hidden="true">→</span>
             </li>
             <li class="svc-benefit-item" data-benefit="4" role="button" tabindex="0"
+                data-image="./assets/images/Low_Costs.jpg"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3"/></svg>'
                 data-body="Organic inputs, natural manure, and improved crop nutrition reduce farmer dependency on costly synthetic inputs — lowering operational costs per acre season after season.">
               <span class="svc-benefit-num">05</span>
@@ -157,6 +171,7 @@
               <span class="svc-benefit-arrow" aria-hidden="true">→</span>
             </li>
             <li class="svc-benefit-item" data-benefit="5" role="button" tabindex="0"
+                data-image="./assets/images/shoot/farmer_walking.jpg"
                 data-icon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>'
                 data-body="Healthier soils, diversified cropping, and better land management help farms withstand unseasonal rainfall and climate stress — building adaptive capacity from the ground up.">
               <span class="svc-benefit-num">06</span>
@@ -752,7 +767,7 @@
     </section>
 
     <!-- Sections 7 + 8 merged: Technology Stack + Who We Work With (dark bg) -->
-    <section class="svc-tech-who bg-[#082410] text-white">
+    <section class="svc-tech-who bg-forest-deep text-white">
 
       <!-- Tech header -->
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 pt-20 md:pt-28 pb-10 md:pb-14" data-svc-reveal>

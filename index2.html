@@ -18,14 +18,18 @@
       theme: {
         extend: {
           fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          // Driven by the CSS custom properties in css/custom.css :root
           colors: {
-            ink: '#1c1c1c',
-            sub: '#6b6b6b',
-            forest: '#0d1a10',
-            'forest-mid': '#1a3d2a',
-            'forest-deep': '#082410',
-            cream: '#f7f5f0',
-            lime: '#a3e635',
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            'forest-deep': 'rgb(var(--forest-deep-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
           },
         },
       },
@@ -329,7 +333,7 @@
           alt="Green agricultural fields at dusk"
           class="what-we-do-bg w-full h-full object-cover scale-[1.08]"
         />
-        <div class="absolute inset-0 bg-[#082410]/55"></div>
+        <div class="absolute inset-0 bg-forest-deep/55"></div>
       </div>
       <div class="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-16 md:py-20 lg:py-24 flex items-center min-h-[560px] md:min-h-[620px]">
         <div class="w-full flex justify-end">
@@ -476,7 +480,7 @@
         <!-- Bottom link row -->
         <div class="py-8 border-t border-white/10 flex items-center justify-between">
           <p class="text-white/40 text-sm">End-to-end carbon farming for farmers, FPOs, corporates, and buyers.</p>
-          <a href="services.html" class="text-sm font-semibold text-[#a3e635] flex items-center gap-2 hover:gap-3 transition-all duration-300">
+          <a href="services.html" class="text-sm font-semibold text-lime flex items-center gap-2 hover:gap-3 transition-all duration-300">
             Full services
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
           </a>
@@ -717,13 +721,13 @@
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-20 md:py-28">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div>
-            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#082410]/55 mb-5">Start a partnership</p>
-            <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-[#082410] leading-tight tracking-tight">
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-forest-deep/55 mb-5">Start a partnership</p>
+            <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-forest-deep leading-tight tracking-tight">
               Ready to transform your farmland into a carbon asset?
             </h2>
           </div>
           <div class="flex flex-col gap-5 lg:items-end">
-            <p class="text-[#082410]/65 text-sm md:text-[15px] leading-relaxed max-w-md lg:text-right">
+            <p class="text-forest-deep/65 text-sm md:text-[15px] leading-relaxed max-w-md lg:text-right">
               Whether you're a farmer, an FPO, a sugar factory, a corporate with CSR commitments, or a carbon credit buyer &mdash; we have a pathway built for you.
             </p>
             <div class="flex flex-wrap gap-4">

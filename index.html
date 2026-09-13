@@ -22,12 +22,18 @@
           fontFamily: {
             sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
           },
+          // Driven by the CSS custom properties in css/custom.css :root
           colors: {
-            ink: '#1c1c1c',
-            sub: '#6b6b6b',
-            forest: '#0d1a10',
-            'forest-mid': '#1a3d2a',
-            cream: '#f7f5f0',
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            'forest-deep': 'rgb(var(--forest-deep-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            accent: 'rgb(var(--accent-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
           },
         },
       },
@@ -58,31 +64,38 @@
       flex-direction: column;
     }
 
-    /* Background image */
+    /* Background image — always visible, slow ease on hover */
     .svc-card-bg {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.09;
-      transition: opacity 0.45s ease;
+      opacity: 1;
+      transform: scale(1.05);
+      transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
     .svc-card:hover .svc-card-bg,
-    .svc-card.is-active .svc-card-bg { opacity: 1; }
+    .svc-card.is-active .svc-card-bg { transform: scale(1); }
 
-    /* Dark gradient overlay */
+    /* Rest: heading veil. Hover veil fades in on ::after so it interpolates. */
     .svc-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(4,12,6,0.72) 0%, rgba(4,12,6,0.28) 38%, transparent 62%);
+      pointer-events: none;
+    }
+    .svc-card-overlay::after {
+      content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(to top, rgba(4,12,6,0.90) 30%, rgba(4,12,6,0.35) 70%, transparent 100%);
       opacity: 0;
-      transition: opacity 0.45s ease;
-      pointer-events: none;
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .svc-card:hover .svc-card-overlay,
-    .svc-card.is-active .svc-card-overlay { opacity: 1; }
+    .svc-card:hover .svc-card-overlay::after,
+    .svc-card.is-active .svc-card-overlay::after { opacity: 1; }
 
     /* Card body — flex column, fills card height */
     .svc-card-body {
@@ -94,17 +107,14 @@
       padding: 1.75rem 1.75rem 5.5rem;
     }
 
-    /* Title — always at TOP */
+    /* Title — always at TOP, white over the heading overlay */
     .svc-card-title {
       font-size: 2rem;
       font-weight: 600;
       line-height: 1.25;
-      color: #1c1c1c;
-      transition: color 0.4s ease;
+      color: #fff;
       margin: 0;
     }
-    .svc-card:hover .svc-card-title,
-    .svc-card.is-active .svc-card-title { color: #fff; }
 
     /* Flexible gap pushes description to BOTTOM */
     .svc-card-gap { flex: 1; }
@@ -117,12 +127,17 @@
       max-height: 0;
       overflow: hidden;
       opacity: 0;
-      transition: max-height 0.5s ease, opacity 0.4s ease 0.06s;
+      transform: translateY(14px);
+      transition:
+        max-height 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
     }
     .svc-card:hover .svc-card-desc,
     .svc-card.is-active .svc-card-desc {
       max-height: 240px;
       opacity: 1;
+      transform: translateY(0);
     }
 
     /* Toggle button */
@@ -134,13 +149,13 @@
       width: 44px;
       height: 44px;
       border-radius: 9999px;
-      background: #b9e17d;
+      background: #61af1e;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #0d1a10;
+      color: white;
       transition: transform 0.2s ease;
     }
     .svc-card-btn:hover { transform: scale(1.1); }
@@ -161,11 +176,11 @@
       border-radius: 9999px;
       border: 1.5px solid #d1d9d3;
       background: #fff;
-      color: #1c1c1c;
+      color: var(--ink);
       cursor: pointer;
       transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
-    .svc-nav-btn:hover { background: #0d1a10; color: #fff; border-color: #0d1a10; }
+    .svc-nav-btn:hover { background: var(--forest); color: #fff; border-color: var(--forest); }
     .svc-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
   </style>
 </head>
@@ -181,7 +196,6 @@
          cards right, 4-metric bottom bar
     ═══════════════════════════════════════════════ -->
     <section class="hero-section relative min-h-screen flex flex-col overflow-hidden">
-      <div class="absolute inset-0 bg-black/50 z-10"></div>
       <div class="hero-bg-wrap absolute inset-0 z-0">
         <video
           src="./assets/videos/Herobanner.mp4"
@@ -191,59 +205,76 @@
           playsinline
           class="hero-bg-img w-full h-full object-cover"
         ></video>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50"></div>
+        <!-- Forest veil: keeps the nav legible up top, greens the whole frame -->
+        <div class="hero-veil" aria-hidden="true"></div>
       </div>
 
-      <div class="hero-content relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[120px] md:pt-[140px] pb-8 md:pb-12">
+      <div class="hero-content relative z-10 flex-1 flex flex-col max-w-[1400px] mx-auto w-full px-5 md:px-8 lg:px-12 pt-[110px] md:pt-[130px] pb-8 md:pb-12">
+        <!-- Eyebrow -->
+        <p class="hero-eyebrow">
+          <svg class="hero-eyebrow-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 20A7 7 0 019.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 14 13 12"/>
+          </svg>
+          Regenerative agriculture &middot; Verified carbon credits
+        </p>
+
         <!-- Headline -->
         <div class="flex-1 flex items-center">
-          <h1 class="hero-headline text-[clamp(2.25rem,6vw,4.5rem)] leading-[1.08] font-semibold text-white max-w-3xl tracking-tight">
-            Offsetting carbon footprint for future generations
+          <h1 class="hero-title max-w-3xl">
+            <span class="hero-headline block">Offsetting carbon footprint</span>
+            <span class="hero-headline hero-title-accent block">for future generations</span>
           </h1>
         </div>
 
         <!-- Bottom row -->
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-6 mt-auto">
-          <!-- Left: tagline -->
+        <div class="hero-bottom flex flex-col lg:flex-row lg:items-end lg:justify-between gap-9 lg:gap-8 mt-auto">
+          <!-- Left: tagline + practice tags -->
           <div class="max-w-md">
-            <p class="hero-tagline text-white/90 text-sm md:text-base leading-relaxed">
+            <p class="hero-tagline text-white/85 text-sm md:text-base leading-relaxed">
               Boosting farmer income through regenerative farming and carbon credits.
             </p>
+
+            <div class="hero-tags">
+              <span class="hero-tag">Soil health</span>
+              <span class="hero-tag">Water efficiency</span>
+              <span class="hero-tag">Field-verified MRV</span>
+            </div>
           </div>
 
           <!-- Right: stat cards -->
-          <div class="hero-stats flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-stretch shrink-0">
-            <!-- Dark card -->
-            <div class="hero-stat-card-dark text-white p-6 md:p-7 w-full sm:w-[220px] md:w-[240px] relative">
+          <div class="hero-stats flex flex-col sm:flex-row gap-4 sm:items-stretch shrink-0">
+            <!-- Forest card -->
+            <div class="hero-stat-card-dark text-white p-6 md:p-7 w-full sm:w-[228px] md:w-[248px] relative">
               <div class="flex items-start justify-between mb-8">
-                <span class="text-sm text-white/80">Cost Savings</span>
-                <span class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center shrink-0">
+                <span class="hero-stat-label">Farmer income</span>
+                <span class="hero-stat-icon">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
                   </svg>
                 </span>
               </div>
-              <p class="text-xs text-white/60 mb-1">Wind turbines</p>
-              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none">
+              <p class="hero-stat-caption">Average uplift per enrolled farm</p>
+              <p class="hero-stat-num">
                 <span data-count="2800" data-suffix="%">0%</span>
               </p>
             </div>
 
-            <!-- Glass card -->
-            <div class="hero-stat-card-glass text-white p-6 md:p-7 w-full sm:w-[240px] md:w-[260px] sm:-ml-2 md:-ml-4 relative z-10">
+            <!-- Sage glass card -->
+            <div class="hero-stat-card-glass text-white p-6 md:p-7 w-full sm:w-[248px] md:w-[268px] relative">
               <div class="flex items-start justify-between mb-8">
-                <span class="text-sm text-white/90">CO&#8322; reduced</span>
-                <span class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center shrink-0">
+                <span class="hero-stat-label">Input costs</span>
+                <span class="hero-stat-icon">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 7l10 10M7 17V7h10"/>
                   </svg>
                 </span>
               </div>
-              <p class="text-xs text-white/70 mb-1">Performance increase</p>
-              <p class="text-4xl md:text-[2.75rem] font-semibold tracking-tight leading-none mb-6">
+              <p class="hero-stat-caption">Fertiliser, pesticide &amp; irrigation</p>
+              <p class="hero-stat-num mb-5">
                 <span data-count="88.8" data-decimal="true" data-suffix="%">0%</span>
               </p>
-              <p class="text-xs text-white/60 leading-relaxed">Save energy cut bills instantly.</p>
+              <p class="hero-stat-foot">Lower spend, richer soil &mdash; season after season.</p>
             </div>
           </div>
         </div>
@@ -299,24 +330,24 @@
 
           <!-- Right: 4 stat metrics with dividers -->
           <div class="reveal">
-            <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-[#e2e8e3]">
+            <div class="carbon-stat-grid">
 
-              <div class="px-5 md:px-6 first:pl-0 last:pr-0 py-2">
+              <div>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight leading-none" style="color:#1a4f2e;">-52%</p>
                 <p class="text-xs text-sub leading-snug mt-3">Cut your carbon management and compliance overhead</p>
               </div>
 
-              <div class="px-5 md:px-6 py-2">
+              <div>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight leading-none" style="color:#1a4f2e;">-93%</p>
                 <p class="text-xs text-sub leading-snug mt-3">Reduce employees involved in the process</p>
               </div>
 
-              <div class="px-5 md:px-6 py-2">
+              <div>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight leading-none" style="color:#1a4f2e;">-80%</p>
                 <p class="text-xs text-sub leading-snug mt-3">Reduce time spent on Carbon Accounting</p>
               </div>
 
-              <div class="px-5 md:px-6 py-2">
+              <div>
                 <p class="text-3xl md:text-4xl font-bold tracking-tight leading-none" style="color:#1a4f2e;">x5</p>
                 <p class="text-xs text-sub leading-snug mt-3">Multiply your team efficiency with our agentic AI</p>
               </div>
@@ -331,8 +362,8 @@
     <!-- ═══════════════════════════════════════════════
          SECTION 3 — IMAGE STRIP (auto-scroll)
     ═══════════════════════════════════════════════ -->
-    <section class="overflow-x-clip py-4">
-      <div class="relative -ml-5 md:-ml-[120px] lg:-ml-[160px]">
+    <section class="overflow-x-clip py-4 px-5 md:px-0">
+      <div class="relative md:-ml-[120px] lg:-ml-[160px]">
         <div class="swiper sustainability-swiper overflow-hidden md:overflow-visible">
           <div class="swiper-wrapper">
             <div class="swiper-slide !w-auto h-[280px] md:h-[340px]">
@@ -671,129 +702,182 @@
           <p class="text-white/50 text-sm md:text-base leading-relaxed max-w-md lg:ml-auto">Measured across enrolled projects, validated by third parties, and directly linked to farmer-level outcomes on the ground.</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div class="swiper impact-swiper">
+          <div class="swiper-wrapper">
 
-          <div class="h2-stat-block reveal-scale" data-tilt data-tilt-max="5">
-            <p class="h2-stat-big-num">
-              <span data-count="2800" data-suffix="%">0%</span>
-            </p>
-            <div class="h2-stat-block-rule"></div>
-            <p class="h2-stat-block-desc">Average farmer income uplift through carbon credits and reduced input costs</p>
+            <div class="swiper-slide">
+              <div class="h2-stat-block" data-tilt data-tilt-max="5">
+                <p class="h2-stat-big-num">
+                  <span data-count="2800" data-suffix="%">0%</span>
+                </p>
+                <div class="h2-stat-block-rule"></div>
+                <p class="h2-stat-block-desc">Average farmer income uplift through carbon credits and reduced input costs</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="h2-stat-block" data-tilt data-tilt-max="5">
+                <p class="h2-stat-big-num">
+                  <span data-count="88" data-suffix="%">0%</span>
+                </p>
+                <div class="h2-stat-block-rule"></div>
+                <p class="h2-stat-block-desc">Reduction in input costs achieved through regenerative practice adoption</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="h2-stat-block" data-tilt data-tilt-max="5">
+                <p class="h2-stat-big-num">
+                  <span data-count="10">0</span><span class="text-xl md:text-2xl font-normal text-white/40">+</span>
+                </p>
+                <div class="h2-stat-block-rule"></div>
+                <p class="h2-stat-block-desc">Sustainable farming interventions supported across enrolled project areas</p>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="h2-stat-block" data-tilt data-tilt-max="5">
+                <p class="h2-stat-big-num">
+                  <span data-count="11">0</span>
+                </p>
+                <div class="h2-stat-block-rule"></div>
+                <p class="h2-stat-block-desc">Stage project lifecycle from first site visit to carbon credit issuance</p>
+              </div>
+            </div>
+
           </div>
-
-          <div class="h2-stat-block reveal-scale" data-tilt data-tilt-max="5">
-            <p class="h2-stat-big-num">
-              <span data-count="88" data-suffix="%">0%</span>
-            </p>
-            <div class="h2-stat-block-rule"></div>
-            <p class="h2-stat-block-desc">Reduction in input costs achieved through regenerative practice adoption</p>
-          </div>
-
-          <div class="h2-stat-block reveal-scale" data-tilt data-tilt-max="5">
-            <p class="h2-stat-big-num">
-              <span data-count="10">0</span><span class="text-xl md:text-2xl font-normal text-white/40">+</span>
-            </p>
-            <div class="h2-stat-block-rule"></div>
-            <p class="h2-stat-block-desc">Sustainable farming interventions supported across enrolled project areas</p>
-          </div>
-
-          <div class="h2-stat-block reveal-scale" data-tilt data-tilt-max="5">
-            <p class="h2-stat-big-num">
-              <span data-count="11">0</span>
-            </p>
-            <div class="h2-stat-block-rule"></div>
-            <p class="h2-stat-block-desc">Stage project lifecycle from first site visit to carbon credit issuance</p>
-          </div>
-
+          <div class="impact-pagination lg:hidden"></div>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════
-         SECTION 9 — TESTIMONIALS
-         Updated with real Glaubark-relevant voices
+         SECTION 9 — CASE STUDIES
+         Peek carousel; each card links to its article
     ═══════════════════════════════════════════════ -->
-    <section class="py-20 md:py-28">
+    <section class="bg-cream py-20 md:py-28 overflow-hidden">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
 
-        <div class="reveal mb-14 md:mb-16 max-w-2xl">
-          <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">From the Field</p>
-          <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
-            Voices from farmers, partners, and buyers
-          </h2>
+        <div class="reveal flex items-end justify-between gap-6 mb-10 md:mb-14">
+          <div class="max-w-2xl">
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-4">From the Field</p>
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink leading-snug tracking-tight">
+              Real farms, measured results
+            </h2>
+          </div>
+
+          <div class="hidden sm:flex items-center gap-3 shrink-0">
+            <button type="button" class="case-nav-btn" data-case-prev aria-label="Previous case study">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+            <button type="button" class="case-nav-btn" data-case-next aria-label="Next case study">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div class="swiper testimonial-swiper pb-12 lg:pb-0">
-          <div class="swiper-wrapper lg:!grid lg:grid-cols-3 lg:gap-10 xl:gap-12">
+        <div class="swiper case-swiper">
+          <div class="swiper-wrapper">
 
-            <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card h-full">
-                <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <div class="swiper-slide case-slide">
+              <a href="blog-carbon-credits-india.html" class="case-card">
+                <div class="case-card-media">
+                  <img
+                    src="./assets/images/shoot/DSC00958.JPG"
+                    alt="Glaubark field officers reviewing farm data with a farmer on a phone"
+                    class="case-card-img"
+                    style="--case-img-pos: 52% 38%"
+                    loading="lazy"
+                  />
                 </div>
-                <p class="text-sm md:text-[15px] text-sub leading-relaxed mb-8">
-                  "Glaubark's team trained us on drip irrigation and organic inputs. My farming costs fell significantly within the first season, and I received my first carbon credit payment shortly after. It completely changed how I think about farming."
-                </p>
-                <div class="flex items-center gap-4">
-                  <img src="https://i.pravatar.cc/80?img=33" alt="" class="testimonial-avatar w-11 h-11 rounded-full object-cover" />
-                  <div>
-                    <p class="text-sm font-semibold text-ink">Rajesh Kumar</p>
-                    <p class="text-xs text-sub">Sugarcane Farmer, Maharashtra</p>
+                <div class="case-card-body">
+                  <h3 class="case-card-title">
+                    How Agricultural Carbon Credits Are <span class="case-card-accent">Transforming Farmer Incomes</span> in Rural India
+                  </h3>
+                  <p class="case-card-excerpt">
+                    India&rsquo;s farming communities are discovering a new income stream &mdash; not from higher yields, but from the carbon their soil practices lock away.
+                  </p>
+                  <div class="case-card-foot">
+                    <span class="case-card-cta">
+                      Read the full story
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 12h16m0 0-6-6m6 6-6 6"/>
+                      </svg>
+                    </span>
+                    <span class="case-card-tag">Carbon Credits</span>
                   </div>
                 </div>
-              </article>
+              </a>
             </div>
 
-            <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card h-full">
-                <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <div class="swiper-slide case-slide">
+              <a href="blog-regenerative-farming.html" class="case-card">
+                <div class="case-card-media">
+                  <img
+                    src="./assets/images/shoot/DSC01039.JPG"
+                    alt="Field officer planting a sapling in tilled soil"
+                    class="case-card-img"
+                    style="--case-img-pos: 46% 40%"
+                    loading="lazy"
+                  />
                 </div>
-                <p class="text-sm md:text-[15px] text-sub leading-relaxed mb-8">
-                  "Working with Glaubark made it possible for our FPO to access climate finance we never imagined. Their documentation process, technology support, and on-ground presence gave us confidence at every stage of the project."
-                </p>
-                <div class="flex items-center gap-4">
-                  <img src="https://i.pravatar.cc/80?img=45" alt="" class="testimonial-avatar w-11 h-11 rounded-full object-cover" />
-                  <div>
-                    <p class="text-sm font-semibold text-ink">Priya Nair</p>
-                    <p class="text-xs text-sub">FPO Manager, Karnataka</p>
+                <div class="case-card-body">
+                  <h3 class="case-card-title">
+                    10 <span class="case-card-accent">Regenerative Farming Practices</span> That Reduce Costs and Sequester Carbon
+                  </h3>
+                  <p class="case-card-excerpt">
+                    A practical breakdown of the interventions at the heart of Glaubark&rsquo;s field programs &mdash; and exactly what each one delivers for soil, climate, and farmer income.
+                  </p>
+                  <div class="case-card-foot">
+                    <span class="case-card-cta">
+                      Read the full story
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 12h16m0 0-6-6m6 6-6 6"/>
+                      </svg>
+                    </span>
+                    <span class="case-card-tag">Regenerative Farming</span>
                   </div>
                 </div>
-              </article>
+              </a>
             </div>
 
-            <div class="swiper-slide lg:!w-auto h-auto">
-              <article class="testimonial-card h-full">
-                <div class="flex gap-1 mb-5" aria-label="5 out of 5 stars">
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                  <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <div class="swiper-slide case-slide">
+              <a href="blog-field-story.html" class="case-card">
+                <div class="case-card-media">
+                  <img
+                    src="./assets/images/shoot/DSC00921.JPG"
+                    alt="Farmer planting a sapling by hand in his field"
+                    class="case-card-img"
+                    style="--case-img-pos: 44% 42%"
+                    loading="lazy"
+                  />
                 </div>
-                <p class="text-sm md:text-[15px] text-sub leading-relaxed mb-8">
-                  "As a company with net-zero commitments, sourcing traceable Indian agricultural carbon credits was our challenge. Glaubark's transparent MRV process and direct farmer impact data gave us exactly the confidence we needed."
-                </p>
-                <div class="flex items-center gap-4">
-                  <img src="https://i.pravatar.cc/80?img=32" alt="" class="testimonial-avatar w-11 h-11 rounded-full object-cover" />
-                  <div>
-                    <p class="text-sm font-semibold text-ink">Arvind Mehta</p>
-                    <p class="text-xs text-sub">CSR Director, Corporate Partner</p>
+                <div class="case-card-body">
+                  <h3 class="case-card-title">
+                    From Debt to Carbon Income: <span class="case-card-accent">One Farmer&rsquo;s Regenerative Journey</span> in Maharashtra
+                  </h3>
+                  <p class="case-card-excerpt">
+                    Ramesh Patil grew sugarcane the conventional way for two decades. Then Glaubark&rsquo;s field team knocked on his door. This is his story, told in his own words from Kolhapur.
+                  </p>
+                  <div class="case-card-foot">
+                    <span class="case-card-cta">
+                      Read the full story
+                      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 12h16m0 0-6-6m6 6-6 6"/>
+                      </svg>
+                    </span>
+                    <span class="case-card-tag">Field Story</span>
                   </div>
                 </div>
-              </article>
+              </a>
             </div>
 
           </div>
-          <div class="testimonial-pagination lg:hidden mt-2"></div>
+          <div class="case-pagination sm:hidden"></div>
         </div>
       </div>
     </section>
@@ -806,13 +890,13 @@
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12 py-20 md:py-28">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           <div>
-            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#082410]/55 mb-5">Start a partnership</p>
-            <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-[#082410] leading-tight tracking-tight">
+            <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-forest-deep/55 mb-5">Start a partnership</p>
+            <h2 class="text-3xl md:text-4xl lg:text-[2.75rem] font-semibold text-forest-deep leading-tight tracking-tight">
               Ready to transform your farmland into a carbon asset?
             </h2>
           </div>
           <div class="flex flex-col gap-5 lg:items-end">
-            <p class="text-[#082410]/65 text-sm md:text-[15px] leading-relaxed max-w-md lg:text-right">
+            <p class="text-forest-deep/65 text-sm md:text-[15px] leading-relaxed max-w-md lg:text-right">
               Whether you're a farmer, an FPO, a sugar factory, a corporate with CSR commitments, or a carbon credit buyer &mdash; we have a pathway built for you.
             </p>
             <div class="flex flex-wrap gap-4">
@@ -937,7 +1021,7 @@
       originalSlides.forEach((slide) => wrapper.appendChild(slide.cloneNode(true)));
       new Swiper(".sustainability-swiper", {
         slidesPerView: "auto",
-        spaceBetween: 12,
+        spaceBetween: 16,
         loop: false,
         slidesPerGroup: 1,
         freeMode: false,
