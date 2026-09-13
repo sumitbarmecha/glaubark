@@ -1098,14 +1098,14 @@ line-height: 1.2 !important;
 @media (min-width: 768px) {
   .site-footer-mark-band {
     min-height: 8.5rem;
-    padding: 0.5rem 2rem 0;
+    padding: 0.5rem 2rem 4rem;
   }
 }
 
 @media (min-width: 1024px) {
   .site-footer-mark-band {
     min-height: 11.5rem;
-    padding: 0.75rem 3rem 0;
+    padding: 0.75rem 3rem 3rem;
   }
 }
 
@@ -1794,7 +1794,7 @@ line-height: 1.2 !important;
 .c-hero-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, var(--forest) 6%, rgb(var(--forest-rgb) / 0.55) 55%, rgb(var(--forest-rgb) / 0.8) 100%);
+  background: linear-gradient(to top, var(--forest) 0.15, rgb(var(--forest-rgb) / 0.55) 55%, rgb(var(--forest-rgb) / 0.15) 100%);
 }
 
 .c-hero-title {

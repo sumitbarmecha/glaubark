@@ -154,21 +154,22 @@
     .tl-arrow-btn:hover { border-color: #84cc16; color: #84cc16; }
     /* arrows loop around so they're never disabled */
 
-    /* ══ What Makes Glaubark Different — Card Carousel ══ */
-    .diff-swiper { overflow: visible; }
-    .diff-swiper .swiper-slide { height: auto; }
+    /* ══ Service Cards Carousel — same UI as home "Our core solutions" ══ */
+    .svc-swiper { overflow: visible; }
+    .svc-swiper .swiper-slide { height: auto; }
 
-    .diff-card {
+    .svc-card {
       position: relative;
       border-radius: 1.25rem;
       overflow: hidden;
-      height: 500px;
+      height: 450px;
       cursor: pointer;
       border: 1px solid #e2e8e3;
       display: flex;
       flex-direction: column;
     }
-    .diff-card-bg {
+
+    .svc-card-bg {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -179,28 +180,27 @@
       transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
       pointer-events: none;
     }
-    .diff-card:hover .diff-card-bg,
-    .diff-card.is-active .diff-card-bg { transform: scale(1); }
+    .svc-card:hover .svc-card-bg,
+    .svc-card.is-active .svc-card-bg { transform: scale(1); }
 
-    /* Rest: heading veil. Hover veil fades in on ::after so it interpolates. */
-    .diff-card-overlay {
+    .svc-card-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(to bottom, rgba(4,12,6,0.72) 0%, rgba(4,12,6,0.28) 38%, transparent 62%);
       pointer-events: none;
     }
-    .diff-card-overlay::after {
+    .svc-card-overlay::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(4,12,6,0.92) 30%, rgba(4,12,6,0.38) 70%, transparent 100%);
+      background: linear-gradient(to top, rgba(4,12,6,0.90) 30%, rgba(4,12,6,0.35) 70%, transparent 100%);
       opacity: 0;
       transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .diff-card:hover .diff-card-overlay::after,
-    .diff-card.is-active .diff-card-overlay::after { opacity: 1; }
+    .svc-card:hover .svc-card-overlay::after,
+    .svc-card.is-active .svc-card-overlay::after { opacity: 1; }
 
-    .diff-card-body {
+    .svc-card-body {
       position: relative;
       z-index: 2;
       flex: 1;
@@ -208,17 +208,18 @@
       flex-direction: column;
       padding: 1.75rem 1.75rem 5.5rem;
     }
-    .diff-card-title {
-      font-size: 1.2rem;
+
+    .svc-card-title {
+      font-size: 2rem;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.25;
       color: #fff;
       margin: 0;
     }
 
-    .diff-card-gap { flex: 1; }
+    .svc-card-gap { flex: 1; }
 
-    .diff-card-desc {
+    .svc-card-desc {
       font-size: 16px;
       line-height: 1.65;
       color: rgba(255,255,255,0.82);
@@ -231,13 +232,14 @@
         opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s,
         transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
     }
-    .diff-card:hover .diff-card-desc,
-    .diff-card.is-active .diff-card-desc {
+    .svc-card:hover .svc-card-desc,
+    .svc-card.is-active .svc-card-desc {
       max-height: 240px;
       opacity: 1;
       transform: translateY(0);
     }
-    .diff-card-btn {
+
+    .svc-card-btn {
       position: absolute;
       bottom: 1.5rem;
       left: 1.75rem;
@@ -245,23 +247,23 @@
       width: 44px;
       height: 44px;
       border-radius: 9999px;
-      background: #84cc16;
+      background: #61af1e;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--forest);
+      color: white;
       transition: transform 0.2s ease;
     }
-    .diff-card-btn:hover { transform: scale(1.1); }
-    .diff-card-btn svg { width: 18px; height: 18px; }
+    .svc-card-btn:hover { transform: scale(1.1); }
+    .svc-card-btn svg { width: 18px; height: 18px; }
 
-    .diff-icon-minus { display: none; }
-    .diff-card.is-active .diff-icon-plus { display: none; }
-    .diff-card.is-active .diff-icon-minus { display: block; }
+    .svc-icon-minus { display: none; }
+    .svc-card.is-active .svc-icon-plus { display: none; }
+    .svc-card.is-active .svc-icon-minus { display: block; }
 
-    .diff-nav-btn {
+    .svc-nav-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -274,8 +276,8 @@
       cursor: pointer;
       transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
-    .diff-nav-btn:hover { background: var(--forest); color: #fff; border-color: var(--forest); }
-    .diff-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
+    .svc-nav-btn:hover { background: var(--forest); color: #fff; border-color: var(--forest); }
+    .svc-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
   </style>
 </head>
 <body class="bg-white text-ink" data-page="about">
@@ -529,153 +531,153 @@
       </div>
     </section>
 
-    <!-- What Makes Glaubark Different — Card Carousel -->
-    <section class="py-16 md:py-24 bg-white border-t border-[#e8ebe9]">
+    <!-- What Makes Glaubark Different — same UI as home "Our core solutions" -->
+    <section class="svc-expand-section py-16 md:py-20 bg-white border-t border-[#e8ebe9]">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
 
         <div class="flex items-end justify-between mb-10 md:mb-12">
           <div>
             <p class="text-[11px] font-semibold tracking-[0.15em] uppercase text-sub mb-3">Our Approach</p>
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-semibold text-ink tracking-tight leading-snug">What Makes Glaubark Different</h2>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-ink tracking-tight leading-tight max-w-2xl">What Makes Glaubark Different</h2>
           </div>
           <div class="flex items-center gap-3">
-            <button class="diff-nav-btn diff-prev" aria-label="Previous">
+            <button class="svc-nav-btn svc-prev" aria-label="Previous">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
             </button>
-            <button class="diff-nav-btn diff-next" aria-label="Next">
+            <button class="svc-nav-btn svc-next" aria-label="Next">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
             </button>
           </div>
         </div>
 
-        <div class="swiper diff-swiper">
+        <div class="swiper svc-swiper">
           <div class="swiper-wrapper">
 
             <!-- 1 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80"
-                     alt="Farmers as participants in carbon projects" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Farmers as Participants,<br/>Not Just Beneficiaries</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">Glaubark doesn&rsquo;t develop carbon credits on behalf of farmers &mdash; it builds carbon projects with them. Farmers are active participants in the process, and direct beneficiaries of the climate finance it generates.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/shoot/DSC00952.JPG"
+                     alt="Farmers as participants in carbon projects" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Farmers as Participants,<br/>Not Just Beneficiaries</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">Glaubark doesn&rsquo;t develop carbon credits on behalf of farmers &mdash; it builds carbon projects with them. Farmers are active participants in the process, and direct beneficiaries of the climate finance it generates.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 2 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1573497019236-17f8177b81e8?auto=format&fit=crop&w=900&q=80"
-                     alt="Field teams rooted in farming communities" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Roots in<br/>the Community</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">Our field teams live and work in the regions we serve, building trust with farmers through direct, ongoing relationships rather than one-off transactions.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/indian_farmer.jpg"
+                     alt="Field teams rooted in farming communities" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Roots in<br/>the Community</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">Our field teams live and work in the regions we serve, building trust with farmers through direct, ongoing relationships rather than one-off transactions.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 3 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=900&q=80"
-                     alt="Leadership working directly in the field with farmers" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Leadership That Works<br/>in the Field</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">Our founders and senior team spend real time on the ground with farmers and FPOs, not just behind a desk &mdash; decisions are shaped by what actually works on-farm.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/shoot/DSC00998.JPG"
+                     alt="Leadership working directly in the field with farmers" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Leadership That Works<br/>in the Field</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">Our founders and senior team spend real time on the ground with farmers and FPOs, not just behind a desk &mdash; decisions are shaped by what actually works on-farm.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 4 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80"
-                     alt="End-to-end carbon project lifecycle management" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Full Project Cycle,<br/>End to End</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">From farmer onboarding and practice adoption to MRV, verification, and credit issuance, we manage every stage of the carbon project lifecycle in-house.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/project_life_cycle.jpg"
+                     alt="End-to-end carbon project lifecycle management" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Full Project Cycle,<br/>End to End</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">From farmer onboarding and practice adoption to MRV, verification, and credit issuance, we manage every stage of the carbon project lifecycle in-house.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 5 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=900&q=80"
-                     alt="Regenerative practices designed for real farm economics" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Practices Farmers<br/>Can Actually Adopt</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">We design regenerative interventions that fit real farm economics and local conditions, so adoption is practical, not just theoretically sound.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/shoot/DSC01015.JPG"
+                     alt="Regenerative practices designed for real farm economics" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Practices Farmers<br/>Can Actually Adopt</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">We design regenerative interventions that fit real farm economics and local conditions, so adoption is practical, not just theoretically sound.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 6 -->
             <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80"
-                     alt="Technology built for transparent carbon monitoring" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Technology Built<br/>for Transparency</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">Purpose-built monitoring and data tools give farmers, partners, and carbon buyers a transparent, audit-ready view of impact on the ground.</p>
+              <article class="svc-card" data-svc-card>
+                <img src="./assets/images/shoot/DSC00958.JPG"
+                     alt="Technology built for transparent carbon monitoring" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Technology Built<br/>for Transparency</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">Purpose-built monitoring and data tools give farmers, partners, and carbon buyers a transparent, audit-ready view of impact on the ground.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
             </div>
 
             <!-- 7 -->
-            <div class="swiper-slide">
-              <article class="diff-card" data-diff-card>
+            <!-- <div class="swiper-slide">
+              <article class="svc-card" data-svc-card>
                 <img src="https://images.unsplash.com/photo-1536147116438-62986a88dcbc?auto=format&fit=crop&w=900&q=80"
-                     alt="Carbon markets as a rural development tool" class="diff-card-bg" />
-                <div class="diff-card-overlay"></div>
-                <div class="diff-card-body">
-                  <h3 class="diff-card-title">Carbon Markets as a Tool<br/>for Rural Development</h3>
-                  <div class="diff-card-gap"></div>
-                  <p class="diff-card-desc">We treat carbon finance as a means to an end &mdash; rural income and resilience &mdash; not as a standalone commodity play.</p>
+                     alt="Carbon markets as a rural development tool" class="svc-card-bg" />
+                <div class="svc-card-overlay"></div>
+                <div class="svc-card-body">
+                  <h3 class="svc-card-title">Carbon Markets as a Tool<br/>for Rural Development</h3>
+                  <div class="svc-card-gap"></div>
+                  <p class="svc-card-desc">We treat carbon finance as a means to an end &mdash; rural income and resilience &mdash; not as a standalone commodity play.</p>
                 </div>
-                <button class="diff-card-btn" aria-label="Toggle details">
-                  <svg class="diff-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
-                  <svg class="diff-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
+                <button class="svc-card-btn" aria-label="Toggle details">
+                  <svg class="svc-icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14"/></svg>
+                  <svg class="svc-icon-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg>
                 </button>
               </article>
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -950,19 +952,22 @@
     })();
 
     (function () {
-      new Swiper('.diff-swiper', {
+      new Swiper('.svc-swiper', {
         slidesPerView: 1.15,
         spaceBetween: 14,
         grabCursor: true,
-        navigation: { nextEl: '.diff-next', prevEl: '.diff-prev' },
+        navigation: {
+          nextEl: '.svc-next',
+          prevEl: '.svc-prev',
+        },
         breakpoints: {
-          640:  { slidesPerView: 2.1,  spaceBetween: 16 },
+          640:  { slidesPerView: 2.1, spaceBetween: 16 },
           1024: { slidesPerView: 3.15, spaceBetween: 20 },
         },
       });
 
-      document.querySelectorAll('[data-diff-card]').forEach(function(card) {
-        var btn = card.querySelector('.diff-card-btn');
+      document.querySelectorAll('[data-svc-card]').forEach(function(card) {
+        var btn = card.querySelector('.svc-card-btn');
         if (!btn) return;
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
