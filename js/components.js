@@ -105,11 +105,8 @@
       <div class="site-header-inner">
         <div class="site-header-bar flex items-center w-full min-w-0 h-[65px] md:h-[70px] gap-3">
           <!-- Logo -->
-          <a href="index.html" class="flex items-center gap-3 shrink-0 min-w-0 group">
-            <span class="w-9 h-9 md:w-10 md:h-10 text-white shrink-0">
-              <img src="assets/images/logo.svg" alt="" class="site-header-logo-img w-full h-full" aria-hidden="true" />
-            </span>
-            <span class="text-xl md:text-2xl font-normal tracking-tight lowercase">glaubark</span>
+          <a href="index.html" class="site-header-brand shrink-0 min-w-0 group">
+            <img src="assets/images/glaubark_logo.png" alt="Glaubark" class="site-header-logo-img" />
           </a>
 
           <!-- Desktop Nav -->
@@ -147,9 +144,8 @@
       aria-hidden="true"
     >
       <div class="flex items-center justify-between px-5 h-[72px] border-b border-white/10">
-        <a href="index.html" class="flex items-center gap-2.5">
-          <img src="assets/images/logo.svg" alt="" class="w-8 h-8" aria-hidden="true" />
-          <span class="text-lg lowercase">glaubark</span>
+        <a href="index.html" class="site-drawer-brand">
+          <img src="assets/images/glaubark_logo.png" alt="Glaubark" class="site-drawer-logo-img" />
         </a>
         <button id="mobile-menu-close" type="button" class="w-10 h-10 flex items-center justify-center -mr-2" aria-label="Close menu">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -250,8 +246,7 @@
         <div class="site-footer-grid">
           <div class="site-footer-col site-footer-brand">
             <a href="index.html" class="site-footer-logo">
-              <img src="assets/images/logo.svg" alt="" class="site-footer-logo-img" aria-hidden="true" />
-              <span>glaubark</span>
+              <img src="assets/images/glaubark_logo.png" alt="Glaubark" class="site-footer-logo-img" />
             </a>
             <p class="site-footer-tagline">
               Regenerative farming &amp; carbon credits for India&rsquo;s farmers.

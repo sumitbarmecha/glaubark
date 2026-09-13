@@ -48,7 +48,7 @@ html {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   SITE LOADER — 1.5s exact logo, then a soft iris exit
+   SITE LOADER — animated mark inspired by the Glaubark lockup
    ══════════════════════════════════════════════════════════════════ */
 html.is-loading,
 html.is-loading body {
@@ -65,47 +65,50 @@ html.is-loading body {
   background: var(--forest);
   color: #fff;
   overflow: hidden;
-  clip-path: circle(150% at 50% 46%);
+  clip-path: circle(150% at 50% 48%);
   opacity: 1;
   transition:
     clip-path 1.05s cubic-bezier(0.76, 0, 0.18, 1),
-    opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.35s;
 }
 
 .site-loader-inner {
   position: relative;
   z-index: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.05rem;
   transition:
     opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.7s cubic-bezier(0.76, 0, 0.18, 1);
 }
 
 .site-loader-mark {
-  width: 112px;
-  height: 112px;
-}
-
-.site-loader-logo {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
   object-fit: contain;
+  mix-blend-mode: screen;
   opacity: 0;
   transform: scale(0.86);
-  animation: loader-logo-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+  clip-path: circle(0% at 50% 50%);
+  animation: loader-icon-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.06s forwards;
+}
+
+@media (min-width: 768px) {
+  .site-loader-inner { gap: 1.25rem; }
+  .site-loader-mark { width: 80px; height: 80px; }
 }
 
 .site-loader-word {
   display: flex;
-  gap: 0.06em;
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 400;
-  letter-spacing: 0.18em;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.85rem, 5.4vw, 3.15rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
   line-height: 1;
   text-transform: lowercase;
 }
@@ -113,58 +116,39 @@ html.is-loading body {
 .site-loader-word span {
   display: inline-block;
   opacity: 0;
-  transform: translateY(12px);
-  animation: loader-letter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: translateY(0.28em);
+  animation: loader-letter 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.site-loader-word span:nth-child(1) { animation-delay: 0.42s; }
-.site-loader-word span:nth-child(2) { animation-delay: 0.48s; }
-.site-loader-word span:nth-child(3) { animation-delay: 0.54s; }
-.site-loader-word span:nth-child(4) { animation-delay: 0.6s; }
-.site-loader-word span:nth-child(5) { animation-delay: 0.66s; }
-.site-loader-word span:nth-child(6) { animation-delay: 0.72s; }
+.site-loader-word span:nth-child(1) { animation-delay: 0.48s; }
+.site-loader-word span:nth-child(2) { animation-delay: 0.53s; }
+.site-loader-word span:nth-child(3) { animation-delay: 0.58s; }
+.site-loader-word span:nth-child(4) { animation-delay: 0.63s; }
+.site-loader-word span:nth-child(5) { animation-delay: 0.68s; }
+.site-loader-word span:nth-child(6) { animation-delay: 0.73s; }
 .site-loader-word span:nth-child(7) { animation-delay: 0.78s; }
-.site-loader-word span:nth-child(8) { animation-delay: 0.84s; }
-
-.site-loader-bar {
-  display: block;
-  width: 72px;
-  height: 1.5px;
-  margin-top: 0.1rem;
-  background: rgb(255 255 255 / 0.14);
-  border-radius: 9999px;
-  overflow: hidden;
-}
-
-.site-loader-bar i {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  transform: scaleX(0);
-  transform-origin: left center;
-  animation: loader-bar 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-}
+.site-loader-word span:nth-child(8) { animation-delay: 0.83s; }
 
 .site-loader.is-leaving {
-  clip-path: circle(0% at 50% 46%);
+  clip-path: circle(0% at 50% 48%);
   opacity: 0;
   pointer-events: none;
 }
 
 .site-loader.is-leaving .site-loader-inner {
   opacity: 0;
-  transform: scale(0.92);
+  transform: scale(0.94);
 }
 
 html.loader-skip .site-loader {
   display: none !important;
 }
 
-@keyframes loader-logo-in {
+@keyframes loader-icon-in {
   to {
     opacity: 1;
     transform: scale(1);
+    clip-path: circle(75% at 50% 50%);
   }
 }
 
@@ -175,22 +159,20 @@ html.loader-skip .site-loader {
   }
 }
 
-@keyframes loader-bar {
-  to { transform: scaleX(1); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .site-loader-logo,
-  .site-loader-bar i,
+  .site-loader-mark,
   .site-loader-word span {
     animation: none;
   }
-  .site-loader-word span,
-  .site-loader-logo {
+  .site-loader-mark {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+  }
+  .site-loader-word span {
     opacity: 1;
     transform: none;
   }
-  .site-loader-bar i { transform: scaleX(1); }
   .site-loader {
     transition-duration: 0.25s;
   }
@@ -203,6 +185,36 @@ letter-spacing: -0.01em !important;
 line-height: 1.2 !important;
 
 }
+.site-header-brand,
+.site-drawer-brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.site-header-logo-img,
+.site-drawer-logo-img,
+.site-footer-logo-img {
+  display: block;
+  width: auto;
+  height: 28px;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+@media (min-width: 768px) {
+  .site-header-logo-img { height: 60px; }
+}
+
+.site-drawer-logo-img { height: 26px; }
+.site-footer-logo-img { height: 30px; }
+
+/* Light article heroes: invert the white-on-black PNG to a dark wordmark */
+body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
+  mix-blend-mode: multiply;
+  filter: invert(1);
+}
+
 /* Header scroll states */
 .site-header {
   position: fixed;
@@ -1306,17 +1318,8 @@ line-height: 1.2 !important;
 .site-footer-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
   margin-bottom: 0.7rem;
-  color: #fff;
   text-decoration: none;
-  font-size: 1.05rem;
-  letter-spacing: -0.02em;
-}
-
-.site-footer-logo-img {
-  width: 1.65rem;
-  height: 1.65rem;
 }
 
 .site-footer-tagline {
@@ -6018,11 +6021,6 @@ body.light-hero .site-header:not(.is-scrolled) {
   color: var(--ink);
 }
 
-/* The logo mark is a white-stroked SVG, so knock it to black rather
-   than shipping a second asset. */
-body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
-  filter: brightness(0);
-}
 
 body.light-hero .site-header:not(.is-scrolled) .site-header-nav a:hover {
   color: var(--forest-mid);
