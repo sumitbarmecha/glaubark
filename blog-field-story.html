@@ -3,6 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var p = location.pathname.replace(/\\/g, '/');
+        var clean = p.replace(/\/+$/, '') || '/';
+        var isHome = clean === '/' || /(?:^|\/)index\.html$/.test(p) || /(?:^|\/)html$/.test(clean);
+        if (sessionStorage.getItem('glaubark-loader-seen') && !isHome) {
+          document.documentElement.classList.add('loader-skip');
+        } else {
+          document.documentElement.classList.add('is-loading');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('is-loading');
+      }
+    })();
+  </script>
+  <style>
+    html.is-loading, html.is-loading body { overflow: hidden; }
+    .site-loader {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      background: #0d1a10; color: #fff;
+    }
+    html.loader-skip .site-loader { display: none !important; }
+  </style>
   <title>From Debt to Carbon Income: One Farmer's Journey — Glaubark</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -37,6 +62,16 @@
   <link rel="stylesheet" href="css/custom.css" />
 </head>
 <body class="bg-white text-ink light-hero" data-page="blog">
+
+  <div id="site-loader" class="site-loader" role="status" aria-live="polite" aria-label="Loading Glaubark">
+    <div class="site-loader-inner">
+      <div class="site-loader-mark">
+        <img src="assets/images/logo.svg" alt="" class="site-loader-logo" />
+      </div>
+      <p class="site-loader-word" aria-label="glaubark"><span>g</span><span>l</span><span>a</span><span>u</span><span>b</span><span>a</span><span>r</span><span>k</span></p>
+      <span class="site-loader-bar" aria-hidden="true"><i></i></span>
+    </div>
+  </div>
   <div id="site-header-slot"></div>
 
   <div class="post-progress" aria-hidden="true"><div class="post-progress-bar"></div></div>
@@ -256,6 +291,7 @@
 
   <script src="js/components.js"></script>
   <script src="js/forms.js"></script>
+  <script src="js/loader.js"></script>
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
   <script src="js/post.js"></script>

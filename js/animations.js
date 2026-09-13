@@ -267,10 +267,31 @@
         if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
       };
 
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(runTextEffects);
+      const startTextEffects = () => {
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(runTextEffects);
+        } else {
+          runTextEffects();
+        }
+      };
+
+      const settleHero = () => {
+        const hero = document.querySelector('.hero-section');
+        if (!hero) return;
+        const bgImg = hero.querySelector('.hero-bg-img');
+        if (bgImg) gsap.set(bgImg, { scale: 1 });
+        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+      };
+
+      const hadLoader =
+        !!document.getElementById('site-loader') &&
+        !document.documentElement.classList.contains('loader-skip');
+
+      if (hadLoader) {
+        if (window.__glaubarkReady) settleHero();
+        else window.addEventListener('glaubark:ready', settleHero, { once: true });
       } else {
-        runTextEffects();
+        startTextEffects();
       }
     },
   };
