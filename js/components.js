@@ -179,9 +179,8 @@
     {
       title: 'Legal',
       links: [
-        { label: 'Privacy Policy', href: '#' },
-        { label: 'Terms of Service', href: '#' },
-        { label: 'Cookie Policy', href: '#' },
+        { label: 'Privacy Policy', href: 'privacy.html' },
+        { label: 'Terms of Service', href: 'terms.html' },
       ],
     },
   ];
@@ -211,14 +210,14 @@
                 class="site-newsletter-input"
               />
               <button type="submit" class="site-newsletter-submit" data-newsletter-submit>
-                <span>Subscribe</span>
+                <span class="btn-label">Subscribe</span>
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                 </svg>
+                <span class="btn-spinner" aria-hidden="true"></span>
               </button>
             </form>
             <p class="site-newsletter-note">No spam. Unsubscribe any time.</p>
-            <p id="newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -300,14 +299,14 @@
                   class="site-footer-signup-input"
                 />
                 <button type="submit" class="site-footer-signup-btn" data-newsletter-submit>
-                  Subscribe
+                  <span class="btn-label">Subscribe</span>
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                   </svg>
+                  <span class="btn-spinner" aria-hidden="true"></span>
                 </button>
               </div>
             </form>
-            <p id="footer-newsletter-form-status" class="form-status text-sm mt-3 hidden" role="status" aria-live="polite"></p>
           </div>
         </div>
 

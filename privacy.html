@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var p = location.pathname.replace(/\\/g, '/');
+        var clean = p.replace(/\/+$/, '') || '/';
+        var isHome = clean === '/' || /(?:^|\/)index\.html$/.test(p) || /(?:^|\/)html$/.test(clean);
+        if (sessionStorage.getItem('glaubark-loader-seen') && !isHome) {
+          document.documentElement.classList.add('loader-skip');
+        } else {
+          document.documentElement.classList.add('is-loading');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('is-loading');
+      }
+    })();
+  </script>
+  <style>
+    html.is-loading, html.is-loading body { overflow: hidden; }
+    .site-loader {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      background: #0d1a10; color: #fff;
+    }
+    html.loader-skip .site-loader { display: none !important; }
+  </style>
+  <title>Privacy Policy — Glaubark Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+    tailwind.config = {
+      content: ['./*.html', './js/**/*.js'],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body class="bg-white text-ink light-hero" data-page="privacy">
+
+  <div id="site-loader" class="site-loader" role="status" aria-live="polite" aria-label="Loading Glaubark">
+    <div class="site-loader-inner">
+      <img src="assets/images/logo_icon.png" alt="" class="site-loader-mark" />
+      <p class="site-loader-word" aria-label="Glaubark"><span>g</span><span>l</span><span>a</span><span>u</span><span>b</span><span>a</span><span>r</span><span>k</span></p>
+    </div>
+  </div>
+
+  <div id="site-header-slot"></div>
+
+  <main>
+    <header class="legal-hero">
+      <div class="legal-hero-inner">
+        <p class="legal-eyebrow">Legal</p>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <p class="legal-lead">How Glaubark Solutions collects, uses, and looks after information you share with us through this website, our forms, and our programmes.</p>
+        <p class="legal-updated">Last updated 18 September 2026</p>
+      </div>
+    </header>
+
+    <div class="legal-wrap">
+      <aside class="legal-toc" aria-label="On this page">
+        <p class="legal-toc-label">On this page</p>
+        <nav>
+          <a href="#who">Who we are</a>
+          <a href="#collect">What we collect</a>
+          <a href="#use">How we use it</a>
+          <a href="#sharing">Sharing</a>
+          <a href="#cookies">Cookies &amp; similar tools</a>
+          <a href="#retention">How long we keep it</a>
+          <a href="#rights">Your rights</a>
+          <a href="#security">Security</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
+
+      <article class="legal-body">
+        <p>This Privacy Policy applies to the Glaubark Solutions website and to the ways we collect information when you contact us, subscribe to updates, or take part in a farmer, FPO, or partner programme. It does not replace any separate agreement we sign with you for a carbon project or other commercial work.</p>
+
+        <h2 id="who">Who we are</h2>
+        <p>Glaubark Solutions develops regenerative farming and agricultural carbon projects with farmers and partners in India. We are based in Maharashtra, India.</p>
+        <p>For privacy questions, write to <a href="mailto:hello@glaubarksolutions.com">hello@glaubarksolutions.com</a>.</p>
+
+        <h2 id="collect">What we collect</h2>
+        <p>We only collect what we need to respond to you or to run our work. That typically includes:</p>
+        <ul>
+          <li><strong>Information you give us</strong> — name, organisation, role, email, phone number, location, and the message you send through our contact form or by email.</li>
+          <li><strong>Newsletter details</strong> — your email address when you subscribe to field notes or programme updates.</li>
+          <li><strong>Programme information</strong> — if you are a farmer, FPO, mill, or buyer working with us, we may hold farm, land, practice, and project data needed to design, monitor, and report a carbon project. That information is handled under the relevant project agreement as well as this policy.</li>
+          <li><strong>Technical data</strong> — basic device and browser information, pages visited, and similar logs that help us keep the site working. We may also store a short session flag so the site loader is not shown on every page.</li>
+        </ul>
+        <p>We do not ask for payment card details on this website.</p>
+
+        <h2 id="use">How we use it</h2>
+        <p>We use personal information to:</p>
+        <ul>
+          <li>reply to enquiries from farmers, FPOs, buyers, and other partners;</li>
+          <li>send the newsletter you asked for, and stop sending it when you unsubscribe;</li>
+          <li>plan and run regenerative and carbon-project work, including monitoring, reporting, and verification where that is part of the programme;</li>
+          <li>improve the website and keep it secure;</li>
+          <li>meet legal, accounting, and audit duties that apply to our work in India.</li>
+        </ul>
+        <p>We do not sell your personal information. We do not use it for unrelated advertising.</p>
+
+        <h2 id="sharing">Sharing</h2>
+        <p>We may share information with:</p>
+        <ul>
+          <li>service providers who host this website, send email, or store files on our behalf, under contracts that limit how they may use it;</li>
+          <li>project partners, auditors, or registries when that is required to develop, verify, or issue carbon credits, and only to the extent needed for that work;</li>
+          <li>authorities if Indian law requires us to do so.</li>
+        </ul>
+        <p>If we ever restructure the company, information may transfer with the business, still under this policy or an equivalent one.</p>
+
+        <h2 id="cookies">Cookies and similar tools</h2>
+        <p>This site uses a small amount of browser storage so the introduction animation is not repeated on every visit, and may use similar technical tools that are needed for the site to function. We do not run a separate advertising cookie programme on this website.</p>
+        <p>You can clear stored data in your browser settings at any time. Doing so may mean some site preferences reset.</p>
+
+        <h2 id="retention">How long we keep it</h2>
+        <p>We keep contact and newsletter records for as long as we need them to manage the relationship or until you ask us to delete them, unless a law requires a longer period. Project records are kept for the life of the project and for any period that carbon-market, audit, or Indian law requires after that.</p>
+
+        <h2 id="rights">Your rights</h2>
+        <p>Depending on applicable Indian law, including the Digital Personal Data Protection Act, 2023, you may ask us to:</p>
+        <ul>
+          <li>confirm whether we hold your information, and receive a copy of it;</li>
+          <li>correct information that is wrong or incomplete;</li>
+          <li>erase information we no longer need, where the law allows;</li>
+          <li>withdraw consent for the newsletter or other optional uses.</li>
+        </ul>
+        <p>To make a request, email <a href="mailto:hello@glaubarksolutions.com">hello@glaubarksolutions.com</a>. We may need to verify who you are before we act. If you believe we have not handled a request fairly, you may also have the right to approach the Data Protection Board of India.</p>
+
+        <h2 id="security">Security</h2>
+        <p>We take reasonable technical and organisational steps to protect personal information. No website or email system is completely secure, so please do not send sensitive documents through the public contact form if a more secure channel has already been agreed.</p>
+        <p>This website is not directed at children. We do not knowingly collect personal information from anyone under 18.</p>
+
+        <h2 id="contact">Contact and changes</h2>
+        <p>We may update this policy as our work or the law changes. The date at the top of this page will change when we do. Continued use of the website after an update means you accept the revised policy.</p>
+        <p>Glaubark Solutions<br />Maharashtra, India<br /><a href="mailto:hello@glaubarksolutions.com">hello@glaubarksolutions.com</a></p>
+        <p>See also our <a href="terms.html">Terms of Service</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <div id="site-footer-slot"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>

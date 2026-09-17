@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var p = location.pathname.replace(/\\/g, '/');
+        var clean = p.replace(/\/+$/, '') || '/';
+        var isHome = clean === '/' || /(?:^|\/)index\.html$/.test(p) || /(?:^|\/)html$/.test(clean);
+        if (sessionStorage.getItem('glaubark-loader-seen') && !isHome) {
+          document.documentElement.classList.add('loader-skip');
+        } else {
+          document.documentElement.classList.add('is-loading');
+        }
+      } catch (e) {
+        document.documentElement.classList.add('is-loading');
+      }
+    })();
+  </script>
+  <style>
+    html.is-loading, html.is-loading body { overflow: hidden; }
+    .site-loader {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      background: #0d1a10; color: #fff;
+    }
+    html.loader-skip .site-loader { display: none !important; }
+  </style>
+  <title>Terms of Service — Glaubark Solutions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script>
+    tailwind.config = {
+      content: ['./*.html', './js/**/*.js'],
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] },
+          colors: {
+            ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+            sub: 'rgb(var(--sub-rgb) / <alpha-value>)',
+            forest: 'rgb(var(--forest-rgb) / <alpha-value>)',
+            'forest-mid': 'rgb(var(--forest-mid-rgb) / <alpha-value>)',
+            cream: 'rgb(var(--cream-rgb) / <alpha-value>)',
+            line: 'rgb(var(--line-rgb) / <alpha-value>)',
+            sage: 'rgb(var(--sage-rgb) / <alpha-value>)',
+            lime: 'rgb(var(--lime-rgb) / <alpha-value>)',
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/custom.css" />
+</head>
+<body class="bg-white text-ink light-hero" data-page="terms">
+
+  <div id="site-loader" class="site-loader" role="status" aria-live="polite" aria-label="Loading Glaubark">
+    <div class="site-loader-inner">
+      <img src="assets/images/logo_icon.png" alt="" class="site-loader-mark" />
+      <p class="site-loader-word" aria-label="Glaubark"><span>g</span><span>l</span><span>a</span><span>u</span><span>b</span><span>a</span><span>r</span><span>k</span></p>
+    </div>
+  </div>
+
+  <div id="site-header-slot"></div>
+
+  <main>
+    <header class="legal-hero">
+      <div class="legal-hero-inner">
+        <p class="legal-eyebrow">Legal</p>
+        <h1 class="legal-title">Terms of Service</h1>
+        <p class="legal-lead">The conditions that apply when you use the Glaubark Solutions website and the information published on it.</p>
+        <p class="legal-updated">Last updated 18 September 2026</p>
+      </div>
+    </header>
+
+    <div class="legal-wrap">
+      <aside class="legal-toc" aria-label="On this page">
+        <p class="legal-toc-label">On this page</p>
+        <nav>
+          <a href="#agreement">Agreement</a>
+          <a href="#website">Using the website</a>
+          <a href="#no-advice">No offer or advice</a>
+          <a href="#projects">Projects and enquiries</a>
+          <a href="#ip">Intellectual property</a>
+          <a href="#submissions">Your messages</a>
+          <a href="#liability">Disclaimer &amp; liability</a>
+          <a href="#law">Governing law</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </aside>
+
+      <article class="legal-body">
+        <p>These Terms of Service (“Terms”) govern access to this website, operated by Glaubark Solutions (“Glaubark”, “we”, “us”). By using the site you agree to these Terms. If you do not agree, please do not use the site.</p>
+        <p>A signed project, partnership, or offtake agreement always takes precedence over these Terms for that work.</p>
+
+        <h2 id="agreement">Agreement</h2>
+        <p>Glaubark Solutions develops regenerative agriculture and carbon-credit programmes with farmers, FPOs, mills, and buyers in India. We are based in Maharashtra, India.</p>
+        <p>These Terms apply to the public website only. They do not create a farmer enrolment, a carbon-credit sale, an investment, or an employment relationship.</p>
+
+        <h2 id="website">Using the website</h2>
+        <p>You may browse the site for lawful, personal, or professional purposes. You agree not to:</p>
+        <ul>
+          <li>misuse forms, try to break or overload the site, or access it by automated means except ordinary search-engine indexing;</li>
+          <li>copy the site in bulk, scrape content, or present Glaubark material as your own;</li>
+          <li>submit false, harmful, or unlawful information through any form or email.</li>
+        </ul>
+        <p>We may change, pause, or withdraw any part of the site without notice. Content may be updated as our programmes grow.</p>
+
+        <h2 id="no-advice">No offer or advice</h2>
+        <p>Pages on this website — including statistics, case studies, farmer stories, and descriptions of carbon markets — are for general information. They are not:</p>
+        <ul>
+          <li>legal, tax, investment, or carbon-market advice;</li>
+          <li>an offer to sell credits, securities, or any other product;</li>
+          <li>a guarantee of income, yield, credit issuance, or registry listing.</li>
+        </ul>
+        <p>Carbon-project outcomes depend on land, practices, methodology, verification, and market conditions. Nothing on this site should be relied on as a promise of a specific result.</p>
+
+        <h2 id="projects">Projects and enquiries</h2>
+        <p>Sending a contact form, booking a call, or starting a conversation does not bind either side to a project. Any work with farmers, FPOs, mills, or buyers starts only when a written agreement is in place.</p>
+        <p>If information on the site conflicts with a signed agreement, the agreement wins.</p>
+
+        <h2 id="ip">Intellectual property</h2>
+        <p>The Glaubark name, wordmark, site design, text, photographs, and videos are owned by Glaubark Solutions or used with permission. You may not copy, adapt, or redistribute them without our written consent, except for ordinary quoting of short excerpts with credit, or as allowed by Indian law.</p>
+        <p>Farmer and field photographs remain subject to the rights of the people and places shown. Do not reuse them as if they were stock images.</p>
+
+        <h2 id="submissions">Your messages</h2>
+        <p>If you send us an idea, document, or enquiry, you confirm that you have the right to share it and that it is not confidential unless we have agreed otherwise in writing. We may use non-confidential feedback to improve our programmes.</p>
+        <p>How we handle personal information is described in our <a href="privacy.html">Privacy Policy</a>.</p>
+
+        <h2 id="liability">Disclaimer and liability</h2>
+        <p>The website is provided “as is”. We do not warrant that it will always be available, error-free, or free of harmful code. Links to other sites are for convenience; we are not responsible for their content or practices.</p>
+        <p>To the fullest extent allowed by Indian law, Glaubark is not liable for any indirect, incidental, or consequential loss arising from use of this website, including loss of data, opportunity, or expected carbon income. Nothing in these Terms limits liability that cannot be limited by law, including for fraud or personal injury caused by negligence.</p>
+
+        <h2 id="law">Governing law</h2>
+        <p>These Terms are governed by the laws of India. Courts in Maharashtra shall have exclusive jurisdiction over disputes arising from the website or these Terms, without affecting any different forum named in a separate project agreement.</p>
+        <p>If a court finds one part of these Terms unenforceable, the rest still applies. We may update these Terms from time to time. The date at the top of this page will change when we do. Continued use of the site after an update means you accept the revised Terms.</p>
+
+        <h2 id="contact">Contact</h2>
+        <p>Glaubark Solutions<br />Maharashtra, India<br /><a href="mailto:hello@glaubarksolutions.com">hello@glaubarksolutions.com</a></p>
+        <p>See also our <a href="privacy.html">Privacy Policy</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <div id="site-footer-slot"></div>
+
+  <script src="js/components.js"></script>
+  <script src="js/forms.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
