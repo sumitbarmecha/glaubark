@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glaubark Solutions — Brand Guidelines</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c1c1c;
+      --sub: #6b6b6b;
+      --cream: #f7f5f0;
+      --line: #e8e4db;
+      --forest-deep: #082410;
+      --forest: #0d1a10;
+      --forest-mid: #1a3d2a;
+      --header: #132517;
+      --leaf: #22804a;
+      --sage: #9fd7a4;
+      --accent: #61af1e;
+      --lime: #a3e635;
+      --white: #ffffff;
+      --error: #b42318;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "DM Sans", sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: var(--leaf); }
+    code {
+      font-size: 0.86em;
+      background: rgb(13 26 16 / 0.06);
+      padding: 0.1em 0.35em;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    @media (min-width: 768px) { .wrap { padding: 0 32px; } }
+    @media (min-width: 1024px) { .wrap { padding: 0 48px; } }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--sub);
+    }
+    .eyebrow.lime { color: var(--lime); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid var(--line);
+      color: var(--sub);
+      white-space: nowrap;
+    }
+    .tag-obs { background: var(--cream); }
+    .tag-rule { background: rgb(34 128 74 / 0.12); color: var(--leaf); border-color: rgb(34 128 74 / 0.28); }
+    .tag-rec { background: rgb(163 230 53 / 0.18); color: var(--forest-mid); border-color: rgb(163 230 53 / 0.45); }
+    .tag-conf { background: rgb(180 35 24 / 0.08); color: var(--error); border-color: rgb(180 35 24 / 0.22); }
+
+    /* Cover */
+    .cover {
+      min-height: 100vh;
+      background: var(--forest-deep);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 1.25rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 768px) { .cover { padding: 3.5rem 4rem; } }
+
+    .cover-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.38;
+      filter: saturate(0.85);
+    }
+    .cover-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgb(8 36 16 / 0.35) 0%, rgb(13 26 16 / 0.82) 70%, var(--forest-deep) 100%);
+    }
+    .cover-inner { position: relative; z-index: 1; }
+
+    .cover-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .cover-logo { height: 48px; width: auto; mix-blend-mode: screen; }
+    @media (min-width: 768px) { .cover-logo { height: 60px; } }
+
+    .cover-kicker {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgb(255 255 255 / 0.7);
+    }
+
+    .cover-title {
+      font-size: clamp(2.75rem, 8vw, 6.5rem);
+      letter-spacing: -0.035em;
+      line-height: 0.95;
+      max-width: 12ch;
+      margin-top: 18vh;
+    }
+    .cover-title em {
+      font-style: normal;
+      color: var(--lime);
+    }
+    .cover-lead {
+      margin-top: 1.75rem;
+      max-width: 32rem;
+      color: rgb(255 255 255 / 0.78);
+      font-size: 1.05rem;
+    }
+    .cover-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: rgb(255 255 255 / 0.55);
+      border-top: 1px solid rgb(163 230 53 / 0.35);
+      padding-top: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    /* Sticky nav */
+    .book-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgb(247 245 240 / 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .book-nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0.7rem 20px;
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    @media (min-width: 768px) { .book-nav-inner { padding: 0.7rem 32px; } }
+    @media (min-width: 1024px) { .book-nav-inner { padding: 0.7rem 48px; } }
+    .book-nav a {
+      color: var(--sub);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .book-nav a:hover { color: var(--leaf); }
+
+    section.chapter {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    section.chapter.cream { background: var(--cream); }
+    section.chapter.forest {
+      background: var(--forest);
+      color: var(--white);
+      border-bottom-color: rgb(255 255 255 / 0.08);
+    }
+    section.chapter.forest .eyebrow { color: var(--lime); }
+    section.chapter.forest p, section.chapter.forest li { color: rgb(255 255 255 / 0.78); }
+    section.chapter.header-bg { background: var(--header); color: var(--white); border-bottom: 0; }
+
+    .chap-kicker { margin-bottom: 0.85rem; }
+    .chap-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      max-width: 22ch;
+      margin-bottom: 1rem;
+    }
+    .chap-dek {
+      max-width: 40rem;
+      color: var(--sub);
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+    }
+    .forest .chap-dek { color: rgb(255 255 255 / 0.62); }
+
+    .prose p + p { margin-top: 1rem; }
+    .prose ul, .prose ol { margin: 1rem 0 0 1.2rem; }
+    .prose li + li { margin-top: 0.4rem; }
+
+    .grid-2 {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    .grid-3 {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+    .grid-4 {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.6rem;
+    }
+    .cream .card { background: var(--white); }
+    .forest .card {
+      background: rgb(255 255 255 / 0.04);
+      border-color: rgb(255 255 255 / 0.1);
+    }
+    .card h3 { font-size: 1.15rem; margin: 0.65rem 0 0.5rem; }
+    .card p { font-size: 0.92rem; color: var(--sub); }
+    .forest .card p { color: rgb(255 255 255 / 0.7); }
+    .card .avoid {
+      margin-top: 0.85rem;
+      font-size: 0.8rem;
+      color: var(--error);
+    }
+
+    .swatch {
+      border-radius: 1.15rem;
+      overflow: hidden;
+      border: 1px solid rgb(13 26 16 / 0.08);
+    }
+    .swatch-chip { height: 92px; }
+    .swatch-meta { padding: 0.9rem 1rem 1.05rem; background: var(--white); }
+    .swatch-name { font-family: "DM Sans", sans-serif; font-weight: 600; font-size: 0.95rem; }
+    .swatch-vals { font-size: 12px; color: var(--sub); margin-top: 0.25rem; line-height: 1.5; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.6rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sub); font-weight: 600; }
+    .forest table th, .forest table td { border-bottom-color: rgb(255 255 255 / 0.1); }
+    .forest table td { color: rgb(255 255 255 / 0.8); }
+
+    .type-row {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .type-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sub); margin-bottom: 0.35rem; }
+    .t-display { font-family: "DM Sans", sans-serif; font-weight: 600; font-size: clamp(2.25rem, 6vw, 4.5rem); letter-spacing: -0.03em; line-height: 1.08; }
+    .t-h2 { font-family: "DM Sans", sans-serif; font-weight: 600; font-size: clamp(1.5rem, 3vw, 2.25rem); }
+    .t-body { font-size: 1rem; max-width: 38rem; }
+    .t-eye { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--leaf); }
+    .t-btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8125rem 1.625rem;
+      background: var(--lime);
+      color: var(--forest-deep);
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 9999px;
+      text-decoration: none;
+    }
+
+    .logo-board {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) { .logo-board { grid-template-columns: 1.2fr 0.8fr; } }
+    .logo-tile {
+      border-radius: 1.5rem;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .logo-tile img { height: 48px; width: auto; }
+    @media (min-width: 768px) { .logo-tile img.word { height: 64px; } }
+    .logo-tile.dark { background: var(--forest); }
+    .logo-tile.dark img { mix-blend-mode: screen; }
+    .logo-tile.cream { background: var(--cream); border: 1px solid var(--line); }
+    .logo-tile.cream img { filter: invert(1); mix-blend-mode: multiply; }
+    .logo-tile.mark img { height: 88px; mix-blend-mode: screen; }
+
+    .do-grid { display: grid; gap: 1rem; }
+    @media (min-width: 768px) { .do-grid { grid-template-columns: 1fr 1fr; } }
+    .do-col { border-radius: 1.25rem; padding: 1.5rem; }
+    .do-col h3 { margin-bottom: 0.75rem; }
+    .do-col.yes { background: rgb(34 128 74 / 0.1); }
+    .do-col.no { background: rgb(180 35 24 / 0.07); }
+    .do-col li { margin-left: 1.1rem; margin-top: 0.35rem; font-size: 0.92rem; }
+
+    .photo-row {
+      display: grid;
+      gap: 0.75rem;
+      margin: 2rem 0;
+    }
+    @media (min-width: 768px) { .photo-row { grid-template-columns: 2fr 1fr 1fr; } }
+    .photo-row img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 1.25rem;
+    }
+    @media (min-width: 768px) {
+      .photo-row img:first-child { height: 100%; min-height: 280px; }
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      background: rgb(163 230 53 / 0.14);
+      color: var(--forest-deep);
+      font-size: 12px;
+      font-weight: 600;
+      margin: 0.2rem 0.2rem 0 0;
+    }
+    .forest .pill { background: rgb(163 230 53 / 0.16); color: var(--lime); }
+
+    .checklist { list-style: none; margin: 0; }
+    .checklist li {
+      padding: 0.55rem 0 0.55rem 1.6rem;
+      position: relative;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.92rem;
+    }
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 0.7rem;
+      height: 0.7rem;
+      border: 1.5px solid var(--leaf);
+      border-radius: 3px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.5rem 0 0;
+    }
+
+    .quote {
+      font-family: "DM Sans", sans-serif;
+      font-weight: 500;
+      font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      max-width: 28rem;
+    }
+
+    footer.end {
+      background: var(--forest);
+      color: rgb(255 255 255 / 0.55);
+      padding: 3rem 0 0;
+    }
+    .end-mark {
+      font-family: "DM Sans", sans-serif;
+      font-size: clamp(4.5rem, 18vw, 180px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 0.78;
+      color: rgb(159 215 164 / 0.36);
+      padding: 1rem 0 2rem;
+      overflow: hidden;
+    }
+
+    @media print {
+      .book-nav { display: none; }
+      .cover { min-height: 100vh; break-after: page; }
+      section.chapter { break-inside: avoid; }
+      a { text-decoration: none; color: inherit; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="cover">
+    <img class="cover-photo" src="../assets/images/shoot/farmer_walking.jpg" alt="" />
+    <div class="cover-veil"></div>
+    <div class="cover-inner cover-top">
+      <img class="cover-logo" src="../assets/images/glaubark_logo.png" alt="Glaubark" />
+      <p class="cover-kicker">Brand book · v1.0</p>
+    </div>
+    <div class="cover-inner">
+      <p class="cover-kicker">Glaubark Solutions</p>
+      <h1 class="cover-title">Brand<br />guidelines<em>.</em></h1>
+      <p class="cover-lead">The identity as it lives on the website: farmer-first carbon project development, rendered in forest, cream, and field light — not as a generic sustainability template.</p>
+      <div class="cover-foot">
+        <span>For brand, marketing, web, social, decks, and documents · <a href="BRAND_GUIDELINES_COMPACT.html" style="color:#a3e635">Compact guide</a></span>
+        <span>Visual system reverse-engineered from the live site · Facts held to the client brief</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="book-nav" aria-label="Brand book">
+    <div class="book-nav-inner">
+      <a href="#read">How to read</a>
+      <a href="#essence">Essence</a>
+      <a href="#personality">Personality</a>
+      <a href="#story">Story</a>
+      <a href="#voice">Voice</a>
+      <a href="#colour">Colour</a>
+      <a href="#type">Type</a>
+      <a href="#logo">Logo</a>
+      <a href="#imagery">Imagery</a>
+      <a href="#layout">Layout</a>
+      <a href="#ui">UI</a>
+      <a href="#data">Data</a>
+      <a href="#photo">Photography</a>
+      <a href="#apply">Applications</a>
+      <a href="#check">Checklist</a>
+    </div>
+  </nav>
+
+  <section class="chapter cream" id="read">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">00 — Using this book</p>
+      <h2 class="chap-title">The website is the look. The brief is the truth.</h2>
+      <p class="chap-dek">This book extracts the implemented Glaubark identity so another professional can extend it. It does not turn placeholder statistics, fictional farmers, or unconfirmed certifications into official brand.</p>
+      <div class="grid-2 prose">
+        <div>
+          <p>Open the HTML file in a browser to present it. Export to PDF from the browser if needed. Companion files in this folder hold tokens, asset inventory, and content rules. The proofing log at <code>CLIENT-REVIEW-ASSUMED-CONTENT.md</code> remains the list of claims that must not be repeated until Glaubark confirms them.</p>
+          <p>Do not change production website files from this documentation set.</p>
+        </div>
+        <div>
+          <p class="eyebrow" style="margin-bottom:0.75rem">Classification</p>
+          <div class="legend">
+            <span class="tag tag-obs">Observed</span>
+            <span class="tag tag-rule">Brand rule</span>
+            <span class="tag tag-rec">Strategic recommendation</span>
+            <span class="tag tag-conf">Client confirmation</span>
+          </div>
+          <p style="margin-top:1rem;font-size:0.92rem;color:var(--sub)">Observed = in the live site. Brand rule = formalised from that site. Recommendation = future guidance. Confirmation = not a fact until Glaubark says so.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter forest" id="essence">
+    <div class="wrap">
+      <p class="eyebrow lime chap-kicker">01 — Positioning</p>
+      <h2 class="chap-title">Climate finance that starts in the field.</h2>
+      <p class="chap-dek">Strategic essence distilled from the live positioning — not a client-supplied slogan. Glaubark is a farmer-first carbon project developer, not an NGO, marketplace, registry, or SaaS product.</p>
+      <div class="grid-2">
+        <div>
+          <p class="quote">Farmers + regenerative agriculture + climate science + carbon finance + technology + measurement.</p>
+          <p style="margin-top:1.5rem">Every layout and paragraph should make at least two of those legs visible. Never only “green.” Never only “tech.”</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow lime">Observed on site</p>
+          <h3>What we can stand behind as positioning</h3>
+          <ul style="margin:0.75rem 0 0 1.1rem;font-size:0.92rem">
+            <li>Farmer-first carbon project developer</li>
+            <li>Bridging regenerative farming and voluntary carbon markets</li>
+            <li>Footer line: regenerative farming and carbon credits for India’s farmers</li>
+            <li>Vision on About: Indian agriculture as a global model for climate action, farmer prosperity, regenerative land management</li>
+          </ul>
+          <p class="avoid">Do not reuse the home H1 “Offsetting carbon footprint for future generations” on new work — proofed as generic template language.</p>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:2rem">
+        <div class="card"><h3>It should feel</h3><p>Climate-tech, credible, technical, human, farmer-first, evidence-led, modern, premium, practical.</p></div>
+        <div class="card"><h3>It should not feel</h3><p>NGO, charity, generic agribusiness, generic SaaS, crypto, consulting template, stereotypical “green.”</p></div>
+        <div class="card"><h3>Promise</h3><p>Farmers who regenerate land should be able to participate in carbon markets through work that is measured and taken seriously — without implying credits are already issued unless that is confirmed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="personality">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">02 — Personality</p>
+      <h2 class="chap-title">Six traits. Each has a failure mode.</h2>
+      <p class="chap-dek">Traits are taken from how the site already behaves, not from a generic brand-workshop list.</p>
+      <div class="grid-3">
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Grounded</h3>
+          <p>Named geography, Marathwada roots, district-level work. Visual: documentary fields, cream and forest. Avoid rustic pastiche.</p>
+        </article>
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Evidence-led</h3>
+          <p>Trust comes from process and measurement language. Avoid shouting unconfirmed percentages — including the live 2,800% / 88.8% hero stats.</p>
+        </article>
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Farmer-first</h3>
+          <p>Farmers are project partners. Photograph work, not charity portraits. Never “beneficiaries.”</p>
+        </article>
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Technical, not cold</h3>
+          <p>MRV, GIS, baselines — always attached to a field. No dark-mode product theatre.</p>
+        </article>
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Considered</h3>
+          <p>Editorial measure, cinematic heroes, lime as a signal. Not luxury fashion; not sticker UI.</p>
+        </article>
+        <article class="card">
+          <span class="tag tag-rule">Brand rule</span>
+          <h3>Practical</h3>
+          <p>A working cycle: practices, visits, measurement, market access. Manifestos without a mechanism are off-brand.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="story">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">03 — Story</p>
+      <h2 class="chap-title">Keep the sequence. Do not embroider it.</h2>
+      <p class="chap-dek">About page structure. Biographical detail should stay aligned with the client — this book does not add new life facts.</p>
+      <ol class="prose" style="max-width:46rem">
+        <li><strong>Mumbai, Tata Sons.</strong> Green-finance research; carbon credits as a way to fund climate-positive projects.</li>
+        <li><strong>Marathwada.</strong> The idea becomes personal: drought, soil, farmer distress as lived knowledge.</li>
+        <li><strong>Reframe.</strong> Credits as farmer finance, not only an accounting instrument.</li>
+        <li><strong>London.</strong> Vatsal Agarwal joins from studies; they found Glaubark Solutions.</li>
+        <li><strong>Today.</strong> Farmers, FPOs, sugar factories, agricultural partners. Maharashtra plus named partner geographies. Hectare totals — <span class="tag tag-conf">confirm</span></li>
+      </ol>
+      <div class="grid-2" style="margin-top:2rem">
+        <div class="card">
+          <h3>Must stay consistent</h3>
+          <p>Marathwada as root. Research, not a “we always knew” myth. Two founders. Farmer-first company.</p>
+        </div>
+        <div class="card">
+          <h3>Must not be exaggerated</h3>
+          <p>Invented quotes, CEO/COO titles unless confirmed (brief: Founder), Karnataka, “4+ offices,” meet-cute copy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="voice">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">04 — Voice</p>
+      <h2 class="chap-title">Calm, specific, field-literate.</h2>
+      <p class="chap-dek">If only a marketer could finish the paragraph, rewrite it. Full rules live in CONTENT_RULES.md.</p>
+      <div class="do-grid">
+        <div class="do-col yes">
+          <h3>Do say</h3>
+          <ul>
+            <li>Farmer-first carbon project developer</li>
+            <li>Regenerative practices on enrolled farms</li>
+            <li>MRV, baseline, verification support</li>
+            <li>Climate finance as rural income</li>
+            <li>District, crop, field team</li>
+            <li>Designed for recognised carbon standards — only if status is accurate</li>
+          </ul>
+        </div>
+        <div class="do-col no">
+          <h3>Avoid saying</h3>
+          <ul>
+            <li>Offsetting carbon for future generations (as the master line)</li>
+            <li>VCS certified / registry-listed (unless confirmed)</li>
+            <li>2,800% · 88% · agentic AI · SaaS efficiency stats</li>
+            <li>Named fictional farmers (Ramesh, Suresh, draft testimonials)</li>
+            <li>Transform farmland into a carbon asset</li>
+            <li>Crypto, tokens, “saving the planet”</li>
+          </ul>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:1.5rem">
+        <div class="card"><h3>Farmers</h3><p>Partners, not beneficiaries. Permissioned names only.</p></div>
+        <div class="card"><h3>Carbon</h3><p>Projects, credits, voluntary markets. Status verbs must match reality.</p></div>
+        <div class="card"><h3>Technology</h3><p>Satellite, GIS, surveys, field tools — not a platform pitch.</p></div>
+      </div>
+      <div class="grid-2" style="margin-top:1.5rem">
+        <div class="card">
+          <p class="eyebrow">Short</p>
+          <h3>Description</h3>
+          <p>Farmer-first carbon projects: regenerative agriculture, measurement, and climate finance in India.</p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Elevator</p>
+          <h3>Pitch</h3>
+          <p>Glaubark develops carbon projects with farmers and agricultural partners so regenerative work can be measured and connected to voluntary carbon markets — without implying credits are issued until that status is confirmed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="colour">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">05 — Colour</p>
+      <h2 class="chap-title">Forest is the room. Lime is the signal.</h2>
+      <p class="chap-dek">Canonical tokens from css/custom.css. Usage: cream/white majority, forest for authority, Leaf on light, lime ≤5% on dark. Full values in DESIGN_TOKENS.md.</p>
+
+      <p class="eyebrow" style="margin-bottom:1rem">Primary dark</p>
+      <div class="grid-4">
+        <div class="swatch"><div class="swatch-chip" style="background:#0d1a10"></div><div class="swatch-meta"><div class="swatch-name">Forest</div><div class="swatch-vals">#0d1a10 · rgb(13 26 16)<br />Loader, footer, dark band</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#082410"></div><div class="swatch-meta"><div class="swatch-name">Forest Deep</div><div class="swatch-vals">#082410 · rgb(8 36 16)<br />Deepest heroes</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#132517"></div><div class="swatch-meta"><div class="swatch-name">Header forest</div><div class="swatch-vals">#132517 · rgb(19 37 23)<br />Scrolled header · not in :root</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1a3d2a"></div><div class="swatch-meta"><div class="swatch-name">Forest Mid</div><div class="swatch-vals">#1a3d2a · rgb(26 61 42)<br />Mid surfaces, shadows</div></div></div>
+      </div>
+
+      <p class="eyebrow" style="margin:2rem 0 1rem">Green on light · accent on dark</p>
+      <div class="grid-4">
+        <div class="swatch"><div class="swatch-chip" style="background:#22804a"></div><div class="swatch-meta"><div class="swatch-name">Leaf</div><div class="swatch-vals">#22804a · rgb(34 128 74)<br />The green that works on cream</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#a3e635"></div><div class="swatch-meta"><div class="swatch-name">Lime</div><div class="swatch-vals">#a3e635 · rgb(163 230 53)<br />Headlines, pills on forest</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#61af1e"></div><div class="swatch-meta"><div class="swatch-name">Accent hex</div><div class="swatch-vals">#61af1e<br />RGB token currently mismatches</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#9fd7a4"></div><div class="swatch-meta"><div class="swatch-name">Sage</div><div class="swatch-vals">#9fd7a4 · rgb(159 215 164)<br />Whisper, footer mark</div></div></div>
+      </div>
+
+      <p class="eyebrow" style="margin:2rem 0 1rem">Neutrals</p>
+      <div class="grid-4">
+        <div class="swatch"><div class="swatch-chip" style="background:#f7f5f0;border-bottom:1px solid #e8e4db"></div><div class="swatch-meta"><div class="swatch-name">Cream</div><div class="swatch-vals">#f7f5f0</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#ffffff;border-bottom:1px solid #e8e4db"></div><div class="swatch-meta"><div class="swatch-name">White</div><div class="swatch-vals">#ffffff</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1c1c1c"></div><div class="swatch-meta"><div class="swatch-name">Ink</div><div class="swatch-vals">#1c1c1c · body text</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#6b6b6b"></div><div class="swatch-meta"><div class="swatch-name">Sub</div><div class="swatch-vals">#6b6b6b · captions</div></div></div>
+      </div>
+
+      <div class="grid-2" style="margin-top:2rem">
+        <div class="card">
+          <h3>Use together</h3>
+          <p>White or lime on forest. Ink on cream. Leaf on cream for links and icons. Forest text on lime buttons.</p>
+        </div>
+        <div class="card">
+          <h3>Do not use together</h3>
+          <p>Sage or lime as body text on cream. Leaf on forest. Extra greens (#2fce65, Tailwind emerald, wind-turbine teal). Accent hex next to lime in the same cluster.</p>
+        </div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.88rem;color:var(--sub)"><span class="tag tag-obs">Observed</span> --accent and --lime-soft hex values do not match their RGB triplets. Opacity utilities therefore render a paler mint. Align tokens before treating accent as law.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="type">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">06 — Typography</p>
+      <h2 class="chap-title">DM Sans for headlines. Inter for everything that has to work.</h2>
+      <p class="chap-dek">Implemented pair — not Space Grotesk / Manrope. Load both on every page; today DM Sans is requested on Home only while CSS still assigns it to all headings.</p>
+      <div class="type-row">
+        <div class="type-label">Display · DM Sans 600 · clamp 2.25–4.5rem · tracking -0.03em</div>
+        <div class="t-display">Regenerative farming, measured.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Section H2 · DM Sans 600 · tracking -0.01em · lh 1.2</div>
+        <div class="t-h2">Built on a clear purpose, driven by real work.</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Eyebrow · Inter 600 · 11px · 0.15em · uppercase</div>
+        <div class="t-eye">Regenerative agriculture · Carbon projects</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Body · Inter 400 · 15–16px · lh ~1.65</div>
+        <p class="t-body">Glaubark develops carbon projects with farmers and agricultural partners. Copy stays specific: practices, districts, measurement — not generic climate inspiration.</p>
+      </div>
+      <div class="type-row" style="border-bottom:0">
+        <div class="type-label">Button · Inter 600 · 14px · pill</div>
+        <span class="t-btn">Get in touch</span>
+      </div>
+      <p style="margin-top:1.5rem;font-size:0.9rem;color:var(--sub)">Sentence case headlines. Lowercase <strong>glaubark</strong> on the loader and the giant footer mark. Georgia appears only as an occasional quote exception — not a third brand font.</p>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="logo">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">07 — Logo</p>
+      <h2 class="chap-title">The live lockup is the white PNG wordmark.</h2>
+      <p class="chap-dek">Do not redraw it. Do not quietly replace it with the unused concentric-arc SVG. Clear space and print masters are not specified in the repo — measurements below are recommendations to finalise.</p>
+      <div class="logo-board">
+        <div class="logo-tile dark">
+          <img class="word" src="../assets/images/glaubark_logo.png" alt="Glaubark wordmark on forest" />
+        </div>
+        <div class="logo-tile dark mark">
+          <img src="../assets/images/logo_icon.png" alt="Glaubark mark" />
+        </div>
+        <div class="logo-tile cream">
+          <img class="word" src="../assets/images/glaubark_logo.png" alt="Glaubark wordmark on cream" />
+        </div>
+        <div class="logo-tile cream" style="align-items:flex-start;flex-direction:column;gap:0.5rem">
+          <p class="eyebrow">On light</p>
+          <p style="font-size:0.9rem;color:var(--sub)">CSS: invert + multiply on light heroes. Prefer a true ink master once supplied.</p>
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:1.5rem">
+        <div class="card"><h3>Heights in product</h3><p>Header 28px mobile / 60px desktop. Drawer 26px. Footer 30px. Loader mark 68–80px.</p></div>
+        <div class="card"><h3>Minimum (recommendation)</h3><p>Do not set the wordmark below 28px digital. Clear space: at least the height of the “g” counter — to be signed off.</p></div>
+        <div class="card"><h3>Incorrect</h3><p>Recolour, stretch, drop shadow, leaf dingbats, using logo.svg as official, busy crop behind with no veil.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="imagery">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">08 — Imagery</p>
+      <h2 class="chap-title">Documentary Indian agriculture. Not climate stock.</h2>
+      <div class="photo-row">
+        <img src="../assets/images/shoot/farmer_walking.jpg" alt="Field photograph from Glaubark shoot library" />
+        <img src="../assets/images/shoot/DSC00925.JPG" alt="Field photograph" />
+        <img src="../assets/images/shoot/DSC01034.JPG" alt="Field photograph" />
+      </div>
+      <div class="do-grid">
+        <div class="do-col yes">
+          <h3>Do use</h3>
+          <ul>
+            <li>Real farmers and field teams, with permission</li>
+            <li>Soil, crop, drip, residue, standing rows</li>
+            <li>Phones and notebooks in the field — technology on the ground</li>
+            <li>Natural light, ordinary clothes, named Indian geographies</li>
+            <li>Library: assets/images/shoot/</li>
+          </ul>
+        </div>
+        <div class="do-col no">
+          <h3>Do not use</h3>
+          <ul>
+            <li>Wind turbines in snow (file exists — anti-pattern)</li>
+            <li>Generic leaves, globes, green gradients, ice caps</li>
+            <li>Boardroom handshakes, cartoon CO₂, crypto seals</li>
+            <li>Staged smiling-farmer stock, Unsplash “founders”</li>
+            <li>Futuristic AI HUDs, Karnataka captions unless added by the client</li>
+          </ul>
+        </div>
+      </div>
+      <p style="margin-top:1.25rem;font-size:0.9rem;color:var(--sub)">Hero video: full-bleed, black veil ~30%. No green colour wash on photographs. Icons: stroke SVG, currentColor, round caps — not filled eco packs.</p>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="layout">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">09 — Layout &amp; system</p>
+      <h2 class="chap-title">1400px. 20 / 32 / 48 gutters. Forest after cream after white.</h2>
+      <div class="grid-3">
+        <div class="card"><h3>Frame</h3><p>Max width 1400px. Padding 20px / 32px / 48px. Header 65px / 70px, fixed, transparent then #132517.</p></div>
+        <div class="card"><h3>Space</h3><p>Scale 4–128. Sections typically 64–128px vertical. Do not invent a 1200px “standard” container.</p></div>
+        <div class="card"><h3>Shape</h3><p>Pills 9999px. Cards 1.25–2.25rem. Circles for marks. Hairline rules. Giant lowercase footer word as a rare signature.</p></div>
+      </div>
+      <p style="margin-top:1.5rem" class="eyebrow">Breakpoints</p>
+      <p style="margin-top:0.5rem;max-width:40rem;color:var(--sub)">Nav is mobile until 1024px — not 768. Tablet gets padding and columns; desktop gets the inline header. Footer accordion on small screens; giant sage mark band always.</p>
+      <div style="margin-top:1.5rem">
+        <span class="pill">Radius pill</span>
+        <span class="pill">Leaf on cream</span>
+        <span class="pill">Lime on forest</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="ui">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">10 — Components</p>
+      <h2 class="chap-title">A lightweight system, not a new component library.</h2>
+      <p class="chap-dek">Reuse what the site already does. Do not import a SaaS kit.</p>
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Use</th><th>Do not</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Header</td><td>White type on photo; underline active; drawer from the right</td><td>Utility phone bar, extra dropdowns without need</td></tr>
+          <tr><td>Lime button</td><td>Primary on dark; 14/600; forest text</td><td>Gradient bars, “Get started free”</td></tr>
+          <tr><td>Ghost button</td><td>Secondary on dark</td><td>Compete with two primary CTAs</td></tr>
+          <tr><td>Eyebrow + H2</td><td>Every major section</td><td>Title Case posters</td></tr>
+          <tr><td>Service / photo card</td><td>1.25rem, cover image, short copy</td><td>Fake metrics in the card foot</td></tr>
+          <tr><td>Dark panel</td><td>#132517, lime labels, vision/mission</td><td>Number every idea 1-2-3-4</td></tr>
+          <tr><td>Stat</td><td>Only approved figures</td><td>Template counters</td></tr>
+          <tr><td>Form + toast</td><td>Leaf success, #b42318 error</td><td>Invented 24h SLAs</td></tr>
+          <tr><td>Footer</td><td>Tagline, columns, Field notes, giant mark</td><td>Dead social hrefs in new designs</td></tr>
+          <tr><td>Testimonials</td><td>None until real quotes exist</td><td>Draft five-star cards</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="chapter forest" id="data">
+    <div class="wrap">
+      <p class="eyebrow lime chap-kicker">11 — Data &amp; trust</p>
+      <h2 class="chap-title">Look measurable. Do not look inflated.</h2>
+      <div class="grid-2">
+        <div>
+          <p>Numbers in DM Sans. Captions in Inter. One to three figures per band. Lime or white on forest; Ink on cream. Source in reports.</p>
+          <p style="margin-top:1rem">Process: hairline steps, not innovation loops. MRV: photograph the method (sample, survey, satellite described in words). No fake Verra screenshots.</p>
+        </div>
+        <div class="card">
+          <h3>Never as brand data</h3>
+          <p>2,800% income · 88.8% input costs · −52 / −93 / −80% SaaS leftovers · ×5 agentic AI · fictional ₹ payments · “VCS certified” as a badge · ∞ partnerships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="photo">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">12 — Photography brief</p>
+      <h2 class="chap-title">Return visits, not a one-day CSR shoot.</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Capture</h3>
+          <p>Farmers at work; field teams in conversation; practices; soil; crops; devices outdoors; monitoring plots. Medium two-shots over trophy portraits. Available light. Consent first. No child close-ups as “future generations” props.</p>
+        </div>
+        <div class="card">
+          <h3>Principles that travel</h3>
+          <p>Technology stays attached to the field. Lime is a signal. Cream is daylight; forest is authority. Type does the prestige. Claims stay smaller than photography. Name the place. Motion is cinematic, not gamified.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter" id="apply">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">13 — Applications</p>
+      <h2 class="chap-title">One identity, many formats — no “social edition.”</h2>
+      <div class="grid-3">
+        <div class="card"><h3>LinkedIn / Instagram</h3><p>Forest or cream field, one sentence, one shoot photo. No fake-stat carousels. No pastel templates.</p></div>
+        <div class="card"><h3>Decks &amp; reports</h3><p>Forest cover + wordmark + one still. Body on cream, ink type, one lime mark. Data from an approved sheet only.</p></div>
+        <div class="card"><h3>New web pages</h3><p>Same header/footer, 1400px, Inter + DM Sans, hero with veil or editorial forest/cream, one CTA, no unconfirmed stats. Hamburger below 1024px.</p></div>
+        <div class="card"><h3>Farmer stories</h3><p>Only real, permitted people. Location in the first line. Replace the fictional Ramesh Patil article.</p></div>
+        <div class="card"><h3>Email</h3><p>Wordmark on forest. Quiet cream body. CTA as a pill, sentence case.</p></div>
+        <div class="card"><h3>Accessibility</h3><p>Leaf not sage for small text on cream. Labels on inputs. Honour prefers-reduced-motion.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chapter cream" id="check">
+    <div class="wrap">
+      <p class="eyebrow chap-kicker">14 — Before you publish</p>
+      <h2 class="chap-title">Consistency checklist</h2>
+      <div class="grid-2">
+        <ul class="checklist">
+          <li>Wordmark is the approved PNG/vector, not retyped</li>
+          <li>Palette from tokens — no extra emerald</li>
+          <li>Inter + DM Sans loaded</li>
+          <li>1400px · 20/32/48 gutters</li>
+          <li>Photography from shoot/ or approved stills</li>
+          <li>Stroke icons, currentColor</li>
+          <li>One primary CTA, sentence case</li>
+        </ul>
+        <ul class="checklist">
+          <li>No number without a source</li>
+          <li>No invented testimonials or farmer names</li>
+          <li>Carbon-standard language matches status</li>
+          <li>Farmers described as partners</li>
+          <li>Origin story not exaggerated</li>
+          <li>Draft pages not quoted as live proof</li>
+          <li>Contact, titles, emails confirmed</li>
+        </ul>
+      </div>
+      <p style="margin-top:2rem;max-width:40rem;color:var(--sub)">If a future designer must choose between matching a leftover template number and matching this book, they match this book.</p>
+    </div>
+  </section>
+
+  <footer class="end">
+    <div class="wrap">
+      <p style="font-size:13px">Companion files: BRAND_GUIDELINES.md · DESIGN_TOKENS.md · BRAND_ASSETS.md · CONTENT_RULES.md · CLIENT-REVIEW-ASSUMED-CONTENT.md</p>
+      <p style="font-size:13px;margin-top:0.4rem">Internal brand documentation — Glaubark Solutions</p>
+      <p class="end-mark">glaubark</p>
+    </div>
+  </footer>
+
+</body>
+</html>
