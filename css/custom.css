@@ -7,7 +7,7 @@
    slash syntax, e.g. `background: rgb(var(--forest-mid-rgb) / 0.4)`.
    Keep the triplets space-separated, never comma-separated — that is
    the form both `rgb(... / alpha)` and the per-page Tailwind config
-   require, so utility classes like `bg-forest` and `text-ink/80`
+   require, so utility classes like `bg-[#132517]` and `text-ink/80`
    resolve from these same values.
    ══════════════════════════════════════════════════════════════════ */
 :root {
@@ -599,16 +599,411 @@ body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
   border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* Who We Are cards — transform owned by GSAP tilt (data-tilt) */
-.who-we-are-card {
-  transition: box-shadow 0.4s ease;
+/* Who We Are cards — transform owned by GSAP tilt (data-tilt).
+   Four facets of the vision, not a numbered sequence. Shade runs
+   forest → mid → leaf → white. */
+.wwa-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  min-height: 300px;
+  padding: 1.7rem 1.55rem 1.65rem;
+  border-radius: 1.35rem;
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 0 rgb(19 37 23 / 0.04);
+  transition: box-shadow 0.45s ease, border-color 0.45s ease;
 }
 
-.who-we-are-card:hover {
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.06);
+.wwa-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -30% -40% auto;
+  width: 14rem;
+  height: 14rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(255 255 255 / 0.1) 0%, transparent 68%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wwa-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wwa-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.55rem;
+}
+
+.wwa-card-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.95rem;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--sage);
+  flex-shrink: 0;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.wwa-card-icon svg {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.wwa-card-tag {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.48);
+  white-space: nowrap;
+}
+
+.wwa-card-title {
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 0.9rem;
+  max-width: 20ch;
+}
+
+.wwa-card-body {
+  margin-top: auto;
+  padding-top: 1.15rem;
+  border-top: 1px solid rgb(255 255 255 / 0.12);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: rgb(255 255 255 / 0.68);
+}
+
+.wwa-card:hover .wwa-card-icon {
+  background: var(--sage);
+  color: var(--forest);
+}
+
+/* 1 — keep the original forest */
+.wwa-card--deep {
+  background: var(--forest);
+}
+
+.wwa-card--deep:hover {
+  box-shadow: 0 22px 50px rgb(8 20 12 / 0.28);
+}
+
+/* 2 — a step lighter than forest, still dark enough for white type */
+.wwa-card--mid {
+  background: #1A2F1D;
+}
+
+.wwa-card--mid:hover {
+  box-shadow: 0 22px 50px rgb(16 48 32 / 0.22);
+}
+
+/* 3 — leaf */
+.wwa-card--leaf {
+  background: var(--sage);
+}
+.wwa-card--leaf .wwa-card-title,.wwa-card--leaf .wwa-card-body,.wwa-card--leaf .wwa-card-tag{
+  color:rgb(var(--ink-rgb) / 0.8)
+}
+.wwa-card--leaf .wwa-card-icon {
+  background: rgb(255 255 255 / 0.14);
+  color:rgb(var(--ink-rgb) / 0.8)
+}
+
+.wwa-card--leaf:hover .wwa-card-icon {
+  background: #fff;
+  color: var(--sage);
+}
+
+.wwa-card--leaf:hover {
+  box-shadow: 0 22px 50px rgb(20 80 42 / 0.22);
+}
+
+/* 4 — cream-white closer */
+.wwa-card--light {
+  background: #fff;
+  border-color: rgb(var(--line-rgb) / 0.95);
+}
+
+.wwa-card--light::after {
+  background: radial-gradient(circle, rgb(var(--sage-rgb) / 0.18) 0%, transparent 70%);
+}
+
+.wwa-card--light .wwa-card-icon {
+  background: rgb(var(--sage-rgb) / 0.22);
+  color: var(--leaf);
+}
+
+.wwa-card--light:hover .wwa-card-icon {
+  background: var(--forest);
+  color: #fff;
+}
+
+.wwa-card--light .wwa-card-tag {
+  color: var(--leaf);
+}
+
+.wwa-card--light .wwa-card-title {
+  color: var(--ink);
+}
+
+.wwa-card--light .wwa-card-body {
+  border-top-color: rgb(var(--line-rgb) / 0.95);
+  color: var(--sub);
+}
+
+.wwa-card--light:hover {
+  border-color: rgb(var(--leaf-rgb) / 0.28);
+  box-shadow: 0 22px 50px rgb(13 26 16 / 0.08);
+}
+
+/* ── About: founder profiles — one light screen each ── */
+.fp-screen {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  padding: 4.5rem 0;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.fp-screen--alt {
+  background: #fff;
+}
+
+@media (min-width: 1024px) {
+  .fp-screen {
+    min-height: 100svh;
+    padding: 6.25rem 0 3.5rem;
+  }
+}
+
+.fp-screen-inner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .fp-screen-inner {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fp-screen-inner {
+    padding: 0 3rem;
+  }
+}
+
+.fp-intro {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 0.55rem 2rem;
+  margin-bottom: 2.25rem;
+}
+
+.fp-intro-eyebrow {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--leaf);
+}
+
+.fp-intro-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.fp-profile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .fp-profile {
+    grid-template-columns: minmax(280px, 0.92fr) minmax(0, 1.08fr);
+    gap: 3.5rem;
+    min-height: calc(100svh - 12.5rem);
+  }
+
+  .fp-profile--flip {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+  }
+
+  .fp-profile--flip .fp-photo-col { order: 2; }
+  .fp-profile--flip .fp-copy { order: 1; }
+}
+
+.fp-photo-col {
+  position: relative;
+}
+
+.fp-photo-frame {
+  position: relative;
+  z-index: 1;
+  border-radius: 1.35rem;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: var(--line);
+  box-shadow: 0 18px 40px rgb(13 26 16 / 0.08);
+  max-height: 34rem;
+}
+
+@media (min-width: 1024px) {
+  .fp-photo-frame {
+    aspect-ratio: auto;
+    height: min(78vh, 44rem);
+    max-height: none;
+  }
+}
+
+.fp-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fp-profile:hover .fp-photo-frame img {
+  transform: scale(1);
+}
+
+.fp-photo-loc {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0.4rem 0.7rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.92);
+  backdrop-filter: blur(8px);
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--forest);
+}
+
+.fp-copy {
+  position: relative;
+}
+
+.fp-name {
+  margin: 0;
+  font-size: clamp(2.1rem, 4.2vw, 3.4rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--ink);
+}
+
+.fp-role {
+  display: inline-flex;
+  margin: 0.85rem 0 1.15rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgb(var(--sage-rgb) / 0.28);
+  color: var(--leaf);
+}
+
+.fp-bio {
+  margin: 0 0 1.2rem;
+  max-width: 38rem;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--sub);
+}
+
+.fp-quote {
+  margin: 0 0 1.45rem;
+  padding: 0 0 0 1.1rem;
+  border: 0;
+  border-left: 2px solid var(--leaf);
+  background: none;
+  max-width: 34rem;
+}
+
+.fp-quote p {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.fp-pills {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem 1.35rem;
+  margin: 0;
+  padding: 1.15rem 0 0;
+  list-style: none;
+  border-top: 1px solid rgb(var(--line-rgb) / 0.95);
+}
+
+@media (min-width: 640px) {
+  .fp-pills {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.fp-pills li {
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+}
+
+.fp-pill-label {
+  display: block;
+  margin: 0 0 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--leaf);
+}
+
+.fp-pill-note {
+  display: block;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--sub);
 }
 
 /* Our Story timeline */
@@ -3406,7 +3801,7 @@ a.c-channel:hover .c-channel-arrow {
   font-size: 14px;
   line-height: 1.7;
   margin-bottom: 1.25rem;
-  max-width: 46ch;
+  max-width: 100%;
 }
 
 .svc-cycle-card--light .svc-cycle-body { color: var(--sub); }
@@ -5397,6 +5792,7 @@ a.c-channel:hover .c-channel-arrow {
   letter-spacing: 0.04em;
   border-radius: 9999px;
   text-transform: uppercase;
+  width:fit-content
 }
 
 .blog-cat--green {
@@ -5662,14 +6058,6 @@ a.c-channel:hover .c-channel-arrow {
   border-left: 2px solid var(--sage);
 }
 
-.post-byline-avatar {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 9999px;
-  object-fit: cover;
-  border: 1px solid #ddd9d0;
-  flex-shrink: 0;
-}
 
 .post-byline-name {
   font-size: 14px;
@@ -6130,9 +6518,9 @@ body.light-hero .site-header:not(.is-scrolled) .site-header-nav a:hover {
 
 .post-hero-split-caption {
   margin-top: 0.875rem;
-  padding-left: 0.75rem;
+  padding-left: 2rem;
   border-left: 2px solid var(--sage);
   font-size: 12px;
   line-height: 1.55;
-  color: #8a8a8a;
+  color: #000000;
 }

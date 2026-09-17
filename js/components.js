@@ -7,24 +7,10 @@
 
   const navLinks = [
     { label: 'Home', href: 'index.html', page: 'home' },
-    {
-      label: 'About',
-      href: 'about.html',
-      page: 'about',
-      children: [
-        { label: 'Our Story', href: 'about.html' },
-        { label: 'Our Founders', href: 'founders.html' },
-        // { label: 'Our Team', href: 'about.html#team' },
-        // { label: 'Mission & Vision', href: 'about.html#mission' },
-      ],
-    },
+    { label: 'About', href: 'about.html', page: 'about' },
     // { label: 'Our Process', href: 'process.html', page: 'process' },
     { label: 'Services', href: 'services.html', page: 'services' },
-    { label: 'Case Studies', href: 'blog.html', page: 'blog', children: [
-      { label: 'Carbon Credits', href: 'blog.html#carbon-credits' },
-      { label: 'Regenerative Farming', href: 'blog.html#regenerative-farming' },
-      { label: 'Carbon Credits', href: 'blog.html#carbon-credits' },
-    ]},
+    { label: 'Case Studies', href: 'blog.html', page: 'blog' },
     // { label: 'Technology', href: 'technology.html', page: 'technology' },
     { label: 'Contact Us', href: 'contact.html', page: 'contact' },
   ];
@@ -166,7 +152,6 @@
       title: 'Company',
       links: [
         { label: 'About Us', href: 'about.html' },
-        { label: 'Our Founders', href: 'founders.html' },
         { label: 'Our Team', href: 'about.html#team' },
         { label: 'Careers', href: 'about.html#careers' },
         { label: 'Contact', href: 'contact.html' },
