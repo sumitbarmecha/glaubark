@@ -4108,6 +4108,8 @@ a.c-channel:hover .c-channel-arrow {
 
 /* Step header (clickable row) */
 .svc-step-hd {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -4192,6 +4194,7 @@ a.c-channel:hover .c-channel-arrow {
 
 /* Expandable body */
 .svc-step-body {
+  position: relative;
   overflow: hidden;
   /* height is managed by JS/GSAP */
 }
@@ -4207,17 +4210,18 @@ a.c-channel:hover .c-channel-arrow {
   }
 }
 
-/* Big faded background number */
+/* Faded background number — visible on closed and open rows */
 .svc-step-bg-num {
   position: absolute;
-  right: 0;
-  top: -1.5rem;
-  font-size: clamp(5rem, 10vw, 8rem);
+  right: 2.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
   font-weight: 700;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.04em;
   line-height: 1;
   color: var(--forest-mid);
-  opacity: 0.04;
+  opacity: 0.08;
   pointer-events: none;
   user-select: none;
   z-index: 0;
