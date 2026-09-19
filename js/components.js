@@ -152,8 +152,7 @@
       title: 'Company',
       links: [
         { label: 'About Us', href: 'about.html' },
-        { label: 'Our Team', href: 'about.html#team' },
-        { label: 'Careers', href: 'about.html#careers' },
+   
         { label: 'Contact', href: 'contact.html' },
       ],
     },
