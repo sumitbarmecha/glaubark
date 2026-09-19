@@ -1704,6 +1704,7 @@ body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
   color: rgb(var(--sage-rgb) / 0.36);
   pointer-events: none;
   user-select: none;
+  padding-bottom: 30px;
 }
 
 .site-footer-inner {
