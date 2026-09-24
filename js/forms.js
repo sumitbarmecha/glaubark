@@ -115,6 +115,12 @@
             : "You're on the list. Thank you!",
           'success'
         );
+        if (window.GlaubarkAnalytics && typeof window.GlaubarkAnalytics.formSuccess === 'function') {
+          window.GlaubarkAnalytics.formSuccess({
+            formType: 'newsletter',
+            formId: form.id || 'newsletter',
+          });
+        }
       } catch (err) {
         showToast(err.message || 'Something went wrong. Please try again.', 'error');
       } finally {
@@ -160,6 +166,13 @@
             : 'Thank you — your message has been sent.',
           'success'
         );
+        if (window.GlaubarkAnalytics && typeof window.GlaubarkAnalytics.formSuccess === 'function') {
+          window.GlaubarkAnalytics.formSuccess({
+            formType: 'contact',
+            formId: form.id || 'contact-form',
+            contactType: payload.contactType || '',
+          });
+        }
       } catch (err) {
         showToast(err.message || 'Something went wrong. Please try again.', 'error');
       } finally {

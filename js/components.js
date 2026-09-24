@@ -50,9 +50,11 @@
         </li>`;
     }
 
+    const gaAttr = link.page === 'contact' ? ' data-ga-cta="header_contact"' : '';
+
     return `
       <li>
-        <a href="${link.href}" class="${activeClass}">${link.label}</a>
+        <a href="${link.href}" class="${activeClass}"${gaAttr}>${link.label}</a>
       </li>`;
   }
 
@@ -80,9 +82,10 @@
     }
 
     const activeClass = isActive(link.page) ? 'text-white' : 'text-white/70';
+    const gaAttr = link.page === 'contact' ? ' data-ga-cta="header_contact"' : '';
     return `
       <li class="border-b border-white/10">
-        <a href="${link.href}" class="block py-4 text-lg font-medium ${activeClass} hover:text-white">${link.label}</a>
+        <a href="${link.href}" class="block py-4 text-lg font-medium ${activeClass} hover:text-white"${gaAttr}>${link.label}</a>
       </li>`;
   }
 
@@ -232,13 +235,13 @@
               <img src="assets/images/glaubark_logo.png" alt="Glaubark" class="site-footer-logo-img" />
             </a>
             <p class="site-footer-tagline">
-              Regenerative farming &amp; carbon credits for India&rsquo;s farmers.
+              Powering India’s carbon economy
             </p>
             <div class="site-footer-socials">
-              <a href="https://www.linkedin.com/company/glaubark/" class="site-footer-social" aria-label="Glaubark on LinkedIn" target="_blank" rel="noopener noreferrer" data-magnetic data-magnetic-strength="0.5">
+              <a href="https://www.linkedin.com/company/glaubark/" class="site-footer-social" aria-label="Glaubark on LinkedIn" target="_blank" rel="noopener noreferrer" data-ga-cta="footer_linkedin" data-magnetic data-magnetic-strength="0.5">
                 <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
               </a>
-              <a href="mailto:hello@glaubarksolutions.com" class="site-footer-social" aria-label="Email Glaubark" data-magnetic data-magnetic-strength="0.5">
+              <a href="mailto:info@glaubark.com" class="site-footer-social" aria-label="Email Glaubark" data-ga-cta="footer_email" data-magnetic data-magnetic-strength="0.5">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.75" viewBox="0 0 24 24" aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
