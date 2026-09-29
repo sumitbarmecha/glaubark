@@ -11,7 +11,7 @@
  *   generate_lead      — successful contact or newsletter submit
  */
 (function () {
-  const MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  const MEASUREMENT_ID = 'G-HQNR5VKTM7';
 
   function isConfigured() {
     return /^G-[A-Z0-9]+$/.test(MEASUREMENT_ID) && MEASUREMENT_ID !== 'G-XXXXXXXXXX';
