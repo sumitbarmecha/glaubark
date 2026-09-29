@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Glaubark Solutions — Brand Guidelines</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="googlebot" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet" />
@@ -416,11 +418,25 @@
       overflow: hidden;
     }
 
+    @page {
+      size: A4 landscape;
+      margin: 10mm 12mm;
+    }
+
     @media print {
-      .book-nav { display: none; }
-      .cover { min-height: 100vh; break-after: page; }
-      section.chapter { break-inside: avoid; }
-      a { text-decoration: none; color: inherit; }
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .book-nav { display: none !important; }
+      .cover {
+        min-height: 100vh;
+        break-after: page;
+      }
+      section.chapter { break-inside: auto; }
+      h2, h3 { break-after: avoid; }
+      .swatch, .card, .trait, .logo-tile { break-inside: avoid; }
+      a { text-decoration: none; }
     }
   </style>
 </head>

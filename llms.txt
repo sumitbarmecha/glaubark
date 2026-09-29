@@ -1,0 +1,35 @@
+# Glaubark Solutions
+
+> Glaubark Solutions is a farmer-first carbon project developer in India. We work with farmers, farmer producer organisations, sugar factories, and agricultural partners to adopt regenerative practices, measure climate outcomes, and connect that work to voluntary carbon markets (VCM) and compliance markets.
+
+Glaubark is not an NGO, carbon marketplace, registry, or SaaS carbon-accounting product. It builds carbon projects with farmers so regenerative agriculture can be measured and linked to climate finance.
+
+Official website: https://glaubark.com
+Contact: info@glaubark.com
+Headquarters: 501, NDM 2, Netaji Subhash Place, Delhi - 110034, India
+LinkedIn: https://www.linkedin.com/company/glaubark/
+
+## Client-confirmed facts
+
+- Geography: operations with partners across India
+- Farmers enrolled: 50,000+
+- Carbon credits: 1M+ projected annually
+- Farmer income uplift: 10–30% (input-cost savings plus carbon credit revenue)
+- Input-cost reduction: 30–40% through regenerative practice
+- Market language: aligned with VCM and compliance markets; VCS Aligned / VCS project support (not a claim that credits are already issued or VCS-certified unless independently confirmed)
+- Founders: Dhruv Meghna Deepak Sakore (M.S. Sustainability Management, Columbia University; three peer-reviewed papers; Mission Prana / Mishra Phalbag, Parbhani; Tata Sons green-finance research) and Vatsal Agarwal (Master’s, London School of Economics; experience at EY)
+
+## Pages
+
+- [Home](https://glaubark.com/): Farmer-first carbon projects, regenerative farming, MRV, and market alignment
+- [About](https://glaubark.com/about.html): Company story, founders, vision, mission, and why Glaubark exists
+- [Services](https://glaubark.com/services.html): Carbon project development, regenerative farming, MRV systems, carbon market access, VCS project support
+- [Case studies and writing](https://glaubark.com/blog.html): Field stories and explainers on agricultural carbon credits and regenerative farming
+- [Contact](https://glaubark.com/contact.html): Email, Delhi office, partnerships, and FAQs
+- [Privacy](https://glaubark.com/privacy.html): Privacy policy
+- [Terms](https://glaubark.com/terms.html): Terms of service
+
+## Optional
+
+- [Full company brief for language models](https://glaubark.com/llms-full.txt)
+- [XML sitemap](https://glaubark.com/sitemap.xml)

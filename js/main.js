@@ -245,6 +245,62 @@
     counters.forEach((c) => observer.observe(c));
   }
 
+  function initFaq() {
+    const items = Array.from(document.querySelectorAll('[data-faq]'));
+    if (!items.length) return;
+
+    function close(item) {
+      const btn = item.querySelector('.c-faq-q');
+      const panel = item.querySelector('.c-faq-a');
+      if (!btn || !panel) return;
+      panel.style.height = panel.scrollHeight + 'px';
+      void panel.offsetHeight;
+      panel.style.height = '0px';
+      btn.setAttribute('aria-expanded', 'false');
+      item.classList.remove('is-open');
+    }
+
+    function open(item) {
+      const btn = item.querySelector('.c-faq-q');
+      const panel = item.querySelector('.c-faq-a');
+      const inner = item.querySelector('.c-faq-a-inner');
+      if (!btn || !panel || !inner) return;
+      panel.style.height = inner.offsetHeight + 'px';
+      btn.setAttribute('aria-expanded', 'true');
+      item.classList.add('is-open');
+    }
+
+    items.forEach((item) => {
+      const btn = item.querySelector('.c-faq-q');
+      const panel = item.querySelector('.c-faq-a');
+      if (!btn || !panel) return;
+
+      panel.addEventListener('transitionend', (e) => {
+        if (e.propertyName !== 'height') return;
+        if (item.classList.contains('is-open')) panel.style.height = 'auto';
+      });
+
+      btn.addEventListener('click', () => {
+        const wasOpen = item.classList.contains('is-open');
+        items.forEach((other) => {
+          if (other.classList.contains('is-open')) close(other);
+        });
+        if (!wasOpen) open(item);
+      });
+    });
+
+    let resizeId;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeId);
+      resizeId = setTimeout(() => {
+        const openItem = items.find((i) => i.classList.contains('is-open'));
+        if (!openItem) return;
+        const panel = openItem.querySelector('.c-faq-a');
+        if (panel) panel.style.height = 'auto';
+      }, 150);
+    });
+  }
+
   function initCarousel() {
     const el = document.querySelector('.carousel-swiper');
     if (!el || typeof Swiper === 'undefined') return;
@@ -279,6 +335,7 @@
     initCarousel();
     initAccordionToggle();
     initStatCounters();
+    initFaq();
 
     if (window.GlaubarkForms) {
       window.GlaubarkForms.initNewsletter();
