@@ -995,44 +995,29 @@ body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
   color: var(--ink);
 }
 
-.fp-pills {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.9rem 1.35rem;
-  margin: 0;
-  padding: 1.15rem 0 0;
-  list-style: none;
+/* ── Education card ──────────────────────────────────────────────── */
+.fp-edu-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
   border-top: 1px solid rgb(var(--line-rgb) / 0.95);
+  max-width: 22rem;
 }
-
-@media (min-width: 640px) {
-  .fp-pills {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+.fp-edu-logo {
+  height: 2.4rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
-
-.fp-pills li {
-  padding: 0;
-  border: 0;
-  background: none;
-  border-radius: 0;
-}
-
-.fp-pill-label {
-  display: block;
-  margin: 0 0 0.28rem;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--leaf);
-}
-
-.fp-pill-note {
-  display: block;
+.fp-edu-degree {
   margin: 0;
-  font-size: 0.75rem;
-  line-height: 1.45;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--sub);
+  letter-spacing: 0.01em;
 }
 
 /* Our Story timeline */

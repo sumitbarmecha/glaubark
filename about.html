@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-IN">
 <head>
   <meta charset="UTF-8" />
@@ -35,9 +35,11 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://glaubark.com/about.html" />
+  <link rel="sitemap" type="application/xml" href="https://glaubark.com/sitemap.xml" />
   <link rel="alternate" type="text/plain" href="https://glaubark.com/llms.txt" title="LLM content index" />
-  <link rel="icon" type="image/png" href="https://glaubark.com/assets/images/logo_icon.png" />
-  <link rel="apple-touch-icon" href="https://glaubark.com/assets/images/logo_icon.png" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/logo_icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/logo_icon.png" />
   <meta name="theme-color" content="#0d1a10" />
   <meta name="geo.region" content="IN-DL" />
   <meta name="geo.placename" content="Delhi, India" />
@@ -50,7 +52,7 @@
   <meta property="og:description" content="Glaubark Solutions was founded by Dhruv Sakore and Vatsal Agarwal. Delhi headquarters, projects across India, farmer-first carbon project development." />
   <meta property="og:url" content="https://glaubark.com/about.html" />
   <meta property="og:image" content="https://glaubark.com/assets/images/shoot/farmer_walking.jpg" />
-  <meta property="og:image:alt" content="Glaubark Solutions — farmer-first carbon projects in India" />
+  <meta property="og:image:alt" content="Glaubark Solutions ? farmer-first carbon projects in India" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="About Glaubark Solutions | Farmer-First Carbon Project Developer" />
   <meta name="twitter:description" content="Glaubark Solutions was founded by Dhruv Sakore and Vatsal Agarwal. Delhi headquarters, projects across India, farmer-first carbon project development." />
@@ -76,7 +78,7 @@
       "image": "https://glaubark.com/assets/images/shoot/farmer_walking.jpg",
       "email": "info@glaubark.com",
       "description": "Farmer-first carbon project developer in India. Glaubark works with farmers, FPOs, sugar factories, and agricultural partners on regenerative farming, MRV, and carbon credits aligned with VCM and compliance markets.",
-      "slogan": "Powering India’s carbon economy",
+      "slogan": "Powering India?s carbon economy",
       "foundingLocation": {
         "@type": "Place",
         "name": "India"
@@ -203,7 +205,7 @@
           "name": "Who founded Glaubark Solutions?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Glaubark was founded by Dhruv Meghna Deepak Sakore and Vatsal Agarwal. Dhruv holds an M.S. in Sustainability Management from Columbia University. Vatsal holds a Master’s from the London School of Economics and has experience at EY."
+            "text": "Glaubark was founded by Dhruv Meghna Deepak Sakore and Vatsal Agarwal. Dhruv holds an M.S. in Sustainability Management from Columbia University. Vatsal holds a Master?s from the London School of Economics and has experience at EY."
           }
         },
         {
@@ -216,7 +218,7 @@
         },
         {
           "@type": "Question",
-          "name": "What is Glaubark’s mission?",
+          "name": "What is Glaubark?s mission?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "To empower farmers through regenerative practices, generate high-integrity carbon credits, and unlock climate finance as a new source of rural income."
@@ -266,7 +268,7 @@
   <link rel="stylesheet" href="css/custom.css" />
 
   <style>
-    /* ══ Story Timeline — Scroll-Driven ══ */
+    /* -- Story Timeline ? Scroll-Driven -- */
     .tl-step-btn {
       display: flex;
       flex-direction: row;
@@ -315,7 +317,7 @@
     .tl-step-btn.is-active .tl-step-loc { color: #84cc16; }
     .tl-step-btn:hover:not(.is-active) .tl-step-num { border-color: rgba(255,255,255,0.4); color: rgba(255,255,255,0.7); }
 
-    /* Panel container — stacks all panels on top of each other.
+    /* Panel container ? stacks all panels on top of each other.
        Height must cover the tallest panel (panel 4 adds a status row). */
     .tl-panels {
       position: relative;
@@ -378,7 +380,7 @@
     .tl-arrow-btn:hover { border-color: #84cc16; color: #84cc16; }
     /* arrows loop around so they're never disabled */
 
-    /* ══ Service Cards Carousel — same UI as home "Our core solutions" ══ */
+    /* -- Service Cards Carousel ? same UI as home "Our core solutions" -- */
     .svc-swiper { overflow: visible; }
     .svc-swiper .swiper-slide { height: auto; }
 
@@ -503,6 +505,14 @@
     .svc-nav-btn:hover { background: var(--forest); color: #fff; border-color: var(--forest); }
     .svc-nav-btn.swiper-button-disabled { opacity: 0.3; pointer-events: none; }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HQNR5VKTM7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-HQNR5VKTM7');
+  </script>
   <script src="js/analytics.js"></script>
 </head>
 <body class="bg-white text-ink" data-page="about">
@@ -520,12 +530,12 @@
     <section class="page-banner relative flex items-center">
       <div class="absolute inset-0 z-0">
         <div class="absolute inset-0 z-1 bg-black/50"></div>
-        <video src="./assets/videos/aboutHero.mp4 " autoplay muted loop class="w-full h-full object-cover" />
+        <video src="./assets/videos/aboutHero.mp4" autoplay muted loop playsinline preload="auto" class="w-full h-full object-cover"></video>
         <div class="absolute  inset-0 z-1 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
       </div>
       <div class="relative z-10 max-w-[1400px] mx-auto w-full px-5 md:px-24 lg:px-24  ">
         <p class="text-[11px] md:text-xs text-center font-semibold tracking-[0.15em] uppercase text-white mb-5">About Glaubark Solutions</p>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight text-center">Climate finance that works for the farmer, not around them</h1>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight text-center">Climate finance that works?for the farmer, not around them</h1>
         <!-- <p class="text-white/80 mt-4 max-w-lg text-sm md:text-base">Building a sustainable future through regenerative farming and carbon credit solutions.</p> -->
       </div>
     </section>
@@ -663,7 +673,7 @@
       </div>
     </section>
 
-    <!-- Our Story — Scroll-Driven Sticky Timeline -->
+    <!-- Our Story ? Scroll-Driven Sticky Timeline -->
     <!-- Outer section is tall to give each step one viewport of scroll space -->
     <section class="story-tl-outer">
       <div class="story-tl-sticky bg-[#132517] overflow-hidden flex flex-col">
@@ -683,11 +693,11 @@
 
               <button class="tl-step-btn is-active" data-tl-idx="0">
                 <span class="tl-step-num">01</span>
-                <span class="tl-step-loc hidden md:block">Mumbai · Tata Sons</span>
+                <span class="tl-step-loc hidden md:block">Mumbai ? Tata Sons</span>
               </button>
               <button class="tl-step-btn" data-tl-idx="1">
                 <span class="tl-step-num">02</span>
-                <span class="tl-step-loc hidden md:block">Marathwada · Maharashtra</span>
+                <span class="tl-step-loc hidden md:block">Marathwada ? Maharashtra</span>
               </button>
               <button class="tl-step-btn" data-tl-idx="2">
                 <span class="tl-step-num">03</span>
@@ -695,22 +705,22 @@
               </button>
               <button class="tl-step-btn" data-tl-idx="3">
                 <span class="tl-step-num">04</span>
-                <span class="tl-step-loc hidden md:block">London · LSE</span>
+                <span class="tl-step-loc hidden md:block">London ? LSE</span>
               </button>
               <button class="tl-step-btn" data-tl-idx="4">
                 <span class="tl-step-num">05</span>
-                <span class="tl-step-loc hidden md:block">Today · Pan-India</span>
+                <span class="tl-step-loc hidden md:block">Today ? Pan-India</span>
               </button>
 
             </div>
           </div>
 
-          <!-- Stacked panels — only one visible at a time -->
+          <!-- Stacked panels ? only one visible at a time -->
           <div class="tl-panels">
 
             <div class="tl-panel is-active" data-tl-panel="0">
               <div class="tl-panel-text">
-                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Mumbai · Tata Sons</span>
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Mumbai ? Tata Sons</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A research paper that changed direction</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Glaubark began with an internship. While working at Tata Sons in Mumbai, co-founder Dhruv Sakore was writing a research paper on green finance and its role in the global energy transition. In the course of that research, he discovered carbon credits &mdash; and became deeply interested in their potential to fund climate-positive projects at scale.</p>
               </div>
@@ -718,7 +728,7 @@
 
             <div class="tl-panel" data-tl-panel="1">
               <div class="tl-panel-text">
-                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Marathwada · Maharashtra</span>
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Marathwada ? Maharashtra</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A personal connection to agrarian distress</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">The idea immediately connected with something personal. Dhruv comes from Marathwada &mdash; a drought-prone region of Maharashtra with some of the highest rates of farmer distress in India. Growing up in an agricultural family, he had witnessed firsthand how unseasonal rainfall, depleted soils, volatile crop prices, and limited access to modern farming knowledge erode farmer livelihoods over generations.</p>
               </div>
@@ -734,7 +744,7 @@
 
             <div class="tl-panel" data-tl-panel="3">
               <div class="tl-panel-text">
-                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">London · LSE</span>
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">London ? LSE</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">A co-founder joins from London</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">Dhruv began sharing the idea with friends. One of those conversations reached Vatsal Agarwal, a friend then studying at the London School of Economics, with experience at EY. Vatsal was looking to build something meaningful and new &mdash; and saw strong potential in the vision. After several deep discussions, Vatsal came on board, and together they founded Glaubark Solutions.</p>
               </div>
@@ -742,7 +752,7 @@
 
             <div class="tl-panel" data-tl-panel="4">
               <div class="tl-panel-text">
-                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Today · Pan-India</span>
+                <span class="inline-block text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16] mb-4">Today ? Pan-India</span>
                 <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-white leading-snug mb-5">From student idea to national presence</h3>
                 <p class="text-white/65 text-[15px] md:text-base leading-relaxed">What started as a student-led research idea has grown into a company working directly with farmers, FPOs, sugar factories, and agricultural partners across India &mdash; approaching 100,000 hectares of land under carbon project development, with 50,000+ farmers enrolled.</p>
                 <div class="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[#84cc16]">
@@ -817,21 +827,11 @@
               <blockquote class="fp-quote">
                 <p>Carbon credits should not just be traded in boardrooms. They should reach the hands that grow our food.</p>
               </blockquote>
-              <ul class="fp-pills">
-                <li>
-                  <span class="fp-pill-label">Columbia University</span>
-                  <span class="fp-pill-note">M.S. Sustainability Management</span>
-                </li>
-                <!-- <li>
-                  <span class="fp-pill-label">Tata Sons, Mumbai</span>
-                  <span class="fp-pill-note">Green finance research on climate and energy transition</span>
-                </li>
-                <li>
-                  <span class="fp-pill-label">Farmer-first carbon projects</span>
-                  <span class="fp-pill-note">Designing programmes around farm practice, income, and measurement</span>
-                </li> -->
-                
-              </ul>
+              <!-- Education card -->
+              <div class="fp-edu-card">
+                <img src="./assets/images/columbia.png" alt="Columbia University" class="fp-edu-logo" />
+                <p class="fp-edu-degree">M.S. Sustainability Management</p>
+              </div>
             </div>
           </div>
         </div>
@@ -848,7 +848,7 @@
                 />
                 <!-- <p class="fp-photo-loc">
                   <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  London → Mumbai
+                  London ? Mumbai
                 </p> -->
               </div>
             </div>
@@ -868,30 +868,21 @@
                   LinkedIn
                 </a>
               </div>
-              <p class="fp-bio">Vatsal holds a Master&rsquo;s from the London MSc Finance and has experience at EY. He was in London looking to build something that would matter at scale when Dhruv shared the Glaubark idea. He came on board to turn that conviction into operations &mdash; the systems and partnerships that connect Indian farmland to climate finance.</p>
+              <p class="fp-bio">Vatsal holds an MSc in Finance from the London School of Economics and Political Science, and has experience at EY. He was in London looking to build something that would matter at scale when Dhruv shared the Glaubark idea. He came on board to turn that conviction into operations &mdash; the systems and partnerships that connect Indian farmland to climate finance.</p>
               <blockquote class="fp-quote">
                 <p>The climate crisis has an agricultural solution. We just need to build the infrastructure to unlock it.</p>
               </blockquote>
-              <ul class="fp-pills">
-                <li>
-                  <span class="fp-pill-label">London school of economics & political science</span>
-                  <span class="fp-pill-note">MSc Finance</span>
-                </li>
-                <!-- <li>
-                  <span class="fp-pill-label">Project operations</span>
-                  <span class="fp-pill-note">Running the carbon project cycle from field to market</span>
-                </li>
-                <li>
-                  <span class="fp-pill-label">Agricultural partnerships</span>
-                  <span class="fp-pill-note">Working with FPOs, sugar factories, and market counterparties</span>
-                </li> -->
-              </ul>
+              <!-- Education card -->
+              <div class="fp-edu-card">
+                <img src="./assets/images/LSE_logo.svg" alt="London School of Economics and Political Science" class="fp-edu-logo" width="100" height="100"  style="width: 200px; height:auto" />
+                <p class="fp-edu-degree">MSc Finance</p>
+              </div>
             </div>
           </div>
         </div>
       </article>
     </section>
-    <!-- Vision / Mission / Goal — forest card on white, separated from the footer -->
+    <!-- Vision / Mission / Goal ? forest card on white, separated from the footer -->
     <section class="bg-white py-16 md:py-20">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
       <div class="bg-[#132517] rounded-[1.75rem] md:rounded-[2.25rem] px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
@@ -940,7 +931,7 @@
               <span class="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#84cc16]">Goal</span>
             </div>
             <p class="text-white/90 text-lg md:text-xl lg:text-2xl font-light leading-relaxed tracking-tight">
-              "Become India&rsquo;s foremost farmer-centric carbon developer — bridging rural communities and global climate finance for a more sustainable agricultural future."
+              "Become India&rsquo;s foremost farmer-centric carbon developer ? bridging rural communities and global climate finance for a more sustainable agricultural future."
             </p>
           </div>
 
@@ -961,7 +952,7 @@
             <p class="text-white/50 text-xs leading-snug">Farmer-first revenue model</p>
           </div>
           <div>
-            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">∞</p>
+            <p class="text-3xl md:text-4xl font-bold text-[#84cc16] leading-none mb-2">8</p>
             <p class="text-white/50 text-xs leading-snug">Long-term partnerships, not one-off transactions</p>
           </div>
         </div>
@@ -995,7 +986,7 @@
       </div>
     </section>
 
-    <!-- What Makes Glaubark Different — same UI as home "Our core solutions" -->
+    <!-- What Makes Glaubark Different ? same UI as home "Our core solutions" -->
     <section class="svc-expand-section py-16 md:py-20 bg-white border-t border-[#e8ebe9]">
       <div class="max-w-[1400px] mx-auto px-5 md:px-8 lg:px-12">
 
@@ -1149,7 +1140,7 @@
       </div>
     </section>
 
-    <!-- Long-Term Goals — Bento Grid -->
+    <!-- Long-Term Goals ? Bento Grid -->
     
 
 
@@ -1171,7 +1162,7 @@
               </button>
               <div class="c-faq-a" id="about-faq-panel-1" role="region">
                 <div class="c-faq-a-inner">
-                  <p>Glaubark was founded by Dhruv Meghna Deepak Sakore and Vatsal Agarwal. Dhruv holds an M.S. in Sustainability Management from Columbia University. Vatsal holds a Master’s from the London School of Economics and has experience at EY.</p>
+                  <p>Glaubark was founded by Dhruv Meghna Deepak Sakore and Vatsal Agarwal. Dhruv holds an M.S. in Sustainability Management from Columbia University. Vatsal holds a Master?s from the London School of Economics and has experience at EY.</p>
                 </div>
               </div>
             </div>
@@ -1190,7 +1181,7 @@
             <div class="c-faq-item" data-faq>
               <button type="button" class="c-faq-q" aria-expanded="false" aria-controls="about-faq-panel-3">
                 <span class="c-faq-index">03</span>
-                <span class="c-faq-text">What is Glaubark’s mission?</span>
+                <span class="c-faq-text">What is Glaubark?s mission?</span>
                 <span class="c-faq-toggle" aria-hidden="true"></span>
               </button>
               <div class="c-faq-a" id="about-faq-panel-3" role="region">
@@ -1216,8 +1207,8 @@
   <script src="js/animations.js"></script>
 
   <script>
-    /* ── Story Timeline — autoplays in view; hover never pauses.
-       Only a click on a step or an arrow takes over and stops rotation. ── */
+    /* -- Story Timeline ? autoplays in view; hover never pauses.
+       Only a click on a step or an arrow takes over and stops rotation. -- */
     (function () {
       var TOTAL   = 5;
       var LAST    = TOTAL - 1;
@@ -1389,6 +1380,14 @@
         });
       });
     })();
+  </script>
+  <script>
+    /* Force autoplay on mobile for all muted videos */
+    document.querySelectorAll('video[autoplay]').forEach(function(v) {
+      v.muted = true;
+      var p = v.play();
+      if (p !== undefined) { p.catch(function() {}); }
+    });
   </script>
 </body>
 </html>

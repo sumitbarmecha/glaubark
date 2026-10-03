@@ -1,0 +1,23 @@
+# Security + performance headers for all pages
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Cache HTML briefly (so updates propagate quickly)
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Cache assets for a long time
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Sitemap — no cache so Google always gets fresh version
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+
+# robots.txt — no cache
+/robots.txt
+  Cache-Control: public, max-age=3600

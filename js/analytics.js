@@ -58,9 +58,19 @@
     }
 
     window.dataLayer = window.dataLayer || [];
-    window.gtag = function () {
-      window.dataLayer.push(arguments);
-    };
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () {
+        window.dataLayer.push(arguments);
+      };
+    }
+
+    const existing = document.querySelector('script[src*="googletagmanager.com/gtag/js"]');
+    if (existing) {
+      existing.addEventListener('load', flush);
+      setTimeout(flush, 800);
+      return;
+    }
+
     window.gtag('js', new Date());
     window.gtag('config', MEASUREMENT_ID, {
       anonymize_ip: true,

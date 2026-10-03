@@ -1,0 +1,17 @@
+# www ? non-www (301 permanent — critical for SEO canonical)
+https://www.glaubark.com/* https://glaubark.com/:splat 301
+
+# Clean URLs: redirect /index.html ? /
+/index.html / 301
+
+# ?? Legacy URL redirects (preserve SEO traffic from old site) ??
+/who-we-are/know-us/ /about.html 301
+/who-we-are/know-us  /about.html 301
+/who-we-are/         /about.html 301
+/who-we-are          /about.html 301
+/contact/            /contact.html 301
+/contact             /contact.html 301
+/media/              /blog.html 301
+/media               /blog.html 301
+/terms-condition/    /terms.html 301
+/terms-condition     /terms.html 301
