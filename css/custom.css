@@ -561,6 +561,8 @@ body.light-hero .site-header:not(.is-scrolled) .site-header-logo-img {
 /* Page banner (inner pages) */
 .page-banner {
   min-height: 65vh;
+  overflow: hidden;
+  -webkit-transform: translateZ(0); /* iOS GPU compositing layer fix */
 }
 
 @media (min-width: 768px) {
